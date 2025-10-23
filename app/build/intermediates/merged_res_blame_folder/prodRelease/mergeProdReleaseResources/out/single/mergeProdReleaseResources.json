@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.gearsnap.app-prodRelease-77:/drawable_ic_logo_fg.xml.flat",
+        "source": "com.gearsnap.app-main-78:/drawable/ic_logo_fg.xml"
+    },
+    {
+        "merged": "com.gearsnap.app-prodRelease-77:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.gearsnap.app-main-78:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.gearsnap.app-prodRelease-77:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.gearsnap.app-main-78:/mipmap-anydpi-v26/ic_launcher.xml"
+    }
+]

@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Thème app Material 3 (Compose) -->
+    <style name="Theme.GearSnap" parent="Theme.Material3.DayNight">
+        <!-- Optionnel : couleurs système -->
+        <item name="android:statusBarColor">@color/gs_green</item>
+        <item name="android:navigationBarColor">@color/gs_gray_light</item>
+    </style>
+</resources>

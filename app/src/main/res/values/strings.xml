@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GearSnap</string>
+    <string name="mapbox_token">YOUR_MAPBOX_TOKEN</string>
+    <string name="openweather_api_key">YOUR_OPENWEATHER_API_KEY</string>
+</resources>

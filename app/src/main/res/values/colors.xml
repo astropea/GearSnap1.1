@@ -1,0 +1,8 @@
+<resources>
+    <color name="gs_green">#2E6B4A</color>
+    <color name="gs_blue">#2E7BBE</color>
+    <color name="gs_orange">#F47B20</color>
+    <color name="gs_gray_light">#F6F6F6</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+</resources>
