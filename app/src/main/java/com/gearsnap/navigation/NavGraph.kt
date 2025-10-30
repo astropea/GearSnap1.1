@@ -15,7 +15,7 @@ sealed class BottomDestinations(val route: String, val icon: ImageVector, val la
     data object Home: BottomDestinations("home", Icons.Default.Home, "Accueil")
     data object Map: BottomDestinations("map", Icons.Default.Map, "Carte")
     data object Rent: BottomDestinations("rent", Icons.Default.Handyman, "Prêt")
-    data object Events: BottomDestinations("events", Icons.Default.Event, "Événements")
+    data object Events: BottomDestinations("events", Icons.Default.Event, "planing")
     data object Social: BottomDestinations("social", Icons.Default.Chat, "Social")
     data object Profile: BottomDestinations("profile", Icons.Default.Person, "Profil")
 
