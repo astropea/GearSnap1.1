@@ -11,9 +11,9 @@ import androidx.compose.ui.unit.dp
 fun MapScreen() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "Carte des spots • filtres", style = MaterialTheme.typography.headlineSmall)
+            Text(text = "Carte des spots", style = MaterialTheme.typography.headlineSmall)
             Spacer(Modifier.height(12.dp))
-            Text(text = "Placeholder — connect Firebase/Map/AI dans repository.")
+            Text(text = "Placeholder — connectez Firebase/Map/AI dans le repository.", style = MaterialTheme.typography.bodyMedium)
         }
     }
 }

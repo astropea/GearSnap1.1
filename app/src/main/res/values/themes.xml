@@ -1,8 +1,101 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Thème app Material 3 (Compose) -->
+    <!-- Base GearSnap Theme -->
     <style name="Theme.GearSnap" parent="Theme.Material3.DayNight">
-        <!-- Optionnel : couleurs système -->
-        <item name="android:statusBarColor">@color/gs_green</item>
-        <item name="android:navigationBarColor">@color/gs_gray_light</item>
+        <!-- Primary brand colors -->
+        <item name="colorPrimary">@color/gs_forest_green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/gs_forest_green_light</item>
+        <item name="colorOnPrimaryContainer">@color/white</item>
+
+        <!-- Secondary brand colors -->
+        <item name="colorSecondary">@color/gs_warm_orange</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/gs_warm_orange_light</item>
+        <item name="colorOnSecondaryContainer">@color/gs_forest_green_dark</item>
+
+        <!-- Tertiary colors -->
+        <item name="colorTertiary">@color/gs_warm_orange</item>
+        <item name="colorOnTertiary">@color/white</item>
+        <item name="colorTertiaryContainer">@color/gs_warm_orange_light</item>
+        <item name="colorOnTertiaryContainer">@color/gs_forest_green_dark</item>
+
+        <!-- Surface colors -->
+        <item name="android:colorBackground">@color/gs_soft_beige</item>
+        <item name="colorOnBackground">@color/gs_title_green</item>
+        <item name="colorSurface">@color/gs_card_bg</item>
+        <item name="colorOnSurface">@color/gs_body_gray</item>
+        <item name="colorSurfaceVariant">@color/gs_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/gs_body_gray</item>
+
+        <!-- System UI colors -->
+        <item name="android:statusBarColor">@color/gs_forest_green</item>
+        <item name="android:navigationBarColor">@color/gs_forest_green</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Rounded corners -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.GearSnap.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.GearSnap.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.GearSnap.LargeComponent</item>
+    </style>
+
+    <!-- Shape definitions for rounded corners -->
+    <style name="ShapeAppearance.GearSnap.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="ShapeAppearance.GearSnap.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeAppearance.GearSnap.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <!-- Button styles -->
+    <style name="Widget.GearSnap.Button" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/gs_forest_green</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Widget.GearSnap.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textColor">@color/gs_forest_green</item>
+        <item name="strokeColor">@color/gs_forest_green</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Widget.GearSnap.Button.TextButton" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/gs_forest_green</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- Card style -->
+    <style name="Widget.GearSnap.CardView" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardBackgroundColor">@color/gs_card_bg</item>
+    </style>
+
+    <!-- Search bar style -->
+    <style name="Widget.GearSnap.SearchView" parent="Widget.Material3.SearchView">
+        <item name="queryBackground">@drawable/gs_search_background</item>
+        <item name="android:background">@drawable/gs_search_background</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
+
+    <!-- Bottom navigation style -->
+    <style name="Widget.GearSnap.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">@color/gs_nav_bg</item>
+        <item name="itemIconTint">@color/gs_nav_selector</item>
+        <item name="itemTextColor">@color/gs_nav_selector</item>
+        <item name="itemRippleColor">@color/gs_warm_orange_light</item>
+        <item name="elevation">8dp</item>
     </style>
 </resources>

@@ -3,6 +3,66 @@
   <component name="GhostTextManager">
     <option name="inputs">
       <map>
+        <entry key="@&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt;">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762089467252" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="@&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; refait moi le style de l'app en te referent a ces image">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762089477574" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="app @&lt;file_name&gt;">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762089437227" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="e: file:///C:/Users/grene/AndroidStudioProjects/GearSnap/app/src/main/java/com/gearsnap/ui/screens/HomeScreen.kt:445:1 Expecting a top level declaration">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762091420246" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="rappefait moi le style de l'app en te referent a ces image @">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762089360392" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="refait">
           <value>
             <GhostTextMetaData>
@@ -10,6 +70,30 @@
               <option name="timestamps">
                 <list>
                   <option value="1761843963637" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="refait moi le style de l'app en te referent a ces image">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762088911643" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="refait moi le style de l'app en te referent a ces image @&lt;file_name&gt;">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762089386054" />
                 </list>
               </option>
             </GhostTextMetaData>

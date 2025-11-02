@@ -13,7 +13,7 @@ fun ProfileScreen() {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(text = "Profil, badges, stats", style = MaterialTheme.typography.headlineSmall)
             Spacer(Modifier.height(12.dp))
-            Text(text = "Placeholder — connect Firebase/Map/AI dans repository.")
+            Text(text = "Placeholder — connectez Firebase/Map/AI dans le repository.", style = MaterialTheme.typography.bodyMedium)
         }
     }
 }
