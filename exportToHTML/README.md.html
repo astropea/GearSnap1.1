@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #56a8f5;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+README.md</font>
+</center></td></tr></table>
+<pre><span class="s0"># </span><span class="s2">GearSnap — Starter Android </span><span class="s1">(</span><span class="s2">Jetpack Compose</span><span class="s1">)</span>
+
+<span class="s2">Projet Android Studio prêt à compiler </span><span class="s1">(</span><span class="s2">flavor `demo`</span><span class="s1">) </span><span class="s2">avec </span><span class="s1">:</span>
+<span class="s0">- </span><span class="s2">Navigation bottom bar </span><span class="s1">(</span><span class="s2">6 onglets</span><span class="s1">)</span>
+<span class="s0">- </span><span class="s2">Écrans placeholder </span><span class="s1">: </span><span class="s2">Accueil, Carte, Prêt, Événements, Social, Profil</span>
+<span class="s0">- </span><span class="s2">Modèles </span><span class="s1">(</span><span class="s2">User, Spot, Equipment, Event, Club, Message, Badge</span><span class="s1">)</span>
+<span class="s0">- </span><span class="s2">Repositories `Demo</span><span class="s1">*</span><span class="s2">` en mémoire</span>
+<span class="s0">- </span><span class="s2">Placeholders pour Firebase, OpenWeather, FCM, IA </span><span class="s1">(</span><span class="s2">TFLite</span><span class="s1">)</span>
+
+<span class="s0">## </span><span class="s2">Prérequis</span>
+<span class="s0">- </span><span class="s2">Android Studio Koala ou plus récent</span>
+<span class="s0">- </span><span class="s2">JDK 17</span>
+<span class="s0">- </span><span class="s2">SDK 35</span>
+
+<span class="s0">## </span><span class="s2">Lancer l'app </span><span class="s1">(</span><span class="s2">mode Demo</span><span class="s1">)</span>
+<span class="s0">1. </span><span class="s2">Ouvrir ce dossier dans Android Studio</span>
+<span class="s0">2. </span><span class="s2">Sélectionner la configuration `app demoDebug`</span>
+<span class="s0">3. </span><span class="s2">Lancer sur un émulateur ou un appareil</span>
+
+<span class="s0">## </span><span class="s2">Activer Firebase </span><span class="s1">(</span><span class="s2">mode Prod</span><span class="s1">)</span>
+<span class="s0">1. </span><span class="s2">Crée un projet sur console.firebase.google.com</span>
+<span class="s0">2. </span><span class="s2">Ajoute une app Android </span><span class="s1">(</span><span class="s2">`com.gearsnap`</span><span class="s1">) </span><span class="s2">et récupère `google-services.json`</span>
+<span class="s0">3. </span><span class="s2">Place le fichier dans `app/src/prod/google-services.json`</span>
+<span class="s0">4. </span><span class="s2">Dans `app/build.gradle.kts`, si besoin, applique le plugin `com.google.gms.google-services`</span>
+<span class="s0">5. </span><span class="s2">Initialise Firebase via `FirebaseApp.initializeApp</span><span class="s1">(</span><span class="s2">context</span><span class="s1">)</span><span class="s2">` ou options manuelles.</span>
+
+<span class="s0">## </span><span class="s2">Cartes </span><span class="s1">(</span><span class="s2">Mapbox/OSM</span><span class="s1">)</span>
+<span class="s0">- </span><span class="s2">Le token Mapbox est défini dans `res/values/strings.xml` </span><span class="s1">(</span><span class="s2">`mapbox_token`</span><span class="s1">)</span><span class="s2">. </span>
+  <span class="s2">Connecte un SDK de carte </span><span class="s1">(</span><span class="s2">Mapbox, Google Maps, OSMdroid</span><span class="s1">) </span><span class="s2">dans `MapScreen`.</span>
+
+<span class="s0">## </span><span class="s2">Météo </span><span class="s1">(</span><span class="s2">OpenWeather</span><span class="s1">)</span>
+<span class="s0">- </span><span class="s2">Renseigne la clé API dans `res/values/strings.xml` </span><span class="s1">(</span><span class="s2">`openweather_api_key`</span><span class="s1">)</span><span class="s2">.</span>
+<span class="s0">- </span><span class="s2">Crée une instance Retrofit avec `</span><span class="s3">https://api.openweathermap.org/data/2.5/</span><span class="s2">`.</span>
+
+<span class="s0">## </span><span class="s2">IA Recommandations</span>
+<span class="s0">- </span><span class="s2">Implémente un modèle TFLite ou appelle une API distante dans `ai/RecommendEngine.kt`.</span>
+
+<span class="s0">## </span><span class="s2">Design &amp; Thème</span>
+<span class="s0">- </span><span class="s2">Palette </span><span class="s1">: </span><span class="s2">vert nature </span><span class="s1">(</span><span class="s2">#2E6B4A</span><span class="s1">)</span><span class="s2">, bleu horizon </span><span class="s1">(</span><span class="s2">#2E7BBE</span><span class="s1">)</span><span class="s2">, orange </span><span class="s1">(</span><span class="s2">#F47B20</span><span class="s1">)</span><span class="s2">.</span>
+<span class="s0">- </span><span class="s2">Material 3, mode clair/sombre via `Theme.Material3.DayNight` </span><span class="s1">(</span><span class="s2">configurable</span><span class="s1">)</span><span class="s2">.</span>
+
+<span class="s0">## </span><span class="s2">Prochaines étapes</span>
+<span class="s0">- </span><span class="s2">Brancher Firebase Auth </span><span class="s1">(</span><span class="s2">Google/Apple/Facebook</span><span class="s1">)</span><span class="s2">, Firestore et Storage.</span>
+<span class="s0">- </span><span class="s2">Implémenter la messagerie </span><span class="s1">(</span><span class="s2">FireStore ou backend temps réel</span><span class="s1">)</span><span class="s2">.</span>
+<span class="s0">- </span><span class="s2">Ajout des écrans CRUD </span><span class="s1">(</span><span class="s2">matériel, événements, clubs</span><span class="s1">)</span><span class="s2">.</span>
+<span class="s0">- </span><span class="s2">Cache hors-ligne </span><span class="s1">(</span><span class="s2">Room + Paging + DataStore</span><span class="s1">)</span><span class="s2">.</span>
+
+<span class="s0">---</span>
+<span class="s2">© 2025 GearSnap</span></pre>
+</body>
+</html>

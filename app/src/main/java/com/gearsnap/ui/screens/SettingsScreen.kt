@@ -1,0 +1,1 @@
+// Ce fichier n'est plus utilisé - les paramètres sont maintenant intégrés dans le ProfileScreen

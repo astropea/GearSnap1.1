@@ -1,5 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">GearSnap</string>
+    <!-- API Keys -->
     <string name="mapbox_token">YOUR_MAPBOX_TOKEN</string>
     <string name="openweather_api_key">YOUR_OPENWEATHER_API_KEY</string>
+
+    <!-- App Name -->
+    <string name="app_name">GearSnap</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Accueil</string>
+    <string name="nav_map">Carte</string>
+    <string name="nav_rent">Louer</string>
+    <string name="nav_events">Événements</string>
+    <string name="nav_social">Social</string>
+    <string name="nav_profile">Profil</string>
+
+    <!-- Home Screen -->
+    <string name="home_welcome">Bienvenue dans l\'aventure !</string>
+    <string name="home_subtitle">Votre compagnon sportif en plein air</string>
+    <string name="home_description">GearSnap facilite votre activité sportive régulière en vous connectant à une communauté passionnée, en donnant accès au meilleur matériel et en rendant le sport accessible à tous.</string>
+    <string name="home_ready_to_start">🚀 Prêt à commencer ?</string>
+    <string name="home_features">Nos fonctionnalités</string>
+    <string name="home_community">Communauté</string>
+    <string name="home_community_desc">Connectez-vous avec des sportifs passionnés</string>
+    <string name="home_equipment">Matériel</string>
+    <string name="home_equipment_desc">Accédez au meilleur équipement</string>
+    <string name="home_events">Événements</string>
+    <string name="home_events_desc">Découvrez des activités locales</string>
+    <string name="home_progression">Progression</string>
+    <string name="home_progression_desc">Suivez vos performances</string>
+    <string name="home_made_in_france">Made in France</string>
+    <string name="home_made_in_france_desc">Fiers d\'être français et de promouvoir le sport pour tous</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Paramètres</string>
+    <string name="settings_back">Retour</string>
+    <string name="settings_user">Utilisateur</string>
+    <string name="settings_user_email">user@gearsnap.com</string>
+    <string name="settings_general">Général</string>
+    <string name="settings_language">Langue</string>
+    <string name="settings_theme">Thème</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_about">À propos</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_privacy">Confidentialité</string>
+    <string name="settings_terms">Conditions d\'utilisation</string>
+    <string name="settings_logout">Déconnexion</string>
+
+    <!-- Theme Options -->
+    <string name="theme_system">Suivre le système</string>
+    <string name="theme_light">Clair</string>
+    <string name="theme_dark">Sombre</string>
+
+    <!-- Languages -->
+    <string name="language_french">Français</string>
+    <string name="language_english">English</string>
+    <string name="language_german">Deutsch</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_select_language">Sélectionner la langue</string>
+    <string name="dialog_select_theme">Sélectionner le thème</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Annuler</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_settings">Paramètres</string>
+    <string name="cd_back">Retour</string>
+    <string name="cd_profile">Profil</string>
+    <string name="cd_logo">Logo GearSnap</string>
+
+    <!-- Common -->
+    <string name="loading">Chargement...</string>
+    <string name="error">Erreur</string>
+    <string name="retry">Réessayer</string>
 </resources>

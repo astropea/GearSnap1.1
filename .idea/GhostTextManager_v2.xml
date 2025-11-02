@@ -15,6 +15,18 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="@&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; fait moi un onglet parametre en haut a droite et inspire toi des image que je t'ai fournie pour crée tout comme l'exemple en jpg et le meme style que le reste de l'aplication">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762107125127" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="@&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; refait moi le style de l'app en te referent a ces image">
           <value>
             <GhostTextMetaData>
@@ -22,6 +34,42 @@
               <option name="timestamps">
                 <list>
                   <option value="1762089477574" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="@&lt;file_name&gt; Ça marche très bien sauf que là il manque quelque chose il faut que quand j'appuie sur la roue crantée qui est sur la page d'accueil en haut à droite il faut que ça m'apparaisse du coup Totalement tout l'onglet paramètres donc comme ce que je t'avais dit au début donc en pouvant changer la langue anglais ou allemand ou encore français la langue de base qui sera normalement équipé de base vous pouvez la changer donc ça traduira tout Il faut aussi qu'il y ait un thème sombre et clair comme ce que j'ai déjà envoyé précédemment mais il faut juste que quand je clique maintenant sur ces ** crantés ça m'affiche tous les paramètres avec tout ce que je t'ai demandé">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762114688488" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Alors tu as mal compris je veux que le rouage paramètres soit en haut à droite de l'accueil uniquement de l'accueil et que dans ce rouage paramètres donc je veux pas qu'il soit vers profil paramètres enfin qui soit pas vers planning près carte exetera je veux que dans ce truc là il l'utilisateur bien sûr et qu'on puisse cliquer avoir des informations sur l'utilisateur futur en langue qu'on puisse totalement changer la langue qui est normalement en français par anglais déjà et en allemand je veux que dans le thème il est clair donc le thème basique de l'application mais qu'en plus on puisse cliquer sur claire et changer pour mettre un thème sombre donc qui à son gré totalement toutes les couleurs de l'application en général le blanc de base serait là pour un gris très très foncé et les boutons normalement noir deviendrait d'un blanc un petit peu comme le blanc normalement de l'application voilà et je veux que il y a aussi à propos les versions la confidentialité consignation que tu peux créer directement quand tu cliques sur la flèche tu puisses avoir l'intégralité de ce que ça raconte quoi donc on fait un fake on pourra avoir d'autres choses par le futur juste que tu me crées une page vide pour qu'on finit condition d'utilisation paraît une page vide on pourra compléter par la suite des connexions tu gardes le bouton mais pour l'instant on la signera pas même chose pour notification merci refais-moi ça en comme je t'ai demandé&#10;et dans meme style deja effectuer">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762110822884" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Tu sais quoi vu que ça marche toujours pas on va arrêter de mettre le bouton paramètres dans En haut à droite de l'accueil tu vas l'enlever faut que maintenant les paramètres puissent ouvrir dans l'onglet profil Faut qu'il y ait une case vraiment comme si c'était un onglet à cocher Voilà faut appuyer sur l'onglet pour accéder aux paramètres et Accéder à tout ce que j'ai demandé auparavant Dans les paramètres Et c'est moi aussi une petite page de présentation pour le profil Qui peut être sympa avec ce qui est ce qu'il faudrait mettre dedans Soit le profil des badges et des statistiques de la personne du sportif Bien sûr juste un exemple que nous pouvons compléter par la suite&#10;@&lt;file_name&gt;">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762115543993" />
                 </list>
               </option>
             </GhostTextMetaData>
@@ -46,6 +94,42 @@
               <option name="timestamps">
                 <list>
                   <option value="1762091420246" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="e: file:///C:/Users/grene/AndroidStudioProjects/GearSnap1.1/app/src/main/java/com/gearsnap/ui/screens/HomeScreen.kt:49:53 @&lt;file_name&gt;">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762114294874" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="e: file:///C:/Users/grene/AndroidStudioProjects/GearSnap1.1/app/src/main/java/com/gearsnap/ui/screens/ProfileScreen.kt:505:1 Conflicting overloads: public fun SettingsItem(icon: ImageVector, title: String, subtitle: String? = ..., onClick: () -&gt; Unit): Unit defined in com.gearsnap.ui.screens in file ProfileScreen.kt, private fun SettingsItem(icon: ImageVector, title: String, subtitle: String? = ..., onClick: () -&gt; Unit): Unit defined in com.gearsnap.ui.screens&#10;e: file:///C:/Users/grene/AndroidStudioProjects/GearSnap1.1/app/src/main/java/com/gearsnap/ui/screens/ProfileScreen.kt:549:1 Conflicting overloads: public fun SettingsItemWithSwitch(icon: ImageVector, title: String, isChecked: Boolean, onCheckedChange: (Boolean) -&gt; Unit): Unit defined in com.gearsnap.ui.screens in file ProfileScreen.kt, private fun SettingsItemWithSwitch(icon: ImageVector, title: String, isChecked: Boolean, onCheckedChange: (Boolean) -&gt; Unit): Unit defined in com.gearsnap.ui.screens">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762117614556" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="quand je clic sur la roue cranter desparametre sa na fait rien">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762115119069" />
                 </list>
               </option>
             </GhostTextMetaData>
@@ -94,6 +178,18 @@
               <option name="timestamps">
                 <list>
                   <option value="1762089386054" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="sa ne fait toujours rien">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762115250335" />
                 </list>
               </option>
             </GhostTextMetaData>

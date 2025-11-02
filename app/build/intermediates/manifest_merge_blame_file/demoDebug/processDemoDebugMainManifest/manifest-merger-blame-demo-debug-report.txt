@@ -9,20 +9,20 @@
 9        android:targetSdkVersion="35" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:33:5-66
-11-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:33:22-64
+11-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:35:5-66
+11-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:35:22-64
 12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-12-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:34:5-78
-12-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:34:22-76
+12-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:36:5-78
+12-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:36:22-76
 13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-13-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:35:5-78
-13-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:35:22-76
+13-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:37:5-78
+13-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:37:22-76
 14    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-14-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:36:5-80
-14-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:36:22-78
+14-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:38:5-80
+14-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:38:22-78
 15    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-15-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:37:5-77
-15-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:37:22-74
+15-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:39:5-77
+15-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:39:22-74
 16    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
 16-->[com.google.firebase:firebase-messaging:24.0.3] C:\Users\grene\.gradle\caches\transforms-4\a909d0dd88cc6567d4a3dc5825623fc5\transformed\firebase-messaging-24.0.3\AndroidManifest.xml:24:5-68
 16-->[com.google.firebase:firebase-messaging:24.0.3] C:\Users\grene\.gradle\caches\transforms-4\a909d0dd88cc6567d4a3dc5825623fc5\transformed\firebase-messaging-24.0.3\AndroidManifest.xml:24:22-65
@@ -45,56 +45,56 @@
 24-->[androidx.core:core:1.13.1] C:\Users\grene\.gradle\caches\transforms-4\700fe1874c03d4c6a9e529aefd780496\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
 25
 26    <application
-26-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:4:5-31:19
+26-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:4:5-33:19
 27        android:name="com.gearsnap.GearSnapApp"
-27-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:5:9-36
+27-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:5:9-36
 28        android:allowBackup="true"
-28-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:6:9-35
+28-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:6:9-35
 29        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 29-->[androidx.core:core:1.13.1] C:\Users\grene\.gradle\caches\transforms-4\700fe1874c03d4c6a9e529aefd780496\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 30        android:debuggable="true"
 31        android:extractNativeLibs="false"
 32        android:icon="@mipmap/ic_launcher"
-32-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:7:9-43
+32-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:7:9-43
 33        android:label="@string/app_name"
-33-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:8:9-41
+33-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:8:9-41
 34        android:roundIcon="@mipmap/ic_launcher_round"
-34-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:9:9-54
+34-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:9:9-54
 35        android:supportsRtl="true"
-35-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:10:9-35
+35-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:10:9-35
 36        android:testOnly="true"
 37        android:theme="@style/Theme.GearSnap" >
-37-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:11:9-46
+37-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:11:9-46
 38        <activity
-38-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:13:9-20:20
+38-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:13:9-20:20
 39            android:name="com.gearsnap.MainActivity"
-39-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:14:13-41
+39-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:14:13-41
 40            android:exported="true" >
-40-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:15:13-36
+40-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:15:13-36
 41            <intent-filter>
-41-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:16:13-19:29
+41-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:16:13-19:29
 42                <action android:name="android.intent.action.MAIN" />
-42-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:17:17-69
-42-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:17:25-66
+42-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:17:17-69
+42-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:17:25-66
 43
 44                <category android:name="android.intent.category.LAUNCHER" />
-44-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:18:17-77
-44-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:18:27-74
+44-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:18:17-77
+44-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:18:27-74
 45            </intent-filter>
 46        </activity>
 47
 48        <!-- FCM -->
 49        <service
-49-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:23:9-29:19
+49-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:25:9-31:19
 50            android:name="com.gearsnap.notifications.GearSnapFirebaseMessagingService"
-50-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:24:13-75
+50-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:26:13-75
 51            android:exported="false" >
-51-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:25:13-37
+51-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:27:13-37
 52            <intent-filter>
-52-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:26:13-28:29
+52-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:28:13-30:29
 53                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-53-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:27:17-78
-53-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:27:25-75
+53-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:29:17-78
+53-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:29:25-75
 54            </intent-filter>
 55        </service>
 56        <service
@@ -250,10 +250,10 @@
 135            android:exported="false" >
 135-->[com.google.firebase:firebase-messaging:24.0.3] C:\Users\grene\.gradle\caches\transforms-4\a909d0dd88cc6567d4a3dc5825623fc5\transformed\firebase-messaging-24.0.3\AndroidManifest.xml:49:13-37
 136            <intent-filter android:priority="-500" >
-136-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:26:13-28:29
+136-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:28:13-30:29
 137                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-137-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:27:17-78
-137-->C:\Users\grene\AndroidStudioProjects\GearSnap\app\src\main\AndroidManifest.xml:27:25-75
+137-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:29:17-78
+137-->C:\Users\grene\AndroidStudioProjects\GearSnap1.1\app\src\main\AndroidManifest.xml:29:25-75
 138            </intent-filter>
 139        </service>
 140

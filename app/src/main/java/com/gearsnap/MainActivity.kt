@@ -13,10 +13,17 @@ import androidx.navigation.compose.rememberNavController
 import com.gearsnap.navigation.GSNavGraph
 import com.gearsnap.navigation.BottomDestinations
 import com.gearsnap.theme.GearSnapTheme
+import com.gearsnap.ui.activities.LanguageManager
+import com.gearsnap.ui.activities.ThemeManager
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Apply saved language and theme
+        LanguageManager.applyLanguage(this)
+        ThemeManager.applyTheme(this)
+
         setContent {
             GearSnapTheme {
                 val navController = rememberNavController()

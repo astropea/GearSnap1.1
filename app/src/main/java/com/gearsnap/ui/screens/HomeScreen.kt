@@ -23,6 +23,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -34,44 +35,37 @@ import com.gearsnap.theme.GS_SoftBeige
 
 @Composable
 fun HomeScreen() {
+    val context = LocalContext.current
     val scrollState = rememberScrollState()
 
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .verticalScroll(scrollState)
+            .padding(horizontal = 24.dp, vertical = 32.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.height(24.dp))
 
+        // Logo et nom de l'application avec animation
+        LogoSection()
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(scrollState)
-                .padding(horizontal = 24.dp, vertical = 32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(40.dp))
 
-            // Logo et nom de l'application avec animation
-            LogoSection()
+        // Description principale avec effet de glassmorphism
+        WelcomeSection()
 
-            Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(48.dp))
 
-            // Description principale avec effet de glassmorphism
-            WelcomeSection()
+        // Fonctionnalités principales avec cartes modernes
+        FeaturesSection()
 
-            Spacer(modifier = Modifier.height(48.dp))
+        Spacer(modifier = Modifier.height(48.dp))
 
-            // Fonctionnalités principales avec cartes modernes
-            FeaturesSection()
+        // Section fierté française avec design moderne
+        PrideSection()
 
-            Spacer(modifier = Modifier.height(48.dp))
-
-            // Section fierté française avec design moderne
-            PrideSection()
-
-            Spacer(modifier = Modifier.height(40.dp))
-        }
+        Spacer(modifier = Modifier.height(40.dp))
     }
 }
 
