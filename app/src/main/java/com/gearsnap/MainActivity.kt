@@ -8,6 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.gearsnap.navigation.GSNavGraph
@@ -18,14 +19,15 @@ import com.gearsnap.ui.activities.ThemeManager
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // Apply saved language and theme
+        // Apply saved language and theme BEFORE super.onCreate()
         LanguageManager.applyLanguage(this)
         ThemeManager.applyTheme(this)
 
+        super.onCreate(savedInstanceState)
+
         setContent {
-            GearSnapTheme {
+            val isDarkTheme = ThemeManager.isDarkTheme(this)
+            GearSnapTheme(useDark = isDarkTheme) {
                 val navController = rememberNavController()
                 Scaffold(
                     bottomBar = {
@@ -42,8 +44,8 @@ class MainActivity : ComponentActivity() {
                                             restoreState = true
                                         }
                                     },
-                                    icon = { Icon(dest.icon, contentDescription = dest.label) },
-                                    label = { Text(dest.label) }
+                                    icon = { Icon(dest.icon, contentDescription = stringResource(dest.labelResId)) },
+                                    label = { Text(stringResource(dest.labelResId)) }
                                 )
                             }
                         }

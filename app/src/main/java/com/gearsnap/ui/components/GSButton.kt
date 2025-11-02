@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.gearsnap.theme.*
 
 @Composable
 fun GSButton(
@@ -28,15 +27,15 @@ fun GSButton(
     loading: Boolean = false
 ) {
     val backgroundColor = when (variant) {
-        GSButtonVariant.PRIMARY -> GS_ForestGreen
-        GSButtonVariant.SECONDARY -> GS_WarmOrange
+        GSButtonVariant.PRIMARY -> MaterialTheme.colorScheme.primary
+        GSButtonVariant.SECONDARY -> MaterialTheme.colorScheme.secondary
         GSButtonVariant.OUTLINE -> Color.Transparent
     }
 
     val contentColor = when (variant) {
-        GSButtonVariant.PRIMARY -> Color.White
-        GSButtonVariant.SECONDARY -> Color.White
-        GSButtonVariant.OUTLINE -> GS_ForestGreen
+        GSButtonVariant.PRIMARY -> MaterialTheme.colorScheme.onPrimary
+        GSButtonVariant.SECONDARY -> MaterialTheme.colorScheme.onSecondary
+        GSButtonVariant.OUTLINE -> MaterialTheme.colorScheme.primary
     }
 
     Button(
@@ -54,7 +53,7 @@ fun GSButton(
         border = if (variant == GSButtonVariant.OUTLINE) {
             BorderStroke(
                 width = 2.dp,
-                color = GS_ForestGreen
+                color = MaterialTheme.colorScheme.primary
             )
         } else null,
         shape = RoundedCornerShape(20.dp)
@@ -110,8 +109,8 @@ fun GSPillButton(
                 shape = RoundedCornerShape(20.dp)
             ),
         shape = RoundedCornerShape(20.dp),
-        color = if (selected) GS_ForestGreen else GS_SearchBg,
-        contentColor = if (selected) Color.White else GS_BodyGray
+        color = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface,
+        contentColor = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface
     ) {
         Row(
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),

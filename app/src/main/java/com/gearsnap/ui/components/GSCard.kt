@@ -19,7 +19,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.gearsnap.theme.*
 
 @Composable
 fun GSCard(
@@ -42,7 +41,7 @@ fun GSCard(
             .clip(RoundedCornerShape(16.dp))
             .clickable { onClick() },
         colors = CardDefaults.cardColors(
-            containerColor = GS_CardBg
+            containerColor = MaterialTheme.colorScheme.surface
         ),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 4.dp
@@ -77,7 +76,7 @@ fun GSCard(
                     text = title,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
-                    color = GS_TitleGreen,
+                    color = MaterialTheme.colorScheme.onSurface,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f)
@@ -91,7 +90,7 @@ fun GSCard(
                         Icon(
                             imageVector = icon,
                             contentDescription = "Action",
-                            tint = GS_WarmOrange
+                            tint = MaterialTheme.colorScheme.secondary
                         )
                     }
                 }
@@ -103,7 +102,7 @@ fun GSCard(
                 Text(
                     text = it,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = GS_BodyGray,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -115,7 +114,7 @@ fun GSCard(
                 Text(
                     text = it,
                     style = MaterialTheme.typography.bodySmall,
-                    color = GS_BodyGray.copy(alpha = 0.8f),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )

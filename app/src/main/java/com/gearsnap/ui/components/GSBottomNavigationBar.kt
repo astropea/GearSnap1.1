@@ -13,7 +13,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.gearsnap.theme.*
 
 @Composable
 fun GSBottomNavigationBar(
@@ -36,8 +35,8 @@ fun GSBottomNavigationBar(
                 elevation = 8.dp,
                 shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
             ),
-        containerColor = GS_NavBg,
-        contentColor = GS_NavInactive
+        containerColor = MaterialTheme.colorScheme.primary,
+        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
     ) {
         navItems.forEach { item ->
             NavigationBarItem(
@@ -58,11 +57,11 @@ fun GSBottomNavigationBar(
                 selected = currentRoute == item.route,
                 onClick = { onNavigate(item.route) },
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = GS_NavActive,
-                    selectedTextColor = GS_NavActive,
-                    unselectedIconColor = GS_NavInactive,
-                    unselectedTextColor = GS_NavInactive,
-                    indicatorColor = GS_NavActive.copy(alpha = 0.1f)
+                    selectedIconColor = MaterialTheme.colorScheme.secondary,
+                    selectedTextColor = MaterialTheme.colorScheme.secondary,
+                    unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    indicatorColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f)
                 )
             )
         }

@@ -73,4 +73,50 @@
     <string name="loading">Chargement...</string>
     <string name="error">Erreur</string>
     <string name="retry">Réessayer</string>
+
+    <!-- Map Screen -->
+    <string name="map_title">Carte des spots</string>
+    <string name="map_search_hint">Rechercher un spot...</string>
+    <string name="map_filter">Filtres</string>
+    <string name="map_my_location">Ma position</string>
+    <string name="map_spot_details">Détails du spot</string>
+
+    <!-- Rent Screen -->
+    <string name="rent_title">Louer du matériel</string>
+    <string name="rent_categories">Catégories</string>
+    <string name="rent_available">Disponible</string>
+    <string name="rent_price_per_day">€/jour</string>
+    <string name="rent_book">Réserver</string>
+    <string name="rent_details">Détails</string>
+
+    <!-- Events Screen -->
+    <string name="events_title">Événements sportifs</string>
+    <string name="events_upcoming">À venir</string>
+    <string name="events_past">Passés</string>
+    <string name="events_join">Participer</string>
+    <string name="events_participants">participants</string>
+    <string name="events_date">Date</string>
+    <string name="events_location">Lieu</string>
+
+    <!-- Social Screen -->
+    <string name="social_title">Communauté</string>
+    <string name="social_posts">Publications</string>
+    <string name="social_like">J\'aime</string>
+    <string name="social_comment">Commenter</string>
+    <string name="social_share">Partager</string>
+    <string name="social_post_hint">Partagez votre expérience...</string>
+
+    <!-- Profile specific strings -->
+    <string name="profile_name">Alex Sportif</string>
+    <string name="profile_email">alex.sportif@gearsnap.com</string>
+    <string name="profile_member_since">Membre depuis janvier 2024</string>
+    <string name="profile_stats">Statistiques</string>
+    <string name="profile_outings">Sorties</string>
+    <string name="profile_duration">Durée</string>
+    <string name="profile_distance">Distance</string>
+    <string name="profile_badges">Badges</string>
+    <string name="profile_beginner">Débutant</string>
+    <string name="profile_champion">Champion</string>
+    <string name="profile_streak">Série</string>
+    <string name="profile_expert">Expert</string>
 </resources>

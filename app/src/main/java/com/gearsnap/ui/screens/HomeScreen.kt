@@ -29,9 +29,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.gearsnap.theme.GS_ForestGreen
-import com.gearsnap.theme.GS_WarmOrange
-import com.gearsnap.theme.GS_SoftBeige
+import androidx.compose.ui.res.stringResource
+import com.gearsnap.R
 
 @Composable
 fun HomeScreen() {
@@ -103,7 +102,7 @@ private fun LogoSection() {
         ) {
             Icon(
                 painter = painterResource(id = com.gearsnap.R.drawable.ic_logo_fg),
-                contentDescription = "Logo GearSnap",
+                contentDescription = stringResource(R.string.cd_logo),
                 tint = MaterialTheme.colorScheme.onPrimary,
                 modifier = Modifier
                     .size(70.dp)
@@ -115,7 +114,7 @@ private fun LogoSection() {
 
         // Titre principal
         Text(
-            text = "GearSnap",
+            text = stringResource(R.string.app_name),
             style = MaterialTheme.typography.displaySmall,
             color = MaterialTheme.colorScheme.primary
         )
@@ -123,7 +122,7 @@ private fun LogoSection() {
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "Votre compagnon sportif en plein air",
+            text = stringResource(R.string.home_subtitle),
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center
@@ -170,7 +169,7 @@ private fun WelcomeSection() {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = "Bienvenue dans l'aventure !",
+                    text = stringResource(R.string.home_welcome),
                     style = MaterialTheme.typography.headlineMedium,
                     color = MaterialTheme.colorScheme.primary,
                     textAlign = TextAlign.Center
@@ -179,7 +178,7 @@ private fun WelcomeSection() {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = "GearSnap facilite votre activité sportive régulière en vous connectant à une communauté passionnée, en donnant accès au meilleur matériel et en rendant le sport accessible à tous.",
+                    text = stringResource(R.string.home_description),
                     style = MaterialTheme.typography.bodyLarge,
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.onSurface
@@ -189,7 +188,7 @@ private fun WelcomeSection() {
                     Spacer(modifier = Modifier.height(16.dp))
 
                     Text(
-                        text = "🚀 Prêt à commencer ?",
+                        text = stringResource(R.string.home_ready_to_start),
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.tertiary,
                         textAlign = TextAlign.Center
@@ -206,7 +205,7 @@ private fun FeaturesSection() {
     ) {
         // Titre avec animation d'apparition
         Text(
-            text = "Nos fonctionnalités",
+            text = stringResource(R.string.home_features),
             style = MaterialTheme.typography.headlineMedium,
             color = MaterialTheme.colorScheme.primary,
             textAlign = TextAlign.Center
@@ -221,16 +220,16 @@ private fun FeaturesSection() {
         ) {
             FeatureCard(
                 icon = Icons.Default.Groups,
-                title = "Communauté",
-                description = "Connectez-vous avec des sportifs passionnés",
+                title = stringResource(R.string.home_community),
+                description = stringResource(R.string.home_community_desc),
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.weight(1f)
             )
 
             FeatureCard(
                 icon = Icons.Default.SportsHandball,
-                title = "Matériel",
-                description = "Accédez au meilleur équipement",
+                title = stringResource(R.string.home_equipment),
+                description = stringResource(R.string.home_equipment_desc),
                 color = MaterialTheme.colorScheme.tertiary,
                 modifier = Modifier.weight(1f)
             )
@@ -245,16 +244,16 @@ private fun FeaturesSection() {
         ) {
             FeatureCard(
                 icon = Icons.Default.Event,
-                title = "Événements",
-                description = "Découvrez des activités locales",
+                title = stringResource(R.string.home_events),
+                description = stringResource(R.string.home_events_desc),
                 color = MaterialTheme.colorScheme.secondary,
                 modifier = Modifier.weight(1f)
             )
 
             FeatureCard(
                 icon = Icons.Default.TrendingUp,
-                title = "Progression",
-                description = "Suivez vos performances",
+                title = stringResource(R.string.home_progression),
+                description = stringResource(R.string.home_progression_desc),
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.weight(1f)
             )
@@ -411,7 +410,7 @@ private fun PrideSection() {
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = "Made in France",
+                    text = stringResource(R.string.home_made_in_france),
                     style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -419,7 +418,7 @@ private fun PrideSection() {
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "Fiers d'être français et de promouvoir le sport pour tous",
+                    text = stringResource(R.string.home_made_in_france_desc),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

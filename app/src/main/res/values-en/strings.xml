@@ -73,4 +73,50 @@
     <string name="loading">Loading...</string>
     <string name="error">Error</string>
     <string name="retry">Retry</string>
+
+    <!-- Map Screen -->
+    <string name="map_title">Spot Map</string>
+    <string name="map_search_hint">Search for a spot...</string>
+    <string name="map_filter">Filters</string>
+    <string name="map_my_location">My location</string>
+    <string name="map_spot_details">Spot details</string>
+
+    <!-- Rent Screen -->
+    <string name="rent_title">Rent Equipment</string>
+    <string name="rent_categories">Categories</string>
+    <string name="rent_available">Available</string>
+    <string name="rent_price_per_day">€/day</string>
+    <string name="rent_book">Book</string>
+    <string name="rent_details">Details</string>
+
+    <!-- Events Screen -->
+    <string name="events_title">Sports Events</string>
+    <string name="events_upcoming">Upcoming</string>
+    <string name="events_past">Past</string>
+    <string name="events_join">Join</string>
+    <string name="events_participants">participants</string>
+    <string name="events_date">Date</string>
+    <string name="events_location">Location</string>
+
+    <!-- Social Screen -->
+    <string name="social_title">Community</string>
+    <string name="social_posts">Posts</string>
+    <string name="social_like">Like</string>
+    <string name="social_comment">Comment</string>
+    <string name="social_share">Share</string>
+    <string name="social_post_hint">Share your experience...</string>
+
+    <!-- Profile specific strings -->
+    <string name="profile_name">Alex Athlete</string>
+    <string name="profile_email">alex.athlete@gearsnap.com</string>
+    <string name="profile_member_since">Member since January 2024</string>
+    <string name="profile_stats">Statistics</string>
+    <string name="profile_outings">Outings</string>
+    <string name="profile_duration">Duration</string>
+    <string name="profile_distance">Distance</string>
+    <string name="profile_badges">Badges</string>
+    <string name="profile_beginner">Beginner</string>
+    <string name="profile_champion">Champion</string>
+    <string name="profile_streak">Streak</string>
+    <string name="profile_expert">Expert</string>
 </resources>

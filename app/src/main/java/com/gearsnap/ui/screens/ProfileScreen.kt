@@ -131,7 +131,7 @@ fun ProfileScreen() {
                 ThemeManager.setTheme(context, isDark)
                 savedTheme.value = isDark
                 showThemeDialog = false
-                ThemeManager.applyTheme(context)
+                ThemeManager.applyThemeAndRestart(context)
             }
         )
     }
@@ -223,7 +223,7 @@ fun ProfileSection() {
 
         // Name
         Text(
-            text = "Alex Sportif",
+            text = stringResource(R.string.profile_name),
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurface
@@ -233,7 +233,7 @@ fun ProfileSection() {
 
         // Email
         Text(
-            text = "alex.sportif@gearsnap.com",
+            text = stringResource(R.string.profile_email),
             fontSize = 16.sp,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -242,7 +242,7 @@ fun ProfileSection() {
 
         // Member Since
         Text(
-            text = "Membre depuis janvier 2024",
+            text = stringResource(R.string.profile_member_since),
             fontSize = 14.sp,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -264,7 +264,7 @@ fun StatsSection() {
             modifier = Modifier.padding(16.dp)
         ) {
             Text(
-                text = "Statistiques",
+                text = stringResource(R.string.profile_stats),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface,
@@ -278,17 +278,17 @@ fun StatsSection() {
                 StatItem(
                     icon = Icons.Default.DirectionsRun,
                     value = "127",
-                    label = "Sorties"
+                    label = stringResource(R.string.profile_outings)
                 )
                 StatItem(
                     icon = Icons.Default.Timer,
                     value = "234h",
-                    label = "Durée"
+                    label = stringResource(R.string.profile_duration)
                 )
                 StatItem(
                     icon = Icons.Default.Terrain,
                     value = "892km",
-                    label = "Distance"
+                    label = stringResource(R.string.profile_distance)
                 )
             }
         }
@@ -340,7 +340,7 @@ fun BadgesSection() {
             modifier = Modifier.padding(16.dp)
         ) {
             Text(
-                text = "Badges",
+                text = stringResource(R.string.profile_badges),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface,
@@ -353,22 +353,22 @@ fun BadgesSection() {
             ) {
                 BadgeItem(
                     icon = Icons.Default.Star,
-                    label = "Débutant",
+                    label = stringResource(R.string.profile_beginner),
                     unlocked = true
                 )
                 BadgeItem(
                     icon = Icons.Default.EmojiEvents,
-                    label = "Champion",
+                    label = stringResource(R.string.profile_champion),
                     unlocked = true
                 )
                 BadgeItem(
                     icon = Icons.Default.LocalFireDepartment,
-                    label = "Série",
+                    label = stringResource(R.string.profile_streak),
                     unlocked = false
                 )
                 BadgeItem(
                     icon = Icons.Default.MilitaryTech,
-                    label = "Expert",
+                    label = stringResource(R.string.profile_expert),
                     unlocked = false
                 )
             }

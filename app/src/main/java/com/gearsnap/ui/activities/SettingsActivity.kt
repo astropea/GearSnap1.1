@@ -3,6 +3,7 @@ package com.gearsnap.ui.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.gearsnap.MainActivity
@@ -28,7 +29,16 @@ object LanguageManager {
 
     fun applyLanguage(context: Context) {
         val languageCode = getSavedLanguage(context)
-        setLanguage(context, languageCode)
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+
+        // Apply to the activity context
+        if (context is android.app.Activity) {
+            val config = context.resources.configuration
+            config.setLocale(locale)
+            context.createConfigurationContext(config)
+            context.resources.updateConfiguration(config, context.resources.displayMetrics)
+        }
     }
 
     fun restartActivity(context: Context) {
@@ -36,7 +46,7 @@ object LanguageManager {
             context.recreate()
         } else {
             val intent = Intent(context, MainActivity::class.java)
-            intent.addFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP or android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
             if (context is android.app.Activity) {
                 context.finish()
@@ -81,5 +91,23 @@ object ThemeManager {
             else -> AppCompatDelegate.MODE_NIGHT_NO
         }
         AppCompatDelegate.setDefaultNightMode(mode)
+    }
+
+    fun applyThemeAndRestart(context: Context) {
+        applyTheme(context)
+        restartActivity(context)
+    }
+
+    fun restartActivity(context: Context) {
+        if (context is androidx.activity.ComponentActivity) {
+            context.recreate()
+        } else {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.addFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP or android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(intent)
+            if (context is android.app.Activity) {
+                context.finish()
+            }
+        }
     }
 }
