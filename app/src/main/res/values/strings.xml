@@ -11,7 +11,7 @@
     <string name="nav_home">Accueil</string>
     <string name="nav_map">Carte</string>
     <string name="nav_rent">Louer</string>
-    <string name="nav_events">Événements</string>
+    <string name="nav_events">planing</string>
     <string name="nav_social">Social</string>
     <string name="nav_profile">Profil</string>
 
@@ -24,7 +24,7 @@
     <string name="home_community">Communauté</string>
     <string name="home_community_desc">Connectez-vous avec des sportifs passionnés</string>
     <string name="home_equipment">Matériel</string>
-    <string name="home_equipment_desc">Accédez au meilleur équipement</string>
+    <string name="home_equipment_desc"> Accédez au meilleur équipement a prix bas</string>
     <string name="home_events">Événements</string>
     <string name="home_events_desc">Découvrez des activités locales</string>
     <string name="home_progression">Progression</string>

@@ -19,7 +19,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -90,18 +89,12 @@ private fun LogoSection() {
         Box(
             modifier = Modifier
                 .size(120.dp)
-                .shadow(
-                    elevation = 12.dp,
-                    shape = RoundedCornerShape(24.dp),
-                    ambientColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f),
-                    spotColor = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.2f)
-                )
                 .clip(RoundedCornerShape(24.dp))
                 .background(MaterialTheme.colorScheme.primary),
             contentAlignment = Alignment.Center
         ) {
             Icon(
-                painter = painterResource(id = com.gearsnap.R.drawable.ic_logo_fg),
+                painter = painterResource(id = com.gearsnap.R.drawable.logoavnd),
                 contentDescription = stringResource(R.string.cd_logo),
                 tint = MaterialTheme.colorScheme.onPrimary,
                 modifier = Modifier
@@ -148,7 +141,7 @@ private fun WelcomeSection() {
             containerColor = MaterialTheme.colorScheme.surface
         ),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = if (isPressed) 2.dp else 8.dp
+            defaultElevation = 0.dp
         ),
         shape = MaterialTheme.shapes.large
     ) {
@@ -277,12 +270,6 @@ private fun FeatureCard(
         label = "card_scale"
     )
 
-    val animatedElevation by animateDpAsState(
-        targetValue = if (isHovered) 12.dp else 6.dp,
-        animationSpec = tween(200, easing = EaseOutCubic),
-        label = "card_elevation"
-    )
-
     Card(
         modifier = modifier
             .animateContentSize()
@@ -296,7 +283,7 @@ private fun FeatureCard(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = animatedElevation),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         shape = MaterialTheme.shapes.medium
     ) {
 
@@ -372,7 +359,7 @@ private fun PrideSection() {
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         shape = MaterialTheme.shapes.large
     ) {
         Row(

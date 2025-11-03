@@ -4,7 +4,7 @@
             "outputFile": "com.gearsnap.app-mergeDemoDebugResources-79:/values-v30/values-v30.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\grene\\.gradle\\caches\\transforms-4\\806a7bdf46f8f4240733172622bacaf5\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
+                    "source": "C:\\Users\\maxim\\.gradle\\caches\\transforms-4\\806a7bdf46f8f4240733172622bacaf5\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

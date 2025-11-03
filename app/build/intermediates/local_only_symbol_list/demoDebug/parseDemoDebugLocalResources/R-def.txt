@@ -42,6 +42,9 @@ drawable ic_privacy
 drawable ic_settings
 drawable ic_terms
 drawable ic_theme
+drawable logoavnd
+drawable logosnd
+drawable logov
 drawable whatsapp_image_2025_10_17___10_49_41_b0c44f73
 drawable whatsapp_image_2025_10_17___10_49_41_fb4f7ddb
 drawable whatsapp_image_2025_10_17___10_49_42_4617bb0b
