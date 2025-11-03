@@ -11,7 +11,22 @@
     <string name="nav_home">Accueil</string>
     <string name="nav_map">Carte</string>
     <string name="nav_rent">Louer</string>
-    <string name="nav_events">planing</string>
+    <string name="nav_events">Événements</string>
+    <string name="nav_planning">Planning</string>
+
+    <!-- Planning -->
+    <string name="planning_add_activity">Ajouter une activité</string>
+    <string name="planning_empty_day">Aucune activité pour ce jour.</string>
+    <string name="planning_dialog_title">Nouvelle activité</string>
+    <string name="planning_dialog_add">Ajouter</string>
+    <string name="planning_field_title">Titre</string>
+    <string name="planning_field_time">Heure (HH:MM)</string>
+    <string name="recur_label">Récurrence</string>
+    <string name="recur_none">Aucune</string>
+    <string name="recur_daily">Quotidienne</string>
+    <string name="recur_weekly">Hebdomadaire</string>
+    <string name="recur_monthly">Mensuelle</string>
+    <string name="recur_occurrences">Nombre d\'occurrences</string>
     <string name="nav_social">Social</string>
     <string name="nav_profile">Profil</string>
 

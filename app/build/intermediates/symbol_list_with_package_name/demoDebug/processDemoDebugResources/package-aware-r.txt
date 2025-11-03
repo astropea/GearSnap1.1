@@ -4108,6 +4108,7 @@ string mtrl_timepicker_confirm
 string nav_events
 string nav_home
 string nav_map
+string nav_planning
 string nav_profile
 string nav_rent
 string nav_social
@@ -4119,6 +4120,12 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string planning_add_activity
+string planning_dialog_add
+string planning_dialog_title
+string planning_empty_day
+string planning_field_time
+string planning_field_title
 string profile_badges
 string profile_beginner
 string profile_champion
@@ -4134,6 +4141,12 @@ string profile_streak
 string project_id
 string range_end
 string range_start
+string recur_daily
+string recur_label
+string recur_monthly
+string recur_none
+string recur_occurrences
+string recur_weekly
 string rent_available
 string rent_book
 string rent_categories

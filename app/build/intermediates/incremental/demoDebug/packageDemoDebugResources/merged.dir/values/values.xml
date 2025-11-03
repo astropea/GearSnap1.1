@@ -71,13 +71,20 @@
     <string name="map_spot_details">Détails du spot</string>
     <string name="map_title">Carte des spots</string>
     <string name="mapbox_token">YOUR_MAPBOX_TOKEN</string>
-    <string name="nav_events">planing</string>
+    <string name="nav_events">Événements</string>
     <string name="nav_home">Accueil</string>
     <string name="nav_map">Carte</string>
+    <string name="nav_planning">Planning</string>
     <string name="nav_profile">Profil</string>
     <string name="nav_rent">Louer</string>
     <string name="nav_social">Social</string>
     <string name="openweather_api_key">YOUR_OPENWEATHER_API_KEY</string>
+    <string name="planning_add_activity">Ajouter une activité</string>
+    <string name="planning_dialog_add">Ajouter</string>
+    <string name="planning_dialog_title">Nouvelle activité</string>
+    <string name="planning_empty_day">Aucune activité pour ce jour.</string>
+    <string name="planning_field_time">Heure (HH:MM)</string>
+    <string name="planning_field_title">Titre</string>
     <string name="profile_badges">Badges</string>
     <string name="profile_beginner">Débutant</string>
     <string name="profile_champion">Champion</string>
@@ -91,6 +98,12 @@
     <string name="profile_stats">Statistiques</string>
     <string name="profile_streak">Série</string>
     <string name="project_id" translatable="false">gearsnap-78240</string>
+    <string name="recur_daily">Quotidienne</string>
+    <string name="recur_label">Récurrence</string>
+    <string name="recur_monthly">Mensuelle</string>
+    <string name="recur_none">Aucune</string>
+    <string name="recur_occurrences">Nombre d\'occurrences</string>
+    <string name="recur_weekly">Hebdomadaire</string>
     <string name="rent_available">Disponible</string>
     <string name="rent_book">Réserver</string>
     <string name="rent_categories">Catégories</string>

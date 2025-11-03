@@ -75,6 +75,18 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="@&lt;file_name&gt; ✅ Prompt SweepAI pour l’écran Planning (solo)&#10;&#10; Objectif dev : créer un écran Planning dans mon application Android Jetpack Compose, avec le même style visuel que le reste de mon app (le thème que je t’ai montré : couleurs principales orange, ambiance moderne, sobre, arrondis, design lumineux propre).&#10;&#10; Fonctionnalités à implémenter dans ce commit :&#10;&#10;Onglet “Planning”&#10;&#10;Vue calendrier mensuelle moderne (utilise une librairie Compose si nécessaire : Kizitonwose/CalendarView recommandé)&#10;&#10;Possibilité de sélectionner une date&#10;&#10;Affichage des activités du jour sélectionné&#10;&#10;Bouton “Ajouter une activité”&#10;&#10;Popup (AlertDialog) pour saisir une nouvelle activité :&#10;&#10;Titre&#10;&#10;Heure (HH:MM)&#10;&#10;Stockage local en mémoire temporaire (ViewModel + mutableStateListOf pour l’instant — pas encore Room)&#10;&#10;Affichage des activités sous forme de liste simple&#10;&#10; Future features (NE PAS coder maintenant, juste prévoir structure)&#10;&#10;Ajout d’un mode planning communautaire plus tard&#10;&#10;Notifications pour rappel d’activité&#10;&#10;Synchronisation calendrier Google (optionnel future)&#10;&#10; UI Requirements&#10;&#10;Utiliser le thème de l’app (orange / style moderne déjà appliqué ailleurs)&#10;&#10;Boutons arrondis&#10;&#10;Icônes Material&#10;&#10;Police Material You / Material3&#10;&#10;Animation simple sur le calendrier si possible&#10;&#10; Structure souhaitée&#10;&#10;ui/planning/&#10;  PlanningScreen.kt&#10;  PlanningViewModel.kt&#10;  components/&#10;    CalendarComposable.kt&#10;    AddActivityDialog.kt&#10;models/&#10;  ActivityItem.kt&#10;&#10;&#10; Important&#10;&#10;Code propre, lisible, architecture MVVM&#10;&#10;Utiliser State, remember, ViewModel, MutableStateList&#10;&#10;Pas de code mort ou TODO non clair&#10;&#10;Pas encore besoin d’API ou BDD&#10;&#10;✅ Livrable attendu&#10;&#10;Code complet Compose&#10;&#10;Import propre&#10;&#10;Screens + ViewModel fonctionnels&#10;&#10;Fichier par composant&#10;&#10;Instructions d’intégration si nécessaire&#10;&#10; Ce prompt va te créer la base pro pour ton écran Planning solo.">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762171373873" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="Alors les les langues fonctionnent très bien Par contre c'est le thème 100 ou qui fonctionne pas Le thème clair il est de base et pas de souci là ça fonctionne c'est juste quand on active le thème sombre il y a toujours les thèmes clairs alors le thème sombre je rends que ça vraiment que que ça soit un thème sombre que prend des références et fais le thème sombre quoi Voilà merci Sinon les langues c'est bien@&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt; @&lt;file_name&gt;">
           <value>
             <GhostTextMetaData>
@@ -178,6 +190,18 @@
               <option name="timestamps">
                 <list>
                   <option value="1762163158183" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="il faut pouvoire prevoire des activiter pour des prochain jour et pouvoire instaler une recurence ex toute les semaine ect ...">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762173487587" />
                 </list>
               </option>
             </GhostTextMetaData>
