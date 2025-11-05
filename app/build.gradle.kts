@@ -102,8 +102,10 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
 
-    // Location / Maps (placeholder; Mapbox can be added later)
+    // Location
     implementation("com.google.android.gms:play-services-location:21.3.0")
+
+    // MapLibre SDK dependency temporarily removed until correct repository/version is confirmed
 
     // Firebase (compile-time ok without google-services.json; you'll init manually)
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))

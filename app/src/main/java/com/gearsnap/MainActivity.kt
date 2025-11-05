@@ -31,7 +31,10 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 Scaffold(
                     bottomBar = {
-                        NavigationBar {
+                        NavigationBar(
+                            containerColor = MaterialTheme.colorScheme.surface,
+                            contentColor = MaterialTheme.colorScheme.onSurface
+                        ) {
                             val navBackStackEntry by navController.currentBackStackEntryAsState()
                             val currentRoute = navBackStackEntry?.destination?.route
                             BottomDestinations.all.forEach { dest ->
@@ -45,7 +48,12 @@ class MainActivity : ComponentActivity() {
                                         }
                                     },
                                     icon = { Icon(dest.icon, contentDescription = stringResource(dest.labelResId)) },
-                                    label = { Text(stringResource(dest.labelResId)) }
+                                    label = { Text(stringResource(dest.labelResId)) },
+                                    colors = NavigationBarItemDefaults.colors(
+                                        selectedIconColor = MaterialTheme.colorScheme.secondary,
+                                        selectedTextColor = MaterialTheme.colorScheme.secondary,
+                                        indicatorColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.12f)
+                                    )
                                 )
                             }
                         }
