@@ -1,11 +1,12 @@
 package com.gearsnap.ui.screens
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -15,16 +16,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gearsnap.R
 import com.gearsnap.ui.activities.LanguageManager
 import com.gearsnap.ui.activities.ThemeManager
+import com.gearsnap.ui.viewmodel.ProfileViewModel
+import coil.compose.AsyncImage
+import android.net.Uri
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,6 +37,19 @@ fun ProfileScreen(
 ) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
+
+    // ViewModel
+    val vm: ProfileViewModel = viewModel()
+    val userState by vm.user.collectAsState()
+    val notificationsState by vm.notificationsEnabled.collectAsState()
+    val isUploading by vm.isUploading.collectAsState()
+
+    // Local editable name
+    var editName by remember { mutableStateOf(userState.displayName) }
+
+    LaunchedEffect(userState) {
+        editName = userState.displayName
+    }
 
     // Language state
     val currentLanguage = remember { mutableStateOf(LanguageManager.getSavedLanguage(context)) }
@@ -47,9 +64,6 @@ fun ProfileScreen(
     val savedTheme = remember { mutableStateOf(ThemeManager.getSavedTheme(context)) }
     val isDarkTheme = savedTheme.value ?: systemDarkTheme
 
-    // Notifications state
-    var notificationsEnabled by remember { mutableStateOf(true) }
-
     // Dialog states
     var showLanguageDialog by remember { mutableStateOf(false) }
     var showThemeDialog by remember { mutableStateOf(false) }
@@ -58,57 +72,125 @@ fun ProfileScreen(
     var showTermsDialog by remember { mutableStateOf(false) }
     var showLogoutDialog by remember { mutableStateOf(false) }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(scrollState)
-            .background(MaterialTheme.colorScheme.background)
-    ) {
-        // Header
-        TopAppBar(
-            title = {
-                Text(
-                    text = stringResource(R.string.nav_profile),
-                    color = MaterialTheme.colorScheme.onPrimary,
-                    fontWeight = FontWeight.Bold
-                )
-            },
-            colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = MaterialTheme.colorScheme.primary
+    // Snackbar host state
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    // snackbar message state (to show snackbar from non-composable callbacks)
+    var snackbarMessage by remember { mutableStateOf<String?>(null) }
+
+    // Image picker
+    var pickedUri by remember { mutableStateOf<Uri?>(null) }
+    val imagePicker = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let {
+            pickedUri = it
+            vm.uploadAvatar(it) { success, msg ->
+                val text = if (success) "Avatar mis à jour" else "Erreur upload: ${msg ?: "?"}"
+                // set snackbar message -> LaunchedEffect below will show it
+                snackbarMessage = text
+            }
+        }
+    }
+
+    // When snackbarMessage changes, show snackbar in a composable coroutine
+    LaunchedEffect(snackbarMessage) {
+        snackbarMessage?.let { msg ->
+            snackbarHostState.showSnackbar(msg)
+            snackbarMessage = null
+        }
+    }
+
+    Scaffold(
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(R.string.nav_profile)) }
             )
-        )
+        }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
+                .verticalScroll(scrollState)
+                .background(MaterialTheme.colorScheme.background)
+        ) {
+            // Profile Section
+            ProfileSection(
+                userState = userState,
+                editName = editName,
+                onNameChange = { editName = it },
+                onPickAvatar = { imagePicker.launch("image/*") }
+            )
 
-        // Profile Section
-        ProfileSection()
+            Spacer(modifier = Modifier.height(24.dp))
 
-        Spacer(modifier = Modifier.height(24.dp))
+            // Stats Section
+            StatsSection()
 
-        // Stats Section
-        StatsSection()
+            Spacer(modifier = Modifier.height(24.dp))
 
-        Spacer(modifier = Modifier.height(24.dp))
+            // Badges Section
+            BadgesSection()
 
-        // Badges Section
-        BadgesSection()
+            Spacer(modifier = Modifier.height(24.dp))
 
-        Spacer(modifier = Modifier.height(24.dp))
+            // Settings Section
+            SettingsSection(
+                currentLanguage = currentLanguage.value,
+                languageOptions = languageOptions,
+                isDarkTheme = isDarkTheme,
+                notificationsEnabled = notificationsState,
+                onLanguageClick = { showLanguageDialog = true },
+                onThemeClick = { showThemeDialog = true },
+                onNotificationToggle = { vm.toggleNotifications(it) },
+                onVersionClick = { showVersionDialog = true },
+                onPrivacyClick = { showPrivacyDialog = true },
+                onTermsClick = { showTermsDialog = true },
+                onLogoutClick = { showLogoutDialog = true }
+            )
 
-        // Settings Section
-        SettingsSection(
-            currentLanguage = currentLanguage.value,
-            languageOptions = languageOptions,
-            isDarkTheme = isDarkTheme,
-            notificationsEnabled = notificationsEnabled,
-            onLanguageClick = { showLanguageDialog = true },
-            onThemeClick = { showThemeDialog = true },
-            onNotificationToggle = { notificationsEnabled = it },
-            onVersionClick = { showVersionDialog = true },
-            onPrivacyClick = { showPrivacyDialog = true },
-            onTermsClick = { showTermsDialog = true },
-            onLogoutClick = { showLogoutDialog = true }
-        )
+            Spacer(modifier = Modifier.height(16.dp))
 
-        Spacer(modifier = Modifier.height(32.dp))
+            // Actions: Save / Logout
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                OutlinedButton(
+                    onClick = {
+                        showLogoutDialog = true
+                    },
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(text = stringResource(R.string.logout))
+                }
+                Button(
+                    onClick = {
+                        vm.updateDisplayName(editName)
+                        vm.saveChanges()
+                    },
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(text = stringResource(R.string.save))
+                }
+            }
+
+            Spacer(modifier = Modifier.height(32.dp))
+        }
+
+        // Show uploading overlay
+        if (isUploading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.6f)),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+        }
     }
 
     // Language Dialog
@@ -208,6 +290,7 @@ fun ProfileScreen(
                 TextButton(
                     onClick = {
                         showLogoutDialog = false
+                        vm.signOut()
                         onLogout()
                     }
                 ) {
@@ -224,7 +307,12 @@ fun ProfileScreen(
 }
 
 @Composable
-fun ProfileSection() {
+fun ProfileSection(
+    userState: com.gearsnap.model.User,
+    editName: String,
+    onNameChange: (String) -> Unit,
+    onPickAvatar: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -240,32 +328,42 @@ fun ProfileSection() {
                 .shadow(
                     elevation = 8.dp,
                     shape = CircleShape
-                ),
+                )
+                .clickable { onPickAvatar() },
             contentAlignment = Alignment.Center
         ) {
-            Icon(
-                imageVector = Icons.Default.Person,
-                contentDescription = "Profile",
-                tint = MaterialTheme.colorScheme.onPrimary,
-                modifier = Modifier.size(60.dp)
-            )
+            if (!userState.photoUrl.isNullOrEmpty()) {
+                AsyncImage(
+                    model = userState.photoUrl,
+                    contentDescription = "Profile",
+                    modifier = Modifier.fillMaxSize()
+                )
+            } else {
+                Icon(
+                    imageVector = Icons.Filled.Person,
+                    contentDescription = "Profile",
+                    tint = MaterialTheme.colorScheme.onPrimary,
+                    modifier = Modifier.size(60.dp)
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
         // Name
-        Text(
-            text = stringResource(R.string.profile_name),
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSurface
+        OutlinedTextField(
+            value = editName,
+            onValueChange = { onNameChange(it) },
+            label = { Text(stringResource(R.string.profile_name)) },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
         )
 
         Spacer(modifier = Modifier.height(8.dp))
 
         // Email
         Text(
-            text = stringResource(R.string.profile_email),
+            text = userState.displayName.ifEmpty { stringResource(R.string.profile_email) },
             fontSize = 16.sp,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -308,17 +406,17 @@ fun StatsSection() {
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 StatItem(
-                    icon = Icons.Default.DirectionsRun,
+                    icon = Icons.Filled.DirectionsRun,
                     value = "127",
                     label = stringResource(R.string.profile_outings)
                 )
                 StatItem(
-                    icon = Icons.Default.Timer,
+                    icon = Icons.Filled.Timer,
                     value = "234h",
                     label = stringResource(R.string.profile_duration)
                 )
                 StatItem(
-                    icon = Icons.Default.Terrain,
+                    icon = Icons.Filled.Terrain,
                     value = "892km",
                     label = stringResource(R.string.profile_distance)
                 )
@@ -384,22 +482,22 @@ fun BadgesSection() {
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 BadgeItem(
-                    icon = Icons.Default.Star,
+                    icon = Icons.Filled.Star,
                     label = stringResource(R.string.profile_beginner),
                     unlocked = true
                 )
                 BadgeItem(
-                    icon = Icons.Default.EmojiEvents,
+                    icon = Icons.Filled.EmojiEvents,
                     label = stringResource(R.string.profile_champion),
                     unlocked = true
                 )
                 BadgeItem(
-                    icon = Icons.Default.LocalFireDepartment,
+                    icon = Icons.Filled.LocalFireDepartment,
                     label = stringResource(R.string.profile_streak),
                     unlocked = false
                 )
                 BadgeItem(
-                    icon = Icons.Default.MilitaryTech,
+                    icon = Icons.Filled.MilitaryTech,
                     label = stringResource(R.string.profile_expert),
                     unlocked = false
                 )
@@ -480,27 +578,27 @@ fun SettingsSection(
             )
 
             SettingsItem(
-                icon = Icons.Default.Language,
+                icon = Icons.Filled.Language,
                 title = stringResource(R.string.settings_language),
                 subtitle = languageOptions[currentLanguage],
                 onClick = onLanguageClick
             )
 
             SettingsItem(
-                icon = Icons.Default.Palette,
+                icon = Icons.Filled.Palette,
                 title = stringResource(R.string.settings_theme),
                 subtitle = if (isDarkTheme) stringResource(R.string.theme_dark) else stringResource(R.string.theme_light),
                 onClick = onThemeClick
             )
 
             SettingsItemWithSwitch(
-                icon = Icons.Default.Notifications,
+                icon = Icons.Filled.Notifications,
                 title = stringResource(R.string.settings_notifications),
                 isChecked = notificationsEnabled,
                 onCheckedChange = onNotificationToggle
             )
 
-            Divider(
+            HorizontalDivider(
                 modifier = Modifier.padding(vertical = 16.dp),
                 color = MaterialTheme.colorScheme.outlineVariant
             )
@@ -514,25 +612,25 @@ fun SettingsSection(
             )
 
             SettingsItem(
-                icon = Icons.Default.Info,
+                icon = Icons.Filled.Info,
                 title = stringResource(R.string.settings_version),
                 subtitle = "1.1.0",
                 onClick = onVersionClick
             )
 
             SettingsItem(
-                icon = Icons.Default.Security,
+                icon = Icons.Filled.Security,
                 title = stringResource(R.string.settings_privacy),
                 onClick = onPrivacyClick
             )
 
             SettingsItem(
-                icon = Icons.Default.Description,
+                icon = Icons.Filled.Description,
                 title = stringResource(R.string.settings_terms),
                 onClick = onTermsClick
             )
 
-            Divider(
+            HorizontalDivider(
                 modifier = Modifier.padding(vertical = 16.dp),
                 color = MaterialTheme.colorScheme.outlineVariant
             )
@@ -546,7 +644,7 @@ fun SettingsSection(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
-                    imageVector = Icons.Default.Logout,
+                    imageVector = Icons.Filled.Logout,
                     contentDescription = "Déconnexion",
                     tint = MaterialTheme.colorScheme.error,
                     modifier = Modifier.size(24.dp)
@@ -599,7 +697,7 @@ private fun SettingsItem(
             }
         }
         Icon(
-            imageVector = Icons.Default.ChevronRight,
+            imageVector = Icons.Filled.ChevronRight,
             contentDescription = "Navigate",
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.size(20.dp)

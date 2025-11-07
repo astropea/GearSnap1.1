@@ -363,6 +363,18 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="maintenant je veux que dans la page compte ce soir les vrais info du compte qui soit noté et que tu ajoutes aussi des outils de personnalisation du compte">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762555175328" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="maintenant rajoute dans profile un bouton de deconnexion, et la carte s'affcieh toujours en blanc donc resoud ce probleme">
           <value>
             <GhostTextMetaData>
