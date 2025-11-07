@@ -629,10 +629,27 @@
     <color name="error_color_material_light">#ff5722</color>
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
-    <color name="gs_blue">#2E7BBE</color>
-    <color name="gs_gray_light">#F6F6F6</color>
-    <color name="gs_green">#2E6B4A</color>
-    <color name="gs_orange">#F47B20</color>
+    <color name="gs_body_gray">#4A4A4A</color>
+    <color name="gs_card_bg">#FFFFFF</color>
+    <color name="gs_forest_green">#0F4C2E</color>
+    <color name="gs_forest_green_dark">#0A3620</color>
+    <color name="gs_forest_green_light">#1A5C3A</color>
+    <color name="gs_gray_light">#F7F3E8</color>
+    <color name="gs_green">#0F4C2E</color>
+    <color name="gs_nav_active">#F39A2D</color>
+    <color name="gs_nav_bg">#0F4C2E</color>
+    <color name="gs_nav_inactive">#F7F3E8</color>
+    <color name="gs_orange">#F39A2D</color>
+    <color name="gs_pin_primary">#0F4C2E</color>
+    <color name="gs_pin_secondary">#F39A2D</color>
+    <color name="gs_pin_tertiary">#F7F3E8</color>
+    <color name="gs_search_bg">#EFEADD</color>
+    <color name="gs_soft_beige">#F7F3E8</color>
+    <color name="gs_soft_beige_dark">#E8DFD0</color>
+    <color name="gs_surface_variant">#F0EBE0</color>
+    <color name="gs_title_green">#0A2A18</color>
+    <color name="gs_warm_orange">#F39A2D</color>
+    <color name="gs_warm_orange_light">#F5B568</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="m3_ref_palette_black">#ff000000</color>
@@ -894,6 +911,7 @@
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
     <color name="tooltip_background_dark">#e6616161</color>
     <color name="tooltip_background_light">#e6FFFFFF</color>
+    <color name="transparent">#00000000</color>
     <color name="white">#FFFFFF</color>
     <dimen name="abc_action_bar_content_inset_material">16dp</dimen>
     <dimen name="abc_action_bar_content_inset_with_nav">72dp</dimen>
@@ -1926,17 +1944,32 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with <ns2:g example="Mail" id="application_name">%s</ns2:g></string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
+    <string name="about">About</string>
+    <string name="about_message">This software uses map data provided by OpenStreetMap.org</string>
     <string name="android.credentials.TYPE_PASSWORD_CREDENTIAL">Password</string>
     <string name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">Passkey</string>
     <string name="androidx_startup" translatable="false">androidx.startup</string>
     <string name="app_name">GearSnap</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="base">OSM base layer</string>
+    <string name="base_nl">Netherlands base overlay</string>
+    <string name="bing">Bing</string>
     <string name="bottom_sheet_behavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
     <string description="A description of an accessibility action to collapse the bottom sheet [CHAR LIMIT=NONE]" name="bottomsheet_action_collapse">Collapse the bottom sheet</string>
     <string description="A description of an accessibility action to expand the bottom sheet [CHAR LIMIT=NONE]" name="bottomsheet_action_expand">Expand the bottom sheet</string>
     <string description="A description of an action that a user of an accessibility service can perform to expand a bottomsheet halfway to its full height. [CHAR LIMIT=25]" name="bottomsheet_action_expand_halfway">Expand halfway</string>
     <string description="An accessibility feedback when the bottom sheet drag handle is clicked [CHAR LIMIT=NONE]" name="bottomsheet_drag_handle_clicked">Drag handle double-tapped</string>
     <string description="The content description of bottom sheet drag handles [CHAR LIMIT=NONE]" name="bottomsheet_drag_handle_content_description">Drag handle</string>
+    <string name="cacheManagerCancelBody">Do you want to cancel the map download?</string>
+    <string name="cacheManagerCancelTitle">Cancel map download</string>
+    <string name="cacheManagerCleanFailed">Cleaning failed. %s tiles deleted.</string>
+    <string name="cacheManagerCleaningTitle">"Cleaning tiles</string>
+    <string name="cacheManagerDownloadingTitle">Downloading tiles</string>
+    <string name="cacheManagerFailed">"Loading completed with %s errors.</string>
+    <string name="cacheManagerHandlingMessage">Handling zoom level: %1$s (from %2$s to %3$s)</string>
+    <string name="cacheManagerNo">No</string>
+    <string name="cacheManagerUnsupportedSource">This online tile source doesn\'t support bulk download</string>
+    <string name="cacheManagerYes">Yes</string>
     <string name="call_notification_answer_action">Answer</string>
     <string name="call_notification_answer_video_action">Video</string>
     <string name="call_notification_decline_action">Decline</string>
@@ -1944,6 +1977,10 @@
     <string name="call_notification_incoming_text">Incoming call</string>
     <string name="call_notification_ongoing_text">Ongoing call</string>
     <string name="call_notification_screening_text">Screening an incoming call</string>
+    <string name="cd_back">Retour</string>
+    <string name="cd_logo">Logo GearSnap</string>
+    <string name="cd_profile">Profil</string>
+    <string name="cd_settings">Paramètres</string>
     <string name="character_counter_content_description">Characters entered %1$d of %2$d</string>
     <string name="character_counter_overflowed_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d/%2$d</string>
@@ -1968,14 +2005,29 @@
     <string name="common_open_on_phone">Open on phone</string>
     <string name="common_signin_button_text">Sign in</string>
     <string name="common_signin_button_text_long">Sign in with Google</string>
+    <string name="compass">Compass</string>
     <string name="copy_toast_msg">Link copied to clipboard</string>
+    <string name="cyclemap">Cycle Map</string>
     <string name="default_error_message">"Invalid input"</string>
     <string name="default_popup_window_title" ns1:ignore="ExtraTranslation">"Pop-Up Window"</string>
+    <string name="default_web_client_id" translatable="false">517724340431-mks07bvqqh1rlteehvahu5ipbtjm7630.apps.googleusercontent.com</string>
+    <string name="dialog_cancel">Annuler</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_select_language">Sélectionner la langue</string>
+    <string name="dialog_select_theme">Sélectionner le thème</string>
     <string name="dropdown_menu">"Dropdown menu"</string>
+    <string name="error">Erreur</string>
     <string description="Screen reader announcement for when a checkbox is on error. [CHAR LIMIT=NONE]" name="error_a11y_label">
     Error: invalid
   </string>
     <string name="error_icon_content_description">Error</string>
+    <string name="events_date">Date</string>
+    <string name="events_join">Participer</string>
+    <string name="events_location">Lieu</string>
+    <string name="events_participants">participants</string>
+    <string name="events_past">Passés</string>
+    <string name="events_title">Événements sportifs</string>
+    <string name="events_upcoming">À venir</string>
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
@@ -1983,16 +2035,50 @@
     <string name="fallback_menu_item_open_in_browser">Open in browser</string>
     <string name="fallback_menu_item_share_link">Share link</string>
     <string name="fcm_fallback_notification_channel_label">Miscellaneous</string>
+    <string name="fiets_nl">OpenFietsKaart overlay</string>
+    <string name="first_fix_message">Got the first fix</string>
+    <string name="format_distance_feet">%s ft</string>
+    <string name="format_distance_kilometers">%s km</string>
+    <string name="format_distance_meters">%s m</string>
+    <string name="format_distance_miles">%s mi</string>
+    <string name="format_distance_nautical_miles">%s nm</string>
+    <string name="format_distance_only_foot">ft</string>
+    <string name="format_distance_only_kilometer">km</string>
+    <string name="format_distance_only_meter">m</string>
+    <string name="format_distance_only_mile">mi</string>
+    <string name="format_distance_only_nautical_mile">nm</string>
+    <string name="format_distance_value_unit">%1$s %2$s</string>
     <string name="gcm_defaultSenderId" translatable="false">517724340431</string>
     <string name="google_api_key" translatable="false">AIzaSyDQK3NQ7Mdp4FS1CqtJg0IOzxcXJVkw9Fg</string>
     <string name="google_app_id" translatable="false">1:517724340431:android:a7a09700e773df9e7df7ba</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDQK3NQ7Mdp4FS1CqtJg0IOzxcXJVkw9Fg</string>
     <string name="google_storage_bucket" translatable="false">gearsnap-78240.firebasestorage.app</string>
+    <string name="google_web_client_id">517724340431-mks07bvqqh1rlteehvahu5ipbtjm7630.apps.googleusercontent.com</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
+    <string name="hills">Hills</string>
+    <string name="home_community">Communauté</string>
+    <string name="home_community_desc">Connectez-vous avec des sportifs passionnés</string>
+    <string name="home_description">GearSnap facilite votre activité sportive régulière en vous connectant à une communauté passionnée, en donnant accès au meilleur matériel et en rendant le sport accessible à tous.</string>
+    <string name="home_equipment">Matériel</string>
+    <string name="home_equipment_desc"> Accédez au meilleur équipement a prix bas</string>
+    <string name="home_events">Événements</string>
+    <string name="home_events_desc">Découvrez des activités locales</string>
+    <string name="home_features">Nos fonctionnalités</string>
+    <string name="home_made_in_france">Made in France</string>
+    <string name="home_made_in_france_desc">Fiers d\'être français et de promouvoir le sport pour tous</string>
+    <string name="home_progression">Progression</string>
+    <string name="home_progression_desc">Suivez vos performances</string>
+    <string name="home_ready_to_start">🚀 Prêt à commencer ?</string>
+    <string name="home_subtitle">Votre compagnon sportif en plein air</string>
+    <string name="home_welcome">Bienvenue dans l\'aventure !</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
     <string name="in_progress">In progress</string>
     <string name="indeterminate">Partially checked</string>
     <string name="item_view_role_description">Tab</string>
+    <string name="language_english">English</string>
+    <string name="language_french">Français</string>
+    <string name="language_german">Deutsch</string>
+    <string name="loading">Chargement...</string>
     <string name="m3_exceed_max_badge_text_suffix" translatable="false"><ns2:g example="Some te" id="part of a long text">%1$s</ns2:g><ns2:g example="…" id="suffix">%2$s</ns2:g></string>
     <string name="m3_ref_typeface_brand_medium" translatable="false">sans-serif-medium</string>
     <string name="m3_ref_typeface_brand_regular" translatable="false">sans-serif</string>
@@ -2070,7 +2156,17 @@
     <string name="m3c_time_picker_pm">PM</string>
     <string name="m3c_tooltip_long_press_label">Show tooltip</string>
     <string name="m3c_tooltip_pane_description">Tooltip</string>
+    <string name="map_filter">Filtres</string>
+    <string name="map_mode">Map Source</string>
+    <string name="map_my_location">Ma position</string>
+    <string name="map_search_hint">Rechercher un spot...</string>
+    <string name="map_spot_details">Détails du spot</string>
+    <string name="map_title">Carte des spots</string>
+    <string name="mapbox">MapBox</string>
     <string name="mapbox_token">YOUR_MAPBOX_TOKEN</string>
+    <string name="mapnik" translatable="false">Mapnik</string>
+    <string name="mapquest_aerial">Mapquest Aerial</string>
+    <string name="mapquest_osm">Mapquest</string>
     <string name="material_clock_display_divider" translatable="false">:</string>
     <string description="Description for the toggle to choose between AM and PM [CHAR_LIMIT=NONE]" name="material_clock_toggle_content_description">Select AM or PM</string>
     <string description="Spoken suffix for an hour in the 24-hour clock [CHAR_LIMIT=10]" name="material_hour_24h_suffix"><ns2:g id="number">%1$s</ns2:g> hours</string>
@@ -2161,17 +2257,60 @@
     <string name="mtrl_switch_track_path" translatable="false">M0,16 A16,16 0 0,1 16,0 H36 A16,16 0 0,1 36,32 H16 A16,16 0 0,1 0,16</string>
     <string description="Button text to indicate that the widget will ignore the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_cancel">Cancel</string>
     <string description="Button text to indicate that the widget will save the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_confirm">OK</string>
+    <string name="my_location">My location</string>
+    <string name="nav_events">Événements</string>
+    <string name="nav_home">Accueil</string>
+    <string name="nav_map">Carte</string>
+    <string name="nav_planning">Planning</string>
+    <string name="nav_profile">Profil</string>
+    <string name="nav_rent">Louer</string>
+    <string name="nav_social">Social</string>
     <string name="navigation_menu">"Navigation menu"</string>
     <string name="not_selected">Not selected</string>
+    <string name="offline">Offline mode</string>
     <string name="openweather_api_key">YOUR_OPENWEATHER_API_KEY</string>
     <string name="password_toggle_content_description">Show password</string>
     <string name="path_password_eye" translatable="false">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
+    <string name="planning_add_activity">Ajouter une activité</string>
+    <string name="planning_dialog_add">Ajouter</string>
+    <string name="planning_dialog_title">Nouvelle activité</string>
+    <string name="planning_empty_day">Aucune activité pour ce jour.</string>
+    <string name="planning_field_time">Heure (HH:MM)</string>
+    <string name="planning_field_title">Titre</string>
+    <string name="profile_badges">Badges</string>
+    <string name="profile_beginner">Débutant</string>
+    <string name="profile_champion">Champion</string>
+    <string name="profile_distance">Distance</string>
+    <string name="profile_duration">Durée</string>
+    <string name="profile_email">alex.sportif@gearsnap.com</string>
+    <string name="profile_expert">Expert</string>
+    <string name="profile_member_since">Membre depuis janvier 2024</string>
+    <string name="profile_name">Alex Sportif</string>
+    <string name="profile_outings">Sorties</string>
+    <string name="profile_stats">Statistiques</string>
+    <string name="profile_streak">Série</string>
     <string name="project_id" translatable="false">gearsnap-78240</string>
+    <string name="public_transport">Public transport</string>
     <string name="range_end">"Range end"</string>
     <string name="range_start">"Range start"</string>
+    <string name="recur_daily">Quotidienne</string>
+    <string name="recur_label">Récurrence</string>
+    <string name="recur_monthly">Mensuelle</string>
+    <string name="recur_none">Aucune</string>
+    <string name="recur_occurrences">Nombre d\'occurrences</string>
+    <string name="recur_weekly">Hebdomadaire</string>
+    <string name="rent_available">Disponible</string>
+    <string name="rent_book">Réserver</string>
+    <string name="rent_categories">Catégories</string>
+    <string name="rent_details">Détails</string>
+    <string name="rent_price_per_day">€/jour</string>
+    <string name="rent_title">Louer du matériel</string>
+    <string name="retry">Réessayer</string>
+    <string name="roads_nl">Netherlands roads overlay</string>
+    <string name="samples">Samples</string>
     <string name="search_menu_title">Search</string>
     <string name="searchbar_scrolling_view_behavior" translatable="false">
     com.google.android.material.search.SearchBar$ScrollingViewBehavior
@@ -2179,17 +2318,47 @@
     <string description="Content description for the X button to clear text [CHAR_LIMIT=NONE]" name="searchview_clear_text_content_description">Clear text</string>
     <string description="Content description for the navigation button to return to the previous screen [CHAR_LIMIT=NONE]" name="searchview_navigation_content_description">Back</string>
     <string name="selected">Selected</string>
+    <string name="set_mode_hide_me">hiding my current location</string>
+    <string name="set_mode_offline">Set to offline mode</string>
+    <string name="set_mode_online">Set to online mode</string>
+    <string name="set_mode_show_me">showing and tracking my current location</string>
+    <string name="settings_about">À propos</string>
+    <string name="settings_back">Retour</string>
+    <string name="settings_general">Général</string>
+    <string name="settings_language">Langue</string>
+    <string name="settings_logout">Déconnexion</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_privacy">Confidentialité</string>
+    <string name="settings_terms">Conditions d\'utilisation</string>
+    <string name="settings_theme">Thème</string>
+    <string name="settings_title">Paramètres</string>
+    <string name="settings_user">Utilisateur</string>
+    <string name="settings_user_email">user@gearsnap.com</string>
+    <string name="settings_version">Version</string>
     <string description="Title of the side sheet&apos;s accessibility pane that is spoken by TalkBack when the side sheet appears on screen. [CHAR_LIMIT=NONE]" name="side_sheet_accessibility_pane_title">Side Sheet</string>
     <string name="side_sheet_behavior" translatable="false">com.google.android.material.sidesheet.SideSheetBehavior</string>
+    <string name="snapshot">Snapshot</string>
+    <string name="social_comment">Commenter</string>
+    <string name="social_like">J\'aime</string>
+    <string name="social_post_hint">Partagez votre expérience...</string>
+    <string name="social_posts">Publications</string>
+    <string name="social_share">Partager</string>
+    <string name="social_title">Communauté</string>
     <string name="state_empty">Empty</string>
     <string name="state_off">Off</string>
     <string name="state_on">On</string>
+    <string name="states">States</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="switch_role">Switch</string>
     <string name="tab">Tab</string>
     <string name="template_percent"><ns2:g id="percentage">%1$d</ns2:g> percent.</string>
+    <string name="theme_dark">Sombre</string>
+    <string name="theme_light">Clair</string>
+    <string name="theme_system">Suivre le système</string>
     <string name="tooltip_description">tooltip</string>
     <string name="tooltip_label">show tooltip</string>
+    <string name="topo">Topographic</string>
+    <string name="unknown">Unknown</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
@@ -5936,6 +6105,18 @@
         <item name="android:paddingLeft">@dimen/abc_action_bar_overflow_padding_start_material</item>
         <item name="android:paddingRight">@dimen/abc_action_bar_overflow_padding_end_material</item>
     </style>
+    <style name="ShapeAppearance.GearSnap.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+    <style name="ShapeAppearance.GearSnap.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+    <style name="ShapeAppearance.GearSnap.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
     <style name="ShapeAppearance.M3.Comp.Badge.Large.Shape" parent="ShapeAppearance.M3.Sys.Shape.Corner.Full"/>
     <style name="ShapeAppearance.M3.Comp.Badge.Shape" parent="ShapeAppearance.M3.Sys.Shape.Corner.Full"/>
     <style name="ShapeAppearance.M3.Comp.BottomAppBar.Container.Shape" parent="ShapeAppearance.M3.Sys.Shape.Corner.None"/>
@@ -6480,8 +6661,40 @@
   </style>
     <style name="Theme.GearSnap" parent="Theme.Material3.DayNight">
         
-        <item name="android:statusBarColor">@color/gs_green</item>
-        <item name="android:navigationBarColor">@color/gs_gray_light</item>
+        <item name="colorPrimary">@color/gs_forest_green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/gs_forest_green_light</item>
+        <item name="colorOnPrimaryContainer">@color/white</item>
+
+        
+        <item name="colorSecondary">@color/gs_warm_orange</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/gs_warm_orange_light</item>
+        <item name="colorOnSecondaryContainer">@color/gs_forest_green_dark</item>
+
+        
+        <item name="colorTertiary">@color/gs_warm_orange</item>
+        <item name="colorOnTertiary">@color/white</item>
+        <item name="colorTertiaryContainer">@color/gs_warm_orange_light</item>
+        <item name="colorOnTertiaryContainer">@color/gs_forest_green_dark</item>
+
+        
+        <item name="android:colorBackground">@color/gs_soft_beige</item>
+        <item name="colorOnBackground">@color/gs_title_green</item>
+        <item name="colorSurface">@color/gs_card_bg</item>
+        <item name="colorOnSurface">@color/gs_body_gray</item>
+        <item name="colorSurfaceVariant">@color/gs_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/gs_body_gray</item>
+
+        
+        <item name="android:statusBarColor">@color/gs_forest_green</item>
+        <item name="android:navigationBarColor">@color/gs_forest_green</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.GearSnap.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.GearSnap.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.GearSnap.LargeComponent</item>
     </style>
     <style name="Theme.Hidden" parent="@android:style/Theme.DeviceDefault">
         <item name="android:windowTranslucentStatus">true</item>
@@ -7412,6 +7625,41 @@
     <item name="shapeAppearance">@null</item>
     <item name="shapeAppearanceOverlay">@null</item>
   </style>
+    <style name="Widget.GearSnap.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">@color/gs_nav_bg</item>
+        <item name="itemIconTint">@color/gs_nav_selector</item>
+        <item name="itemTextColor">@color/gs_nav_selector</item>
+        <item name="itemRippleColor">@color/gs_warm_orange_light</item>
+        <item name="elevation">8dp</item>
+    </style>
+    <style name="Widget.GearSnap.Button" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/gs_forest_green</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="Widget.GearSnap.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textColor">@color/gs_forest_green</item>
+        <item name="strokeColor">@color/gs_forest_green</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="Widget.GearSnap.Button.TextButton" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/gs_forest_green</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="Widget.GearSnap.CardView" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardBackgroundColor">@color/gs_card_bg</item>
+    </style>
+    <style name="Widget.GearSnap.SearchView" parent="Widget.Material3.SearchView">
+        <item name="queryBackground">@drawable/gs_search_background</item>
+        <item name="android:background">@drawable/gs_search_background</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
     <style name="Widget.Material3.ActionBar.Solid" parent="Base.Widget.Material3.ActionBar.Solid"/>
     <style name="Widget.Material3.ActionMode" parent="Base.Widget.Material3.ActionMode"/>
     <style name="Widget.Material3.AppBarLayout" parent="Widget.MaterialComponents.AppBarLayout.Surface">

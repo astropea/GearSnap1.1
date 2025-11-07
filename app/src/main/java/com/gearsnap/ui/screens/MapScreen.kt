@@ -33,6 +33,7 @@ fun MapScreen() {
     var showAddDialog by remember { mutableStateOf(false) }
     var selectedSpot by remember { mutableStateOf<SpotUi?>(null) }
     var centerLatLng by remember { mutableStateOf(48.8566 to 2.3522) }
+    var longPressLatLng by remember { mutableStateOf<Pair<Double, Double>?>(null) }
 
     // Filters
     var hikingOnly by remember { mutableStateOf(false) }
@@ -48,129 +49,200 @@ fun MapScreen() {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     Box(Modifier.fillMaxSize()) {
-        // Map
-        MapLibreScreen(
-            spots = filtered,
-            modifier = Modifier.fillMaxSize(),
-            onMarkerClick = { spot: SpotUi ->
-                selectedSpot = spot
-                showSheet = true
-            },
-            onCenterChanged = { lat: Double, lng: Double -> centerLatLng = Pair(lat, lng) }
-        )
+        // Map - Affichage en plein écran sans padding
+        Box(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            MapLibreScreen(
+                spots = filtered,
+                modifier = Modifier.fillMaxSize(),
+                onMarkerClick = { spot: SpotUi ->
+                    selectedSpot = spot
+                    showSheet = true
+                },
+                onCenterChanged = { lat: Double, lng: Double -> centerLatLng = Pair(lat, lng) },
+                onLongPress = { lat: Double, lng: Double ->
+                    longPressLatLng = Pair(lat, lng)
+                    showAddDialog = true
+                }
+            )
+        }
 
-        // Top AppBar (green) with logo and search
-        TopAppBar(
-            title = {
-                Row(verticalAlignment = Alignment.CenterVertically) {
+        // Top AppBar (green) with logo and search - Style conforme aux maquettes
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp),
+            color = MaterialTheme.colorScheme.primary,
+            shadowElevation = 0.dp
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 16.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                // Logo + Texte GearSnap
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
                     Image(
                         painter = painterResource(R.drawable.ic_gearsnap_logo),
                         contentDescription = stringResource(R.string.cd_logo),
-                        modifier = Modifier.size(28.dp),
+                        modifier = Modifier.size(32.dp),
                         contentScale = ContentScale.Fit
                     )
-                    Spacer(Modifier.width(8.dp))
-                    Text("GearSnap", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimary)
+                    Text(
+                        text = "GearSnap",
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
                 }
-            },
-            actions = {
-                IconButton(onClick = { /* TODO search */ }) {
-                    Icon(Icons.Default.Search, contentDescription = stringResource(R.string.map_search_hint), tint = MaterialTheme.colorScheme.onPrimary)
-                }
-            },
-            colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-                titleContentColor = MaterialTheme.colorScheme.onPrimary
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-        )
 
-        // Filters row under app bar
+                // Icône de recherche
+                IconButton(onClick = { /* TODO search */ }) {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = stringResource(R.string.map_search_hint),
+                        tint = Color.White,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
+            }
+        }
+
+        // Filters row under app bar - Style conforme aux maquettes
         Row(
             Modifier
                 .fillMaxWidth()
-                .padding(top = 64.dp, start = 12.dp, end = 12.dp),
+                .padding(top = 56.dp, start = 12.dp, end = 12.dp, bottom = 8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             FilterChip(
                 selected = hikingOnly,
                 onClick = { hikingOnly = !hikingOnly },
-                label = { Text("Hiking") },
+                label = {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_map_pin),
+                            contentDescription = null,
+                            modifier = Modifier.size(16.dp)
+                        )
+                        Spacer(Modifier.width(4.dp))
+                        Text("Hiking")
+                    }
+                },
                 colors = FilterChipDefaults.filterChipColors(
-                    selectedContainerColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.2f)
+                    selectedContainerColor = MaterialTheme.colorScheme.primary,
+                    selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
+                    containerColor = MaterialTheme.colorScheme.surface
                 ),
                 border = FilterChipDefaults.filterChipBorder(
                     enabled = true,
                     selected = hikingOnly,
-                    selectedBorderColor = MaterialTheme.colorScheme.secondary
+                    selectedBorderColor = MaterialTheme.colorScheme.primary,
+                    borderColor = MaterialTheme.colorScheme.outline
                 )
             )
             FilterChip(
                 selected = distanceFilter,
                 onClick = { distanceFilter = !distanceFilter },
                 label = { Text("Distance") },
+                colors = FilterChipDefaults.filterChipColors(
+                    selectedContainerColor = Color.White,
+                    selectedLabelColor = MaterialTheme.colorScheme.primary,
+                    containerColor = Color.White
+                ),
                 border = FilterChipDefaults.filterChipBorder(
                     enabled = true,
                     selected = distanceFilter,
-                    selectedBorderColor = MaterialTheme.colorScheme.secondary
+                    selectedBorderColor = MaterialTheme.colorScheme.primary,
+                    borderColor = MaterialTheme.colorScheme.outline
                 )
             )
             FilterChip(
                 selected = difficultyFilter,
                 onClick = { difficultyFilter = !difficultyFilter },
                 label = { Text("Difficulty") },
+                colors = FilterChipDefaults.filterChipColors(
+                    selectedContainerColor = Color.White,
+                    selectedLabelColor = MaterialTheme.colorScheme.primary,
+                    containerColor = Color.White
+                ),
                 border = FilterChipDefaults.filterChipBorder(
                     enabled = true,
                     selected = difficultyFilter,
-                    selectedBorderColor = MaterialTheme.colorScheme.secondary
+                    selectedBorderColor = MaterialTheme.colorScheme.primary,
+                    borderColor = MaterialTheme.colorScheme.outline
                 )
             )
         }
 
-        // Primary FAB (add spot)
-        FloatingActionButton(
-            onClick = { showAddDialog = true },
-            containerColor = MaterialTheme.colorScheme.secondary,
-            contentColor = MaterialTheme.colorScheme.onSecondary,
-            shape = CircleShape,
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(end = 16.dp, bottom = 96.dp)
-                .shadow(8.dp, CircleShape)
-        ) { Icon(Icons.Default.Add, contentDescription = "Add") }
+        // FAB retiré - Création de spot uniquement par appui long sur la carte
 
-        // Secondary floating button (add to favorites)
-        GSButton(
-            text = "Ajouter aux favoris",
-            icon = Icons.Default.Favorite,
-            onClick = {
-                val s = selectedSpot ?: return@GSButton
-                spots = spots.map { if (it.id == s.id) it.copy(isFavorite = true) else it }
-                selectedSpot = spots.firstOrNull { it.id == s.id }
-            },
-            enabled = selectedSpot != null && selectedSpot?.isFavorite == false,
-            variant = GSButtonVariant.SECONDARY,
+        // Floating button "Ajouter aux favoris" - Style conforme aux maquettes
+        AnimatedVisibility(
+            visible = selectedSpot != null && selectedSpot?.isFavorite == false,
             modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 96.dp)
-        )
+                .align(Alignment.BottomStart)
+                .padding(start = 16.dp, bottom = 96.dp)
+        ) {
+            Surface(
+                onClick = {
+                    val s = selectedSpot ?: return@Surface
+                    spots = spots.map { if (it.id == s.id) it.copy(isFavorite = true) else it }
+                    selectedSpot = spots.firstOrNull { it.id == s.id }
+                },
+                color = Color.White,
+                shape = MaterialTheme.shapes.medium,
+                shadowElevation = 4.dp,
+                modifier = Modifier.padding(8.dp)
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_map_pin),
+                        contentDescription = null,
+                        modifier = Modifier.size(20.dp),
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                    Text(
+                        text = "Ajouter aux favoris",
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Medium,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+            }
+        }
 
         // AddSpotDialog
         if (showAddDialog) {
+            val (lat, lng) = longPressLatLng ?: centerLatLng
             AddSpotDialog(
-                onDismiss = { showAddDialog = false },
-                onAdd = { name, category ->
-                    val (lat, lng) = centerLatLng
+                initialLat = lat,
+                initialLng = lng,
+                onDismiss = {
+                    showAddDialog = false
+                    longPressLatLng = null
+                },
+                onAdd = { name, category, spotLat, spotLng ->
                     val newSpot = SpotUi(
                         id = Random.nextLong().toString(),
                         name = name,
-                        lat = lat,
-                        lng = lng,
+                        lat = spotLat,
+                        lng = spotLng,
                         category = category
                     )
                     spots = spots + newSpot
                     showAddDialog = false
+                    longPressLatLng = null
                 }
             )
         }

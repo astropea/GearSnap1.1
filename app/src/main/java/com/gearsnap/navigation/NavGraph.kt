@@ -29,7 +29,11 @@ sealed class BottomDestinations(val route: String, val icon: ImageVector, val la
 }
 
 @Composable
-fun GSNavGraph(modifier: Modifier = Modifier, navController: NavHostController) {
+fun GSNavGraph(
+    modifier: Modifier = Modifier,
+    navController: NavHostController,
+    onLogout: () -> Unit = {}
+) {
     NavHost(navController = navController, startDestination = BottomDestinations.Home.route, modifier = modifier) {
         composable(BottomDestinations.Home.route) { HomeScreen() }
         composable(BottomDestinations.Map.route) { MapScreen() }
@@ -37,6 +41,6 @@ fun GSNavGraph(modifier: Modifier = Modifier, navController: NavHostController) 
         composable(BottomDestinations.Events.route) { EventsScreen() }
         composable(BottomDestinations.Planning.route) { PlanningScreen() }
         composable(BottomDestinations.Social.route) { SocialScreen() }
-        composable(BottomDestinations.Profile.route) { ProfileScreen() }
+        composable(BottomDestinations.Profile.route) { ProfileScreen(onLogout = onLogout) }
     }
 }

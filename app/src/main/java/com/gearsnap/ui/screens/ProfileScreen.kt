@@ -28,7 +28,9 @@ import com.gearsnap.ui.activities.ThemeManager
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(
+    onLogout: () -> Unit = {}
+) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
 
@@ -54,6 +56,7 @@ fun ProfileScreen() {
     var showVersionDialog by remember { mutableStateOf(false) }
     var showPrivacyDialog by remember { mutableStateOf(false) }
     var showTermsDialog by remember { mutableStateOf(false) }
+    var showLogoutDialog by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -101,7 +104,8 @@ fun ProfileScreen() {
             onNotificationToggle = { notificationsEnabled = it },
             onVersionClick = { showVersionDialog = true },
             onPrivacyClick = { showPrivacyDialog = true },
-            onTermsClick = { showTermsDialog = true }
+            onTermsClick = { showTermsDialog = true },
+            onLogoutClick = { showLogoutDialog = true }
         )
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -185,6 +189,34 @@ fun ProfileScreen() {
             confirmButton = {
                 TextButton(onClick = { showTermsDialog = false }) {
                     Text(stringResource(R.string.dialog_ok))
+                }
+            }
+        )
+    }
+
+    // Logout Dialog
+    if (showLogoutDialog) {
+        AlertDialog(
+            onDismissRequest = { showLogoutDialog = false },
+            title = {
+                Text("Déconnexion")
+            },
+            text = {
+                Text("Êtes-vous sûr de vouloir vous déconnecter ?")
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showLogoutDialog = false
+                        onLogout()
+                    }
+                ) {
+                    Text("Déconnexion", color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showLogoutDialog = false }) {
+                    Text("Annuler")
                 }
             }
         )
@@ -424,7 +456,8 @@ fun SettingsSection(
     onNotificationToggle: (Boolean) -> Unit,
     onVersionClick: () -> Unit,
     onPrivacyClick: () -> Unit,
-    onTermsClick: () -> Unit
+    onTermsClick: () -> Unit,
+    onLogoutClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -498,6 +531,34 @@ fun SettingsSection(
                 title = stringResource(R.string.settings_terms),
                 onClick = onTermsClick
             )
+
+            Divider(
+                modifier = Modifier.padding(vertical = 16.dp),
+                color = MaterialTheme.colorScheme.outlineVariant
+            )
+
+            // Logout button
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { onLogoutClick() }
+                    .padding(vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Logout,
+                    contentDescription = "Déconnexion",
+                    tint = MaterialTheme.colorScheme.error,
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Text(
+                    text = "Déconnexion",
+                    color = MaterialTheme.colorScheme.error,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Medium
+                )
+            }
         }
     }
 }

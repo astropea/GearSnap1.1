@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.gearsnap.app-mergeProdDebugResources-79:/values-v28/values-v28.xml",
+            "outputFile": "com.gearsnap.app-mergeProdDebugResources-78:/values-v28/values-v28.xml",
             "map": [
                 {
                     "source": "C:\\Users\\antoi\\.gradle\\caches\\transforms-4\\2008cdf9b40056ae473441c3b8ce9e63\\transformed\\material-1.12.0\\res\\values-v28\\values-v28.xml",

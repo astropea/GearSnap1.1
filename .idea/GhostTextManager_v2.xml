@@ -123,6 +123,18 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="Resoud toute ces erreurs">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762463922930" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="Tu sais quoi vu que ça marche toujours pas on va arrêter de mettre le bouton paramètres dans En haut à droite de l'accueil tu vas l'enlever faut que maintenant les paramètres puissent ouvrir dans l'onglet profil Faut qu'il y ait une case vraiment comme si c'était un onglet à cocher Voilà faut appuyer sur l'onglet pour accéder aux paramètres et Accéder à tout ce que j'ai demandé auparavant Dans les paramètres Et c'est moi aussi une petite page de présentation pour le profil Qui peut être sympa avec ce qui est ce qu'il faudrait mettre dedans Soit le profil des badges et des statistiques de la personne du sportif Bien sûr juste un exemple que nous pouvons compléter par la suite&#10;@&lt;file_name&gt;">
           <value>
             <GhostTextMetaData>
@@ -142,6 +154,30 @@
               <option name="timestamps">
                 <list>
                   <option value="1762089437227" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="comment brancher firebase auth">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762541933885" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="corrige le design pour qu'il colle a celui de l'ilmage en piece joint et aussi enleve le bouton +">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762553355997" />
                 </list>
               </option>
             </GhostTextMetaData>
@@ -231,6 +267,42 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="j'ai fait ce que tu m'as dit mais j'ai toujours l'erreur">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762546507096" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="j'ai toujours l'erreur pourtant j'ai bien fait tous ce que tu as dit">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762546918602" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="je veux que dan sla page map tu implentes la carte open street map">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762510576672" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="je veux que le logo de chargement et le 'app soit logosnd et que logo present a l'aceile soit le logo logoavnd">
           <value>
             <GhostTextMetaData>
@@ -243,6 +315,90 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="je voudrais que lorsqu'on click longtemps sur la map a l'endroit ou l'on a cliqé on peux créer un spot (donc demandée le sport, la dexrfiption,etc...)">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762552909411" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="la carte dans la page map ne s'affiche pas et le design n'est pas le bon car regarde le design que je veux ezn piece joint donc resoud deja lke probleme d'affichage d ela map et essaie d ecoller au max au design prevu">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762547562920" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="la carte ne s'affiche pas">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762511429171" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="la carte ne s'affiche toujours pas">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762511986981" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="maintenant rajoute dans profile un bouton de deconnexion, et la carte s'affcieh toujours en blanc donc resoud ce probleme">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762543094661" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="maintenant rajoute le backend pour vraiment creer les compte/ se connecter avec google/apple">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762466712182" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="mais je veux que lorsqu'on est connecté on arrive sur l'ecran d'accueil">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762464845909" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="no avec logov stp">
           <value>
             <GhostTextMetaData>
@@ -250,6 +406,78 @@
               <option name="timestamps">
                 <list>
                   <option value="1762164439089" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="non corrige le design du bandeau superieur de la page carte">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762553603245" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="non je veux que la carte s'affiche directement">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762512291038" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="non je veux que une fois connecté et que l'on est sur la page d'acceuil il y ait aussi la nav bar">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762465889302" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="non je veux que une fois qu'on est connecté on atterri su rl'app comme avant donc ecran d'acceuil plus nav bar en bas">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762465105245" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="non je veux utiliser la carte osm">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762548166558" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="non y'as toujours pas la c arte la c juste un fond blanc">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762512549594" />
                 </list>
               </option>
             </GhostTextMetaData>
@@ -315,6 +543,18 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="resous l'erreur google signin 10 qui s eproduit lorsque j'essaie de me connecter avec google">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762545392934" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="sa ne fait toujours rien">
           <value>
             <GhostTextMetaData>
@@ -322,6 +562,18 @@
               <option name="timestamps">
                 <list>
                   <option value="1762115250335" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="vas y fait ce qu'il reste a fair ealors">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1762542066310" />
                 </list>
               </option>
             </GhostTextMetaData>

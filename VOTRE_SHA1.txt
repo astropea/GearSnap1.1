@@ -1,0 +1,77 @@
+========================================
+  VOTRE SHA-1 À AJOUTER DANS FIREBASE
+========================================
+
+SHA-1: 07:9C:B6:8E:38:68:94:A8:B3:F2:DB:66:2C:0B:49:8C:DB:77:A9:8E
+
+========================================
+  PROBLÈME IDENTIFIÉ
+========================================
+
+J'ai analysé votre configuration et voici ce que j'ai trouvé :
+
+1. ✅ Web Client ID configuré : 517724340431-mks07bvqqh1rlteehvahu5ipbtjm7630.apps.googleusercontent.com
+2. ✅ google-services.json présent
+3. ❌ PROBLÈME : Le SHA-1 dans google-services.json ne correspond PAS au SHA-1 de votre app !
+
+DÉTAILS :
+- SHA-1 de votre app (actuel) : 07:9C:B6:8E:38:68:94:A8:B3:F2:DB:66:2C:0B:49:8C:DB:77:A9:8E
+- SHA-1 dans google-services.json : 079cb68e386894a8b3f2db662c0b498cdb77a98e (en minuscules, sans ":")
+- Package dans google-services.json : com.gearsnap (devrait être com.gearsnap.demo pour le mode Demo)
+
+========================================
+  SOLUTION
+========================================
+
+ÉTAPE 1 : Ajouter le SHA-1 dans Firebase Console
+-------------------------------------------------
+1. Allez sur https://console.firebase.google.com/
+2. Sélectionnez votre projet "gearsnap-78240"
+3. Cliquez sur ⚙️ (Paramètres) > Paramètres du projet
+4. Descendez jusqu'à "Vos applications"
+5. Cliquez sur votre application Android (com.gearsnap)
+6. Descendez jusqu'à "Empreintes digitales du certificat SHA"
+7. Cliquez sur "Ajouter une empreinte"
+8. Collez EXACTEMENT ce SHA-1 :
+
+   07:9C:B6:8E:38:68:94:A8:B3:F2:DB:66:2C:0B:49:8C:DB:77:A9:8E
+
+9. Cliquez sur "Enregistrer"
+
+ÉTAPE 2 : Télécharger le nouveau google-services.json
+------------------------------------------------------
+⚠️ IMPORTANT : Après avoir ajouté le SHA-1, vous DEVEZ télécharger à nouveau le fichier !
+
+1. Restez dans "Paramètres du projet"
+2. Descendez jusqu'à "Vos applications"
+3. Cliquez sur "google-services.json" pour le télécharger
+4. Remplacez le fichier dans :
+   - app\src\demo\google-services.json
+
+ÉTAPE 3 : Vérifier le package name
+-----------------------------------
+ATTENTION : Votre google-services.json est configuré pour "com.gearsnap"
+mais vous utilisez probablement le mode Demo qui utilise "com.gearsnap.demo"
+
+Deux options :
+A) Créer une nouvelle app dans Firebase pour "com.gearsnap.demo"
+B) Utiliser le mode Prod avec "com.gearsnap"
+
+ÉTAPE 4 : Nettoyer et recompiler
+---------------------------------
+1. Dans Android Studio : Build > Clean Project
+2. Build > Rebuild Project
+3. File > Sync Project with Gradle Files
+4. Relancez l'app
+
+========================================
+  VÉRIFICATION
+========================================
+
+Après avoir suivi ces étapes, vérifiez que :
+- Le SHA-1 est bien ajouté dans Firebase Console
+- Le nouveau google-services.json est téléchargé
+- Le package name correspond (com.gearsnap ou com.gearsnap.demo)
+- Le projet est nettoyé et recompilé
+
+========================================

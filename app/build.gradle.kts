@@ -105,7 +105,8 @@ dependencies {
     // Location
     implementation("com.google.android.gms:play-services-location:21.3.0")
 
-    // MapLibre SDK dependency temporarily removed until correct repository/version is confirmed
+    // OpenStreetMap (osmdroid)
+    implementation("org.osmdroid:osmdroid-android:6.1.18")
 
     // Firebase (compile-time ok without google-services.json; you'll init manually)
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
@@ -113,6 +114,10 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-storage-ktx")
     implementation("com.google.firebase:firebase-messaging-ktx")
+
+    // Google Sign-In
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
+    implementation("com.google.android.gms:play-services-auth-api-phone:18.1.0")
 
     // TensorFlow Lite (optional AI on-device)
     implementation("org.tensorflow:tensorflow-lite:2.13.0")

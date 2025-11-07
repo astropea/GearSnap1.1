@@ -12,7 +12,20 @@
           "package_name": "com.gearsnap"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "517724340431-di9fnap738u8icke5ekm6evichpq1o9l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gearsnap",
+            "certificate_hash": "079cb68e386894a8b3f2db662c0b498cdb77a98e"
+          }
+        },
+        {
+          "client_id": "517724340431-mks07bvqqh1rlteehvahu5ipbtjm7630.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDQK3NQ7Mdp4FS1CqtJg0IOzxcXJVkw9Fg"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517724340431-mks07bvqqh1rlteehvahu5ipbtjm7630.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

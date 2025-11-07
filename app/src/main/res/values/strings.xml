@@ -4,6 +4,11 @@
     <string name="mapbox_token">YOUR_MAPBOX_TOKEN</string>
     <string name="openweather_api_key">YOUR_OPENWEATHER_API_KEY</string>
 
+    <!-- Firebase / Google Sign-In -->
+    <!-- TODO: Remplacer par votre Web Client ID depuis Firebase Console -->
+    <!-- Console Firebase > Authentication > Sign-in method > Google > Web client ID -->
+    <string name="google_web_client_id">517724340431-mks07bvqqh1rlteehvahu5ipbtjm7630.apps.googleusercontent.com</string>
+
     <!-- App Name -->
     <string name="app_name">GearSnap</string>
 
