@@ -22,7 +22,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gearsnap.R
 import com.gearsnap.ui.activities.LanguageManager
 import com.gearsnap.ui.activities.ThemeManager
@@ -33,13 +32,14 @@ import android.net.Uri
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
+    vm: ProfileViewModel,
     onLogout: () -> Unit = {}
 ) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
 
-    // ViewModel
-    val vm: ProfileViewModel = viewModel()
+    // ViewModel provided as parameter
+    // val vm: ProfileViewModel = viewModel() // removed; vm is passed in
     val userState by vm.user.collectAsState()
     val notificationsState by vm.notificationsEnabled.collectAsState()
     val isUploading by vm.isUploading.collectAsState()

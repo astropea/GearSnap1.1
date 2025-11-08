@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gearsnap.ui.screens.*
 import com.gearsnap.R
 
@@ -41,6 +42,9 @@ fun GSNavGraph(
         composable(BottomDestinations.Events.route) { EventsScreen() }
         composable(BottomDestinations.Planning.route) { PlanningScreen() }
         composable(BottomDestinations.Social.route) { SocialScreen() }
-        composable(BottomDestinations.Profile.route) { ProfileScreen(onLogout = onLogout) }
+        composable(BottomDestinations.Profile.route) {
+            val vm: com.gearsnap.ui.viewmodel.ProfileViewModel = viewModel()
+            ProfileScreen(vm = vm, onLogout = onLogout)
+        }
     }
 }
