@@ -1,25 +1,35 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base GearSnap Theme -->
-    <style name="Theme.GearSnap" parent="Theme.Material3.DayNight">
-        <!-- Primary brand colors -->
+    <!-- ========================================== -->
+    <!-- THÈME CLAIR GEARSNAP                       -->
+    <!-- ========================================== -->
+    <!-- ⚠️ IMPORTANT : Ce thème reste CLAIR même si le téléphone est en mode sombre -->
+    <!-- Parent : Theme.Material3.Light (pas DayNight) -->
+    <!-- forceDarkAllowed : false (désactivé dans AndroidManifest) -->
+    <!-- ========================================== -->
+    <style name="Theme.GearSnap" parent="Theme.Material3.Light">
+
+        <!-- ✅ DÉSACTIVE le mode sombre forcé par Android -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
+        <!-- Primary brand colors - Vert forêt -->
         <item name="colorPrimary">@color/gs_forest_green</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorPrimaryContainer">@color/gs_forest_green_light</item>
         <item name="colorOnPrimaryContainer">@color/white</item>
 
-        <!-- Secondary brand colors -->
+        <!-- Secondary brand colors - Orange chaleureux -->
         <item name="colorSecondary">@color/gs_warm_orange</item>
         <item name="colorOnSecondary">@color/white</item>
         <item name="colorSecondaryContainer">@color/gs_warm_orange_light</item>
         <item name="colorOnSecondaryContainer">@color/gs_forest_green_dark</item>
 
-        <!-- Tertiary colors -->
+        <!-- Tertiary colors - Orange chaleureux -->
         <item name="colorTertiary">@color/gs_warm_orange</item>
         <item name="colorOnTertiary">@color/white</item>
         <item name="colorTertiaryContainer">@color/gs_warm_orange_light</item>
         <item name="colorOnTertiaryContainer">@color/gs_forest_green_dark</item>
 
-        <!-- Surface colors -->
+        <!-- Surface colors - Beige doux et blanc -->
         <item name="android:colorBackground">@color/gs_soft_beige</item>
         <item name="colorOnBackground">@color/gs_title_green</item>
         <item name="colorSurface">@color/gs_card_bg</item>
@@ -27,10 +37,13 @@
         <item name="colorSurfaceVariant">@color/gs_surface_variant</item>
         <item name="colorOnSurfaceVariant">@color/gs_body_gray</item>
 
-        <!-- System UI colors -->
+        <!-- System UI colors - Barre de statut claire -->
         <item name="android:statusBarColor">@color/gs_forest_green</item>
         <item name="android:navigationBarColor">@color/gs_forest_green</item>
         <item name="android:windowLightStatusBar">true</item>
+
+        <!-- ✅ Empêche les Dynamic Colors de Material You d'écraser nos couleurs -->
+        <item name="dynamicColorThemeOverlay">@null</item>
 
         <!-- Rounded corners -->
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.GearSnap.SmallComponent</item>

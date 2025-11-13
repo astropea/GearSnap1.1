@@ -102,10 +102,18 @@ val GSShapes = Shapes(
     extraLarge = RoundedCornerShape(36.dp)
 )
 
+/**
+ * Thème principal de GearSnap
+ * @param useDark false par défaut (mode clair), true pour mode sombre
+ *
+ * IMPORTANT : Ce thème ignore complètement le thème système.
+ * Le mode clair reste clair même si le téléphone est en mode sombre.
+ */
 @Composable
-fun GearSnapTheme(useDark: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun GearSnapTheme(useDark: Boolean = false, content: @Composable () -> Unit) {
     val context = LocalContext.current
 
+    // Schéma de couleurs CLAIR - Couleurs vives et naturelles
     val lightColorScheme = lightColorScheme(
         primary = Color(ContextCompat.getColor(context, R.color.gs_forest_green)),
         onPrimary = Color(ContextCompat.getColor(context, R.color.white)),
@@ -130,30 +138,34 @@ fun GearSnapTheme(useDark: Boolean = isSystemInDarkTheme(), content: @Composable
         scrim = Color(0xFF000000)
     )
 
+    // Schéma de couleurs SOMBRE - Noir profond avec contrastes blancs
     val darkColorScheme = darkColorScheme(
-        primary = Color(0xFF000000),
-        onPrimary = Color(0xFFFFFFFF),
-        primaryContainer = Color(0xFF000000),
-        onPrimaryContainer = Color(0xFF444444),
-        secondary = Color(0xFF000000),
-        onSecondary = Color(0xFFFFFFFF),
-        secondaryContainer = Color(0xFF000000),
-        onSecondaryContainer = Color(0xFFFFFFFF),
-        tertiary = Color(0xFF444444),
-        onTertiary = Color(0xFFFFFFFF),
-        tertiaryContainer = Color(0xFF444444),
-        onTertiaryContainer = Color(0xFFFFFFFF),
-        background = Color(0xFF000000),
-        onBackground = Color(0xFFFFFFFF),
-        surface = Color(0xFF444444),
-        onSurface = Color(0xFFFFFFFF),
-        surfaceVariant = Color(0xFF121212),
-        onSurfaceVariant = Color(0xFFE0E0E0),
-        outline = Color(0xFF444444),
-        outlineVariant = Color(0xFF222222),
-        scrim = Color(0xFF000000)
+        primary = Color(0xFF1A1A1A),           // Gris très foncé
+        onPrimary = Color(0xFFFFFFFF),         // Blanc pur
+        primaryContainer = Color(0xFF2A2A2A),  // Gris foncé
+        onPrimaryContainer = Color(0xFFFFFFFF), // Blanc pur
+        secondary = Color(0xFF3A3A3A),         // Gris moyen-foncé
+        onSecondary = Color(0xFFFFFFFF),       // Blanc pur
+        secondaryContainer = Color(0xFF2A2A2A), // Gris foncé
+        onSecondaryContainer = Color(0xFFFFFFFF), // Blanc pur
+        tertiary = Color(0xFF444444),          // Gris moyen
+        onTertiary = Color(0xFFFFFFFF),        // Blanc pur
+        tertiaryContainer = Color(0xFF333333), // Gris foncé
+        onTertiaryContainer = Color(0xFFFFFFFF), // Blanc pur
+        background = Color(0xFF000000),        // Noir pur
+        onBackground = Color(0xFFFFFFFF),      // Blanc pur
+        surface = Color(0xFF1A1A1A),           // Gris très foncé
+        onSurface = Color(0xFFFFFFFF),         // Blanc pur
+        surfaceVariant = Color(0xFF2A2A2A),    // Gris foncé
+        onSurfaceVariant = Color(0xFFE0E0E0),  // Gris très clair
+        outline = Color(0xFF444444),           // Gris moyen
+        outlineVariant = Color(0xFF222222),    // Gris très foncé
+        scrim = Color(0xFF000000)              // Noir pur
     )
 
+    // Applique le schéma de couleurs approprié
+    // useDark = false -> lightColorScheme (couleurs claires)
+    // useDark = true -> darkColorScheme (couleurs sombres)
     MaterialTheme(
         colorScheme = if (useDark) darkColorScheme else lightColorScheme,
         typography = GSTypography,

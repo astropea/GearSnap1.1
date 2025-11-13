@@ -60,9 +60,8 @@ fun ProfileScreen(
     )
 
     // Theme state
-    val systemDarkTheme = androidx.compose.foundation.isSystemInDarkTheme()
     val savedTheme = remember { mutableStateOf(ThemeManager.getSavedTheme(context)) }
-    val isDarkTheme = savedTheme.value ?: systemDarkTheme
+    val isDarkTheme = savedTheme.value
 
     // Dialog states
     var showLanguageDialog by remember { mutableStateOf(false) }
@@ -795,12 +794,11 @@ private fun LanguageSelectionDialog(
 
 @Composable
 private fun ThemeSelectionDialog(
-    currentTheme: Boolean?,
+    currentTheme: Boolean,
     onDismiss: () -> Unit,
-    onThemeSelected: (Boolean?) -> Unit
+    onThemeSelected: (Boolean) -> Unit
 ) {
     val options = listOf(
-        null to stringResource(R.string.theme_system),
         false to stringResource(R.string.theme_light),
         true to stringResource(R.string.theme_dark)
     )

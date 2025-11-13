@@ -23,14 +23,21 @@ import com.gearsnap.auth.screens.AuthScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Apply saved language and theme BEFORE super.onCreate()
+        // ✅ ÉTAPE 1 : Appliquer la langue et le thème AVANT super.onCreate()
+        // Cela garantit que le bon thème est actif dès le démarrage
         LanguageManager.applyLanguage(this)
         ThemeManager.applyTheme(this)
 
         super.onCreate(savedInstanceState)
 
+        // ✅ ÉTAPE 2 : Appliquer le contenu avec le bon thème
+        // Le thème est déjà forcé par ThemeManager.applyTheme() ci-dessus
         setContent {
+            // Récupère le thème sauvegardé (false = clair par défaut)
             val isDarkTheme = ThemeManager.isDarkTheme(this)
+
+            // ⚠️ IMPORTANT : GearSnapTheme ignore isSystemInDarkTheme()
+            // et utilise uniquement la préférence utilisateur
             GearSnapTheme(useDark = isDarkTheme) {
                 val context = this
                 val navController = rememberNavController()

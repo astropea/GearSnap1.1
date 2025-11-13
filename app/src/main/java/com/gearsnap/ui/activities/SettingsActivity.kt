@@ -1,12 +1,13 @@
 package com.gearsnap.ui.activities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
-import com.gearsnap.MainActivity
 import java.util.*
 
 // Language management
@@ -33,7 +34,7 @@ object LanguageManager {
         Locale.setDefault(locale)
 
         // Apply to the activity context
-        if (context is android.app.Activity) {
+        if (context is Activity) {
             val config = context.resources.configuration
             config.setLocale(locale)
             context.createConfigurationContext(config)
@@ -42,15 +43,10 @@ object LanguageManager {
     }
 
     fun restartActivity(context: Context) {
-        if (context is androidx.activity.ComponentActivity) {
+        if (context is ComponentActivity) {
             context.recreate()
-        } else {
-            val intent = Intent(context, MainActivity::class.java)
-            intent.addFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP or android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
-            context.startActivity(intent)
-            if (context is android.app.Activity) {
-                context.finish()
-            }
+        } else if (context is Activity) {
+            context.recreate()
         }
     }
 }
@@ -60,54 +56,67 @@ object ThemeManager {
     private const val PREF_NAME = "gearsnap_prefs"
     private const val KEY_THEME = "selected_theme"
 
-    fun setTheme(context: Context, isDark: Boolean?) {
+    /**
+     * Sauvegarde le choix de thème de l'utilisateur
+     * @param isDark true pour mode sombre, false pour mode clair
+     */
+    fun setTheme(context: Context, isDark: Boolean) {
         val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        if (isDark == null) {
-            prefs.edit().remove(KEY_THEME).apply() // Remove to use system default
-        } else {
-            prefs.edit().putBoolean(KEY_THEME, isDark).apply()
-        }
+        prefs.edit().putBoolean(KEY_THEME, isDark).apply()
     }
 
-    fun getSavedTheme(context: Context): Boolean? {
+    /**
+     * Récupère le thème sauvegardé
+     * @return false (mode clair) par défaut, true si mode sombre sélectionné
+     */
+    fun getSavedTheme(context: Context): Boolean {
         val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        return if (prefs.contains(KEY_THEME)) {
-            prefs.getBoolean(KEY_THEME, false)
-        } else {
-            null // Use system default
-        }
+        // Par défaut : mode clair (false)
+        return prefs.getBoolean(KEY_THEME, false)
     }
 
+    /**
+     * Vérifie si le thème sombre est activé
+     * @return true si mode sombre, false si mode clair
+     */
     fun isDarkTheme(context: Context): Boolean {
-        val savedTheme = getSavedTheme(context)
-        return savedTheme ?: false
+        // Retourne directement le thème sauvegardé (par défaut : clair)
+        return getSavedTheme(context)
     }
 
+    /**
+     * Applique le thème sélectionné à l'application
+     * Force MODE_NIGHT_NO pour le mode clair (ignore le thème système)
+     * Force MODE_NIGHT_YES pour le mode sombre
+     */
     fun applyTheme(context: Context) {
-        val savedTheme = getSavedTheme(context)
-        val mode = when {
-            savedTheme == null -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-            savedTheme -> AppCompatDelegate.MODE_NIGHT_YES
-            else -> AppCompatDelegate.MODE_NIGHT_NO
+        val isDark = getSavedTheme(context)
+        val mode = if (isDark) {
+            // Mode sombre : Force le mode nuit
+            AppCompatDelegate.MODE_NIGHT_YES
+        } else {
+            // Mode clair : Force le mode jour (ignore le thème système)
+            AppCompatDelegate.MODE_NIGHT_NO
         }
         AppCompatDelegate.setDefaultNightMode(mode)
     }
 
+    /**
+     * Applique le thème et redémarre l'activité pour appliquer les changements
+     */
     fun applyThemeAndRestart(context: Context) {
         applyTheme(context)
         restartActivity(context)
     }
 
+    /**
+     * Redémarre l'activité courante pour appliquer les changements de thème
+     */
     fun restartActivity(context: Context) {
-        if (context is androidx.activity.ComponentActivity) {
+        if (context is ComponentActivity) {
             context.recreate()
-        } else {
-            val intent = Intent(context, MainActivity::class.java)
-            intent.addFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP or android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
-            context.startActivity(intent)
-            if (context is android.app.Activity) {
-                context.finish()
-            }
+        } else if (context is Activity) {
+            context.recreate()
         }
     }
 }

@@ -1,37 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base GearSnap Dark Theme -->
+    <!-- ========================================== -->
+    <!-- THÈME SOMBRE GEARSNAP                      -->
+    <!-- ========================================== -->
+    <!-- ⚠️ IMPORTANT : Ce thème est utilisé UNIQUEMENT quand l'utilisateur -->
+    <!-- sélectionne explicitement le mode sombre dans les paramètres de l'app -->
+    <!-- Il n'est PAS activé automatiquement par le système -->
+    <!-- ========================================== -->
     <style name="Theme.GearSnap" parent="Theme.Material3.Dark">
-        <!-- Primary brand colors - Dark theme -->
-        <item name="colorPrimary">@color/gs_forest_green</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryContainer">@color/gs_forest_green_light</item>
-        <item name="colorOnPrimaryContainer">@color/white</item>
 
-        <!-- Secondary brand colors - Dark theme -->
-        <item name="colorSecondary">@color/gs_warm_orange</item>
-        <item name="colorOnSecondary">@color/white</item>
-        <item name="colorSecondaryContainer">@color/gs_warm_orange_light</item>
-        <item name="colorOnSecondaryContainer">@color/gs_forest_green_dark</item>
+        <!-- ✅ DÉSACTIVE le mode sombre forcé par Android -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
 
-        <!-- Tertiary colors - Dark theme -->
-        <item name="colorTertiary">@color/gs_warm_orange</item>
-        <item name="colorOnTertiary">@color/white</item>
-        <item name="colorTertiaryContainer">@color/gs_warm_orange_light</item>
-        <item name="colorOnTertiaryContainer">@color/gs_forest_green_dark</item>
+        <!-- Primary brand colors - Gris très foncé / Noir -->
+        <item name="colorPrimary">#1A1A1A</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">#2A2A2A</item>
+        <item name="colorOnPrimaryContainer">#FFFFFF</item>
 
-        <!-- Surface colors - Dark theme -->
-        <item name="android:colorBackground">@color/gs_soft_beige</item>
-        <item name="colorOnBackground">@color/gs_title_green</item>
-        <item name="colorSurface">@color/gs_card_bg</item>
-        <item name="colorOnSurface">@color/gs_body_gray</item>
-        <item name="colorSurfaceVariant">@color/gs_surface_variant</item>
-        <item name="colorOnSurfaceVariant">@color/gs_body_gray</item>
+        <!-- Secondary brand colors - Gris moyen-foncé -->
+        <item name="colorSecondary">#3A3A3A</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorSecondaryContainer">#2A2A2A</item>
+        <item name="colorOnSecondaryContainer">#FFFFFF</item>
 
-        <!-- System UI colors - Dark theme -->
-        <item name="android:statusBarColor">@color/gs_forest_green_dark</item>
-        <item name="android:navigationBarColor">@color/gs_forest_green_dark</item>
+        <!-- Tertiary colors - Gris moyen -->
+        <item name="colorTertiary">#444444</item>
+        <item name="colorOnTertiary">#FFFFFF</item>
+        <item name="colorTertiaryContainer">#333333</item>
+        <item name="colorOnTertiaryContainer">#FFFFFF</item>
+
+        <!-- Surface colors - Noir profond avec blanc pur -->
+        <item name="android:colorBackground">#000000</item>
+        <item name="colorOnBackground">#FFFFFF</item>
+        <item name="colorSurface">#1A1A1A</item>
+        <item name="colorOnSurface">#FFFFFF</item>
+        <item name="colorSurfaceVariant">#2A2A2A</item>
+        <item name="colorOnSurfaceVariant">#E0E0E0</item>
+
+        <!-- System UI colors - Barres noires -->
+        <item name="android:statusBarColor">#000000</item>
+        <item name="android:navigationBarColor">#000000</item>
         <item name="android:windowLightStatusBar">false</item>
+
+        <!-- ✅ Empêche les Dynamic Colors de Material You d'écraser nos couleurs -->
+        <item name="dynamicColorThemeOverlay">@null</item>
 
         <!-- Rounded corners -->
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.GearSnap.SmallComponent</item>
