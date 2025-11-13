@@ -4196,6 +4196,7 @@ int string planning_dialog_title 0x7f10015b
 int string planning_empty_day 0x7f10015c
 int string planning_field_time 0x7f10015d
 int string planning_field_title 0x7f10015e
+int string profile_badge_2025 0x7f1001ad
 int string profile_badges 0x7f10015f
 int string profile_beginner 0x7f100160
 int string profile_champion 0x7f100161
@@ -4204,10 +4205,13 @@ int string profile_duration 0x7f100163
 int string profile_email 0x7f100164
 int string profile_expert 0x7f100165
 int string profile_member_since 0x7f100166
+int string profile_member_since_unknown 0x7f1001ae
 int string profile_name 0x7f100167
 int string profile_outings 0x7f100168
 int string profile_stats 0x7f100169
+int string profile_stats_unavailable 0x7f1001af
 int string profile_streak 0x7f10016a
+int string profile_username_label 0x7f1001b0
 int string project_id 0x7f10016b
 int string public_transport 0x7f10016c
 int string range_end 0x7f10016d

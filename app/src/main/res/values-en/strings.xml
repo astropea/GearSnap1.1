@@ -107,14 +107,20 @@
     <string name="social_post_hint">Share your experience...</string>
 
     <!-- Profile specific strings -->
-    <string name="profile_name">Alex Athlete</string>
+    <string name="profile_username_label">Username</string>
     <string name="profile_email">alex.athlete@gearsnap.com</string>
-    <string name="profile_member_since">Member since January 2024</string>
+    <string name="profile_member_since_unknown">Registration date unknown</string>
     <string name="profile_stats">Statistics</string>
+    <string name="profile_stats_unavailable">Stats not available</string>
+    <string name="profile_badges">Badges</string>
+    <string name="profile_badge_2025">Badge 2025 — Member of the Year</string>
+
+    <!-- Deprecated - kept for compatibility -->
+    <string name="profile_name">Alex Athlete</string>
+    <string name="profile_member_since">Member since January 2024</string>
     <string name="profile_outings">Outings</string>
     <string name="profile_duration">Duration</string>
     <string name="profile_distance">Distance</string>
-    <string name="profile_badges">Badges</string>
     <string name="profile_beginner">Beginner</string>
     <string name="profile_champion">Champion</string>
     <string name="profile_streak">Streak</string>

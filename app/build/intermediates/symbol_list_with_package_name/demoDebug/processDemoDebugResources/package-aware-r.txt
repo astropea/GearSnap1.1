@@ -4197,6 +4197,7 @@ string planning_dialog_title
 string planning_empty_day
 string planning_field_time
 string planning_field_title
+string profile_badge_2025
 string profile_badges
 string profile_beginner
 string profile_champion
@@ -4205,10 +4206,13 @@ string profile_duration
 string profile_email
 string profile_expert
 string profile_member_since
+string profile_member_since_unknown
 string profile_name
 string profile_outings
 string profile_stats
+string profile_stats_unavailable
 string profile_streak
+string profile_username_label
 string project_id
 string public_transport
 string range_end

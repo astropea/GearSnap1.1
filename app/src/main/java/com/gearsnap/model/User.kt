@@ -7,5 +7,6 @@ data class User(
     val photoUrl: String? = null,
     val sports: List<String> = emptyList(),
     val badges: List<Badge> = emptyList(),
-    val level: Int = 1
+    val level: Int = 1,
+    val createdAt: Long = 0L  // Timestamp de création du compte (en millisecondes)
 )

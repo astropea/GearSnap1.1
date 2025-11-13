@@ -28,6 +28,8 @@ import com.gearsnap.ui.activities.ThemeManager
 import com.gearsnap.ui.viewmodel.ProfileViewModel
 import coil.compose.AsyncImage
 import android.net.Uri
+import java.text.SimpleDateFormat
+import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,11 +46,11 @@ fun ProfileScreen(
     val notificationsState by vm.notificationsEnabled.collectAsState()
     val isUploading by vm.isUploading.collectAsState()
 
-    // Local editable name
-    var editName by remember { mutableStateOf(userState.displayName) }
+    // Local editable name - Affiche "UserName" si le nom est vide
+    var editName by remember { mutableStateOf(userState.displayName.ifEmpty { "UserName" }) }
 
     LaunchedEffect(userState) {
-        editName = userState.displayName
+        editName = userState.displayName.ifEmpty { "UserName" }
     }
 
     // Language state
@@ -128,8 +130,8 @@ fun ProfileScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Badges Section
-            BadgesSection()
+            // Badges Section - Affiche uniquement pour les membres 2025
+            BadgesSection(userState = userState)
 
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -312,6 +314,30 @@ fun ProfileSection(
     onNameChange: (String) -> Unit,
     onPickAvatar: () -> Unit
 ) {
+    val context = LocalContext.current
+    
+    // Formater la date d'inscription selon la langue
+    val memberSinceText = remember(userState.createdAt) {
+        if (userState.createdAt > 0) {
+            val date = Date(userState.createdAt)
+            val locale = when (LanguageManager.getSavedLanguage(context)) {
+                "en" -> Locale.ENGLISH
+                "de" -> Locale.GERMAN
+                else -> Locale.FRENCH
+            }
+            val dateFormat = SimpleDateFormat("d MMMM yyyy", locale)
+            val formattedDate = dateFormat.format(date)
+            
+            when (LanguageManager.getSavedLanguage(context)) {
+                "en" -> "Member since $formattedDate"
+                "de" -> "Mitglied seit $formattedDate"
+                else -> "Membre depuis le $formattedDate"
+            }
+        } else {
+            context.getString(R.string.profile_member_since_unknown)
+        }
+    }
+    
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -349,11 +375,12 @@ fun ProfileSection(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Name
+        // Name - Affiche "UserName" par défaut
         OutlinedTextField(
             value = editName,
             onValueChange = { onNameChange(it) },
-            label = { Text(stringResource(R.string.profile_name)) },
+            label = { Text(stringResource(R.string.profile_username_label)) },
+            placeholder = { Text("UserName") },
             singleLine = true,
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
         )
@@ -369,9 +396,9 @@ fun ProfileSection(
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Member Since
+        // Member Since - Date formatée selon la langue
         Text(
-            text = stringResource(R.string.profile_member_since),
+            text = memberSinceText,
             fontSize = 14.sp,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -390,36 +417,24 @@ fun StatsSection() {
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 text = stringResource(R.string.profile_stats),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.padding(bottom = 16.dp)
+                modifier = Modifier.padding(bottom = 8.dp)
             )
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                StatItem(
-                    icon = Icons.Filled.DirectionsRun,
-                    value = "127",
-                    label = stringResource(R.string.profile_outings)
-                )
-                StatItem(
-                    icon = Icons.Filled.Timer,
-                    value = "234h",
-                    label = stringResource(R.string.profile_duration)
-                )
-                StatItem(
-                    icon = Icons.Filled.Terrain,
-                    value = "892km",
-                    label = stringResource(R.string.profile_distance)
-                )
-            }
+            // Message simple : Statistiques non connues
+            Text(
+                text = stringResource(R.string.profile_stats_unavailable),
+                fontSize = 16.sp,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
         }
     }
 }
@@ -455,50 +470,46 @@ fun StatItem(
 }
 
 @Composable
-fun BadgesSection() {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Text(
-                text = stringResource(R.string.profile_badges),
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
+fun BadgesSection(userState: com.gearsnap.model.User) {
+    // Vérifier si l'utilisateur est membre depuis 2025
+    val isMember2025 = remember(userState.createdAt) {
+        if (userState.createdAt > 0) {
+            val calendar = Calendar.getInstance()
+            calendar.timeInMillis = userState.createdAt
+            calendar.get(Calendar.YEAR) == 2025
+        } else {
+            false
+        }
+    }
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
+    // Afficher la section badges uniquement pour les membres 2025
+    if (isMember2025) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surface
+            ),
+            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                BadgeItem(
-                    icon = Icons.Filled.Star,
-                    label = stringResource(R.string.profile_beginner),
-                    unlocked = true
+                Text(
+                    text = stringResource(R.string.profile_badges),
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.padding(bottom = 16.dp)
                 )
+
+                // Badge unique pour les membres 2025
                 BadgeItem(
                     icon = Icons.Filled.EmojiEvents,
-                    label = stringResource(R.string.profile_champion),
+                    label = stringResource(R.string.profile_badge_2025),
                     unlocked = true
-                )
-                BadgeItem(
-                    icon = Icons.Filled.LocalFireDepartment,
-                    label = stringResource(R.string.profile_streak),
-                    unlocked = false
-                )
-                BadgeItem(
-                    icon = Icons.Filled.MilitaryTech,
-                    label = stringResource(R.string.profile_expert),
-                    unlocked = false
                 )
             }
         }
