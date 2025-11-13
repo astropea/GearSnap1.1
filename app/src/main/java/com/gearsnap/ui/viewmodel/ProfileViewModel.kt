@@ -3,6 +3,7 @@ package com.gearsnap.ui.viewmodel
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gearsnap.auth.AuthRepository
 import com.gearsnap.model.User
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,6 +16,8 @@ import kotlinx.coroutines.launch
  * for upload/toggle/save/sign-out used by the UI. Replace with real logic as needed.
  */
 class ProfileViewModel : ViewModel() {
+    private val authRepository = AuthRepository()
+
     private val _user = MutableStateFlow(User())
     val user: StateFlow<User> = _user
 
@@ -23,6 +26,22 @@ class ProfileViewModel : ViewModel() {
 
     private val _isUploading = MutableStateFlow(false)
     val isUploading: StateFlow<Boolean> = _isUploading
+
+    init {
+        loadUserData()
+    }
+
+    private fun loadUserData() {
+        val firebaseUser = authRepository.getCurrentUser()
+        firebaseUser?.let {
+            _user.value = User(
+                id = it.uid,
+                displayName = it.displayName ?: "",
+                email = it.email ?: "",
+                photoUrl = it.photoUrl?.toString()
+            )
+        }
+    }
 
     fun uploadAvatar(uri: Uri, callback: (success: Boolean, message: String?) -> Unit) {
         // Fake upload: set uploading state, delay, then update user photoUrl and call callback

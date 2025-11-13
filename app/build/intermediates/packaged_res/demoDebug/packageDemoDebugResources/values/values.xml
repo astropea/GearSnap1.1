@@ -66,6 +66,7 @@
     <string name="language_french">Français</string>
     <string name="language_german">Deutsch</string>
     <string name="loading">Chargement...</string>
+    <string name="logout">Déconnexion</string>
     <string name="map_filter">Filtres</string>
     <string name="map_my_location">Ma position</string>
     <string name="map_search_hint">Rechercher un spot...</string>
@@ -112,6 +113,7 @@
     <string name="rent_price_per_day">€/jour</string>
     <string name="rent_title">Louer du matériel</string>
     <string name="retry">Réessayer</string>
+    <string name="save">Enregistrer</string>
     <string name="settings_about">À propos</string>
     <string name="settings_back">Retour</string>
     <string name="settings_general">Général</string>

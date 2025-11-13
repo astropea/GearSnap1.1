@@ -107,6 +107,7 @@ string language_english
 string language_french
 string language_german
 string loading
+string logout
 string map_filter
 string map_my_location
 string map_search_hint
@@ -153,6 +154,7 @@ string rent_details
 string rent_price_per_day
 string rent_title
 string retry
+string save
 string settings_about
 string settings_back
 string settings_general

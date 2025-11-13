@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.gearsnap.app-mergeDemoDebugResources-79:/values-small-v4/values-small-v4.xml",
+            "outputFile": "com.gearsnap.app-mergeDemoDebugResources-78:/values-small-v4/values-small-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\antoi\\.gradle\\caches\\transforms-4\\2008cdf9b40056ae473441c3b8ce9e63\\transformed\\material-1.12.0\\res\\values-small-v4\\values-small-v4.xml",
+                    "source": "C:\\Users\\maxim\\.gradle\\caches\\transforms-4\\2008cdf9b40056ae473441c3b8ce9e63\\transformed\\material-1.12.0\\res\\values-small-v4\\values-small-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

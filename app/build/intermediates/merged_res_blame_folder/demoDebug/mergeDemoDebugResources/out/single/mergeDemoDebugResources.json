@@ -1,134 +1,134 @@
 [
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_ic_arrow_back.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/ic_arrow_back.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_ic_privacy.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/ic_privacy.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_logosnd.png.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/logosnd.png"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_ic_map_pin.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/ic_map_pin.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.gearsnap.app-main-85:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_ic_language.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/ic_language.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_ic_settings.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/ic_settings.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_gs_card_background.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/gs_card_background.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_gs_search_background.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/gs_search_background.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_ic_info.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/ic_info.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.gearsnap.app-main-85:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_whatsapp_image_2025_10_17___10_49_41_fb4f7ddb.jpg.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/whatsapp_image_2025_10_17___10_49_41_fb4f7ddb.jpg"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_whatsapp_image_2025_10_17___10_49_41_fb4f7ddb.jpg.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/whatsapp_image_2025_10_17___10_49_41_fb4f7ddb.jpg"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_ic_logo_fg.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/ic_logo_fg.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_whatsapp_image_2025_10_17___10_49_43_53179f1a.jpg.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/whatsapp_image_2025_10_17___10_49_43_53179f1a.jpg"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_whatsapp_image_2025_10_17___10_49_42_96404873.jpg.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/whatsapp_image_2025_10_17___10_49_42_96404873.jpg"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_whatsapp_image_2025_10_17___10_49_42_96404873.jpg.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/whatsapp_image_2025_10_17___10_49_42_96404873.jpg"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_whatsapp_image_2025_10_17___10_49_43_53179f1a.jpg.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/whatsapp_image_2025_10_17___10_49_43_53179f1a.jpg"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_gs_button_primary.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/gs_button_primary.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_gs_button_primary.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/gs_button_primary.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_ic_privacy.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/ic_privacy.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_logoavnd.png.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/logoavnd.png"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable-night_gs_search_background.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable-night/gs_search_background.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.gearsnap.app-main-84:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_gs_button_outline.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/gs_button_outline.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_logosnd.png.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/logosnd.png"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_whatsapp_image_2025_10_17___10_49_42_4617bb0b.jpg.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/whatsapp_image_2025_10_17___10_49_42_4617bb0b.jpg"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_gs_search_background.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/gs_search_background.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_logoavnd.png.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/logoavnd.png"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_gs_button_secondary.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/gs_button_secondary.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_gs_card_background.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/gs_card_background.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_whatsapp_image_2025_10_17___10_49_42_f47af663.jpg.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/whatsapp_image_2025_10_17___10_49_42_f47af663.jpg"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_whatsapp_image_2025_10_17___10_49_42_f47af663.jpg.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/whatsapp_image_2025_10_17___10_49_42_f47af663.jpg"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_gs_button_outline.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/gs_button_outline.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_whatsapp_image_2025_10_17___10_49_42_a4eb4f26.jpg.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/whatsapp_image_2025_10_17___10_49_42_a4eb4f26.jpg"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_whatsapp_image_2025_10_17___10_49_42_a4eb4f26.jpg.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/whatsapp_image_2025_10_17___10_49_42_a4eb4f26.jpg"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_logov.jpg.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/logov.jpg"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_whatsapp_image_2025_10_17___10_49_42_4617bb0b.jpg.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/whatsapp_image_2025_10_17___10_49_42_4617bb0b.jpg"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_ic_language.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/ic_language.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_ic_arrow_forward.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/ic_arrow_forward.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_ic_arrow_forward.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/ic_arrow_forward.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_ic_arrow_back.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/ic_arrow_back.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_ic_notifications.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/ic_notifications.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_ic_theme.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/ic_theme.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_ic_info.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/ic_info.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_ic_gearsnap_logo.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/ic_gearsnap_logo.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_ic_map_pin.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/ic_map_pin.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.gearsnap.app-main-84:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/color_gs_nav_selector.xml.flat",
-        "source": "com.gearsnap.app-main-85:/color/gs_nav_selector.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/layout_activity_settings.xml.flat",
+        "source": "com.gearsnap.app-main-84:/layout/activity_settings.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_whatsapp_image_2025_10_17___10_49_41_b0c44f73.jpg.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/whatsapp_image_2025_10_17___10_49_41_b0c44f73.jpg"
+        "merged": "com.gearsnap.app-demoDebug-80:/color_gs_nav_selector.xml.flat",
+        "source": "com.gearsnap.app-main-84:/color/gs_nav_selector.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_whatsapp_image_2025_10_17___10_49_43_5f37f54d.jpg.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/whatsapp_image_2025_10_17___10_49_43_5f37f54d.jpg"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_whatsapp_image_2025_10_17___10_49_41_b0c44f73.jpg.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/whatsapp_image_2025_10_17___10_49_41_b0c44f73.jpg"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/layout_activity_settings.xml.flat",
-        "source": "com.gearsnap.app-main-85:/layout/activity_settings.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_whatsapp_image_2025_10_17___10_49_43_5f37f54d.jpg.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/whatsapp_image_2025_10_17___10_49_43_5f37f54d.jpg"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_ic_terms.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/ic_terms.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable-night_gs_search_background.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable-night/gs_search_background.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_ic_theme.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/ic_theme.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_logov.jpg.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/logov.jpg"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_ic_logo_fg.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/ic_logo_fg.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_ic_terms.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/ic_terms.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_ic_gearsnap_logo.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/ic_gearsnap_logo.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_ic_notifications.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/ic_notifications.xml"
     },
     {
-        "merged": "com.gearsnap.app-demoDebug-81:/drawable_gs_button_secondary.xml.flat",
-        "source": "com.gearsnap.app-main-85:/drawable/gs_button_secondary.xml"
+        "merged": "com.gearsnap.app-demoDebug-80:/drawable_ic_settings.xml.flat",
+        "source": "com.gearsnap.app-main-84:/drawable/ic_settings.xml"
     }
 ]

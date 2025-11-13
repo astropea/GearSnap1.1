@@ -363,7 +363,7 @@ fun ProfileSection(
 
         // Email
         Text(
-            text = userState.displayName.ifEmpty { stringResource(R.string.profile_email) },
+            text = userState.email.ifEmpty { stringResource(R.string.profile_email) },
             fontSize = 16.sp,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.gearsnap.app-mergeDemoDebugResources-79:/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "com.gearsnap.app-mergeDemoDebugResources-78:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\antoi\\.gradle\\caches\\transforms-4\\ee916fa9b6eb84de5e3d9cab2e44e712\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "source": "C:\\Users\\maxim\\.gradle\\caches\\transforms-4\\ee916fa9b6eb84de5e3d9cab2e44e712\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\antoi\\.gradle\\caches\\transforms-4\\f9dcc6b92a1dc79e18b9c876b9cc3cb6\\transformed\\play-services-auth-21.2.0\\res\\values-watch-v20\\values.xml",
+                    "source": "C:\\Users\\maxim\\.gradle\\caches\\transforms-4\\f9dcc6b92a1dc79e18b9c876b9cc3cb6\\transformed\\play-services-auth-21.2.0\\res\\values-watch-v20\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",
