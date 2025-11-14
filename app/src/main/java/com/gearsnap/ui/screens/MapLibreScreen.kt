@@ -76,49 +76,6 @@ fun MapLibreScreen(
                         isClickable = true
                     }
 
-                    // Ajouter les marqueurs
-                    spots.forEach { spot ->
-                        val marker = Marker(this).apply {
-                            position = GeoPoint(spot.lat, spot.lng)
-                            title = spot.name
-                            snippet = spot.category.display
-
-                            // Couleur du marqueur selon la catégorie
-                            val iconRes = when (spot.category) {
-                                SpotCategory.HIKING -> R.drawable.ic_map_pin
-                                SpotCategory.CLIMBING -> R.drawable.ic_map_pin
-                                SpotCategory.URBEX -> R.drawable.ic_map_pin
-                                SpotCategory.EXPLORATION -> R.drawable.ic_map_pin
-                            }
-
-                            // Définir l'icône
-                            try {
-                                val drawable = ContextCompat.getDrawable(ctx, iconRes)
-                                if (drawable != null) {
-                                    // Colorer le marqueur selon la catégorie
-                                    val color = when (spot.category) {
-                                        SpotCategory.HIKING -> android.graphics.Color.parseColor("#2D5016")
-                                        SpotCategory.CLIMBING -> android.graphics.Color.parseColor("#D97706")
-                                        SpotCategory.URBEX -> android.graphics.Color.parseColor("#0891B2")
-                                        SpotCategory.EXPLORATION -> android.graphics.Color.parseColor("#EAB308")
-                                    }
-                                    drawable.setTint(color)
-                                    icon = drawable
-                                }
-                            } catch (e: Exception) {
-                                // Utiliser l'icône par défaut si erreur
-                            }
-
-                            setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-
-                            setOnMarkerClickListener { clickedMarker, _ ->
-                                onMarkerClick(spot)
-                                true
-                            }
-                        }
-                        overlays.add(marker)
-                    }
-
                     // Ajouter un listener pour l'appui long
                     overlays.add(object : org.osmdroid.views.overlay.Overlay() {
                         override fun onLongPress(e: android.view.MotionEvent?, mapView: org.osmdroid.views.MapView?): Boolean {
@@ -139,6 +96,59 @@ fun MapLibreScreen(
                 if (center != null) {
                     onCenterChanged(center.latitude, center.longitude)
                 }
+
+                // Supprimer tous les marqueurs existants (sauf le listener d'appui long)
+                val longPressOverlay = mapView.overlays.firstOrNull { it is org.osmdroid.views.overlay.Overlay && it !is Marker }
+                mapView.overlays.clear()
+                if (longPressOverlay != null) {
+                    mapView.overlays.add(longPressOverlay)
+                }
+
+                // Ajouter les nouveaux marqueurs filtrés
+                spots.forEach { spot ->
+                    val marker = Marker(mapView).apply {
+                        position = GeoPoint(spot.lat, spot.lng)
+                        title = spot.name
+                        snippet = "${spot.category.display} - ${spot.difficulty.display}"
+
+                        // Couleur du marqueur selon la catégorie
+                        val iconRes = when (spot.category) {
+                            SpotCategory.HIKING -> R.drawable.ic_map_pin
+                            SpotCategory.CLIMBING -> R.drawable.ic_map_pin
+                            SpotCategory.URBEX -> R.drawable.ic_map_pin
+                            SpotCategory.EXPLORATION -> R.drawable.ic_map_pin
+                        }
+
+                        // Définir l'icône
+                        try {
+                            val drawable = ContextCompat.getDrawable(mapView.context, iconRes)
+                            if (drawable != null) {
+                                // Colorer le marqueur selon la catégorie
+                                val color = when (spot.category) {
+                                    SpotCategory.HIKING -> android.graphics.Color.parseColor("#2D5016")
+                                    SpotCategory.CLIMBING -> android.graphics.Color.parseColor("#D97706")
+                                    SpotCategory.URBEX -> android.graphics.Color.parseColor("#0891B2")
+                                    SpotCategory.EXPLORATION -> android.graphics.Color.parseColor("#EAB308")
+                                }
+                                drawable.setTint(color)
+                                icon = drawable
+                            }
+                        } catch (e: Exception) {
+                            // Utiliser l'icône par défaut si erreur
+                        }
+
+                        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+
+                        setOnMarkerClickListener { clickedMarker, _ ->
+                            onMarkerClick(spot)
+                            true
+                        }
+                    }
+                    mapView.overlays.add(marker)
+                }
+
+                // Rafraîchir la carte
+                mapView.invalidate()
             }
         )
     }

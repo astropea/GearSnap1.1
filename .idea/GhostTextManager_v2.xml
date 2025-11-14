@@ -171,6 +171,18 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="Prompt Sweep IA — Amélioration du bandeau de recherche dans l’onglet Carte&#10;&#10;Titre : Amélioration du bandeau de recherche + filtres (difficulté &amp; distance) dans l’onglet Carte&#10;&#10;Description :&#10;&#10;Modifie le code exclusivement dans l’onglet Carte afin d’améliorer le bandeau de recherche déjà existant. Les nouvelles fonctionnalités attendues sont :&#10;&#10; 1. Recherche par nom de spot&#10;&#10;Permettre de rechercher un spot par son nom dans les spots déjà affichés sur la carte (pings de la communauté).&#10;&#10;La recherche doit filtrer dynamiquement les marqueurs sur la carte.&#10;&#10;Si plusieurs spots correspondent, afficher uniquement ceux-là.&#10;&#10;Si la zone de texte est vide, réafficher tous les spots.&#10;&#10;Le système doit fonctionner uniquement dans l’onglet Carte.&#10;&#10;️ 2. Filtre par difficulté&#10;&#10;Ajouter un système de tri / filtres dans l’onglet Carte :&#10;&#10;Filtrer les spots selon la difficulté :&#10;&#10;Facile&#10;&#10;Moyen&#10;&#10;Difficile&#10;&#10;Le filtre fonctionne en complément du texte de recherche.&#10;&#10;Aucun filtre sélectionné = pas de filtre de difficulté.&#10;&#10; 3. Filtre par distance (rayon)&#10;&#10;Toujours dans l’onglet Carte, ajouter un système permettant de définir un rayon autour :&#10;&#10;de la position GPS de l’utilisateur, ou&#10;&#10;d’un point central déjà utilisé par l’application.&#10;&#10;Fonctionnalités :&#10;&#10;Rayon ajustable (5 km, 10 km, 20 km, 50 km…).&#10;&#10;Filtrer les spots selon leur distance (utiliser haversine).&#10;&#10;Ce filtre s’ajoute aux deux autres (nom + difficulté).&#10;&#10;️ 4. Mise à jour en temps réel de la carte&#10;&#10;Dans l’onglet Carte :&#10;&#10;Mettre à jour les marqueurs en fonction des 3 filtres combinés :&#10;&#10;Recherche par nom&#10;&#10;Difficulté&#10;&#10;Rayon (distance)&#10;&#10;La carte doit afficher uniquement les spots filtrés.&#10;&#10;Le clustering doit aussi être mis à jour si existant.&#10;&#10; 5. Contraintes techniques&#10;&#10;Toutes les modifications doivent être faites dans le code lié à l’onglet Carte uniquement.&#10;&#10;Ne pas casser ou supprimer le bandeau de recherche existant : l’étendre.&#10;&#10;Ajouter proprement :&#10;&#10;un dropdown ou menu pour la difficulté&#10;&#10;un slider ou bouton pour le rayon&#10;&#10;Mettre à jour le ViewModel / controller de l’onglet Carte pour gérer correctement les filtres combinés.&#10;&#10;Le filtrage doit rester performant.">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1763110337448" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="Prompt SweepIA Android Studio&#10;&#10;Corrige entièrement le système de thème de mon application Android.&#10;Je veux que le thème de mon application soit totalement indépendant du thème du téléphone (sombre/clair).&#10;&#10;Même si le téléphone est en mode sombre, mon application doit rester en thème clair, avec mes couleurs personnalisées, sans que le système Android change les teintes (comme les blancs qui deviennent gris).&#10;&#10;Voici les instructions précises à appliquer :&#10;&#10;Désactive complètement le mode sombre forcé du système :&#10;&#10;Mets android:forceDarkAllowed=&quot;false&quot; dans la balise &lt;application&gt; du AndroidManifest.xml.&#10;&#10;Ajoute &lt;item name=&quot;android:forceDarkAllowed&quot;&gt;false&lt;/item&gt; dans le thème principal (themes.xml).&#10;&#10;Force l’application à utiliser le thème clair dès son lancement :&#10;&#10;Dans MainActivity.kt, avant setContentView(...), ajoute :">
           <value>
             <GhostTextMetaData>
@@ -534,6 +546,18 @@
             </GhostTextMetaData>
           </value>
         </entry>
+        <entry key="met le logosnd a la place de lancient dans cart">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1763111790111" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="no avec logov stp">
           <value>
             <GhostTextMetaData>
@@ -697,6 +721,18 @@
               <option name="timestamps">
                 <list>
                   <option value="1762115250335" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="uilise le logosnd dans carte au lieux de lautre logo pourie">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1763110819984" />
                 </list>
               </option>
             </GhostTextMetaData>

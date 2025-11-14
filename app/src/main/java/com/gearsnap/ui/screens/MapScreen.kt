@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -21,9 +22,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.gearsnap.R
 import com.gearsnap.ui.components.AddSpotDialog
-import com.gearsnap.ui.components.GSButton
-import com.gearsnap.ui.components.GSButtonVariant
 import kotlin.random.Random
+import kotlin.math.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -34,14 +34,58 @@ fun MapScreen() {
     var selectedSpot by remember { mutableStateOf<SpotUi?>(null) }
     var centerLatLng by remember { mutableStateOf(48.8566 to 2.3522) }
     var longPressLatLng by remember { mutableStateOf<Pair<Double, Double>?>(null) }
+    var userLocation by remember { mutableStateOf<Pair<Double, Double>?>(null) }
 
-    // Filters
+    // Search and Filters
+    var searchQuery by remember { mutableStateOf("") }
     var hikingOnly by remember { mutableStateOf(false) }
-    var distanceFilter by remember { mutableStateOf(false) } // placeholder
-    var difficultyFilter by remember { mutableStateOf(false) } // placeholder
+    var selectedDifficulties by remember { mutableStateOf<Set<SpotDifficulty>>(emptySet()) }
+    var selectedRadius by remember { mutableStateOf<Int?>(null) } // en km
+    var showSearchBar by remember { mutableStateOf(false) }
+    var showDifficultyMenu by remember { mutableStateOf(false) }
+    var showRadiusMenu by remember { mutableStateOf(false) }
 
-    val filtered = remember(spots, hikingOnly) {
-        if (hikingOnly) spots.filter { it.category == SpotCategory.HIKING } else spots
+    // Fonction de calcul de distance (Haversine)
+    fun calculateDistance(lat1: Double, lng1: Double, lat2: Double, lng2: Double): Double {
+        val earthRadius = 6371.0 // Rayon de la Terre en km
+        val dLat = Math.toRadians(lat2 - lat1)
+        val dLng = Math.toRadians(lng2 - lng1)
+        val a = sin(dLat / 2) * sin(dLat / 2) +
+                cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2)) *
+                sin(dLng / 2) * sin(dLng / 2)
+        val c = 2 * atan2(sqrt(a), sqrt(1 - a))
+        return earthRadius * c
+    }
+
+    // Filtrage combiné
+    val filtered = remember(spots, hikingOnly, searchQuery, selectedDifficulties, selectedRadius, userLocation) {
+        var result = spots
+
+        // Filtre par catégorie (hiking)
+        if (hikingOnly) {
+            result = result.filter { it.category == SpotCategory.HIKING }
+        }
+
+        // Filtre par nom (recherche)
+        if (searchQuery.isNotBlank()) {
+            result = result.filter { it.name.contains(searchQuery, ignoreCase = true) }
+        }
+
+        // Filtre par difficulté
+        if (selectedDifficulties.isNotEmpty()) {
+            result = result.filter { it.difficulty in selectedDifficulties }
+        }
+
+        // Filtre par distance (rayon)
+        if (selectedRadius != null) {
+            val centerPoint = userLocation ?: centerLatLng
+            result = result.filter { spot ->
+                val distance = calculateDistance(centerPoint.first, centerPoint.second, spot.lat, spot.lng)
+                distance <= selectedRadius!!
+            }
+        }
+
+        result
     }
 
     // Bottom sheet for spot details
@@ -89,7 +133,7 @@ fun MapScreen() {
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.ic_gearsnap_logo),
+                        painter = painterResource(R.drawable.logosnd),
                         contentDescription = stringResource(R.string.cd_logo),
                         modifier = Modifier.size(32.dp),
                         contentScale = ContentScale.Fit
@@ -103,9 +147,9 @@ fun MapScreen() {
                 }
 
                 // Icône de recherche
-                IconButton(onClick = { /* TODO search */ }) {
+                IconButton(onClick = { showSearchBar = !showSearchBar }) {
                     Icon(
-                        imageVector = Icons.Default.Search,
+                        imageVector = if (showSearchBar) Icons.Default.Close else Icons.Default.Search,
                         contentDescription = stringResource(R.string.map_search_hint),
                         tint = Color.White,
                         modifier = Modifier.size(24.dp)
@@ -114,11 +158,69 @@ fun MapScreen() {
             }
         }
 
+        // Barre de recherche (affichée sous l'AppBar)
+        AnimatedVisibility(
+            visible = showSearchBar,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 56.dp)
+        ) {
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                color = MaterialTheme.colorScheme.surface,
+                shadowElevation = 4.dp
+            ) {
+                OutlinedTextField(
+                    value = searchQuery,
+                    onValueChange = { searchQuery = it },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                    placeholder = {
+                        Text(
+                            text = stringResource(R.string.map_search_hint),
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    },
+                    trailingIcon = {
+                        if (searchQuery.isNotEmpty()) {
+                            IconButton(onClick = { searchQuery = "" }) {
+                                Icon(
+                                    imageVector = Icons.Default.Close,
+                                    contentDescription = "Effacer",
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        }
+                    },
+                    singleLine = true,
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                        focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                        unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+                        focusedBorderColor = MaterialTheme.colorScheme.primary
+                    )
+                )
+            }
+        }
+
         // Filters row under app bar - Style conforme aux maquettes
         Row(
             Modifier
                 .fillMaxWidth()
-                .padding(top = 56.dp, start = 12.dp, end = 12.dp, bottom = 8.dp),
+                .padding(
+                    top = if (showSearchBar) 120.dp else 56.dp,
+                    start = 12.dp,
+                    end = 12.dp,
+                    bottom = 8.dp
+                ),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             FilterChip(
@@ -147,38 +249,133 @@ fun MapScreen() {
                     borderColor = MaterialTheme.colorScheme.outline
                 )
             )
-            FilterChip(
-                selected = distanceFilter,
-                onClick = { distanceFilter = !distanceFilter },
-                label = { Text("Distance") },
-                colors = FilterChipDefaults.filterChipColors(
-                    selectedContainerColor = Color.White,
-                    selectedLabelColor = MaterialTheme.colorScheme.primary,
-                    containerColor = Color.White
-                ),
-                border = FilterChipDefaults.filterChipBorder(
-                    enabled = true,
-                    selected = distanceFilter,
-                    selectedBorderColor = MaterialTheme.colorScheme.primary,
-                    borderColor = MaterialTheme.colorScheme.outline
+
+            // Filtre de difficulté avec menu déroulant
+            Box {
+                FilterChip(
+                    selected = selectedDifficulties.isNotEmpty(),
+                    onClick = { showDifficultyMenu = !showDifficultyMenu },
+                    label = {
+                        Text(
+                            if (selectedDifficulties.isEmpty()) "Difficulté"
+                            else "Difficulté (${selectedDifficulties.size})"
+                        )
+                    },
+                    colors = FilterChipDefaults.filterChipColors(
+                        selectedContainerColor = MaterialTheme.colorScheme.primary,
+                        selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
+                        containerColor = MaterialTheme.colorScheme.surface
+                    ),
+                    border = FilterChipDefaults.filterChipBorder(
+                        enabled = true,
+                        selected = selectedDifficulties.isNotEmpty(),
+                        selectedBorderColor = MaterialTheme.colorScheme.primary,
+                        borderColor = MaterialTheme.colorScheme.outline
+                    )
                 )
-            )
-            FilterChip(
-                selected = difficultyFilter,
-                onClick = { difficultyFilter = !difficultyFilter },
-                label = { Text("Difficulty") },
-                colors = FilterChipDefaults.filterChipColors(
-                    selectedContainerColor = Color.White,
-                    selectedLabelColor = MaterialTheme.colorScheme.primary,
-                    containerColor = Color.White
-                ),
-                border = FilterChipDefaults.filterChipBorder(
-                    enabled = true,
-                    selected = difficultyFilter,
-                    selectedBorderColor = MaterialTheme.colorScheme.primary,
-                    borderColor = MaterialTheme.colorScheme.outline
+
+                DropdownMenu(
+                    expanded = showDifficultyMenu,
+                    onDismissRequest = { showDifficultyMenu = false }
+                ) {
+                    SpotDifficulty.values().forEach { difficulty ->
+                        DropdownMenuItem(
+                            text = {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Checkbox(
+                                        checked = difficulty in selectedDifficulties,
+                                        onCheckedChange = null
+                                    )
+                                    Spacer(Modifier.width(8.dp))
+                                    Text(difficulty.display)
+                                }
+                            },
+                            onClick = {
+                                selectedDifficulties = if (difficulty in selectedDifficulties) {
+                                    selectedDifficulties - difficulty
+                                } else {
+                                    selectedDifficulties + difficulty
+                                }
+                            }
+                        )
+                    }
+                    if (selectedDifficulties.isNotEmpty()) {
+                        Divider()
+                        DropdownMenuItem(
+                            text = { Text("Réinitialiser", color = MaterialTheme.colorScheme.error) },
+                            onClick = {
+                                selectedDifficulties = emptySet()
+                                showDifficultyMenu = false
+                            }
+                        )
+                    }
+                }
+            }
+
+            // Filtre de distance avec menu déroulant
+            Box {
+                FilterChip(
+                    selected = selectedRadius != null,
+                    onClick = { showRadiusMenu = !showRadiusMenu },
+                    label = {
+                        Text(
+                            if (selectedRadius == null) "Distance"
+                            else "< ${selectedRadius}km"
+                        )
+                    },
+                    colors = FilterChipDefaults.filterChipColors(
+                        selectedContainerColor = MaterialTheme.colorScheme.primary,
+                        selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
+                        containerColor = MaterialTheme.colorScheme.surface
+                    ),
+                    border = FilterChipDefaults.filterChipBorder(
+                        enabled = true,
+                        selected = selectedRadius != null,
+                        selectedBorderColor = MaterialTheme.colorScheme.primary,
+                        borderColor = MaterialTheme.colorScheme.outline
+                    )
                 )
-            )
+
+                DropdownMenu(
+                    expanded = showRadiusMenu,
+                    onDismissRequest = { showRadiusMenu = false }
+                ) {
+                    listOf(5, 10, 20, 50, 100).forEach { radius ->
+                        DropdownMenuItem(
+                            text = {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    if (selectedRadius == radius) {
+                                        Icon(
+                                            painter = painterResource(R.drawable.ic_map_pin),
+                                            contentDescription = null,
+                                            modifier = Modifier.size(16.dp),
+                                            tint = MaterialTheme.colorScheme.primary
+                                        )
+                                        Spacer(Modifier.width(8.dp))
+                                    } else {
+                                        Spacer(Modifier.width(24.dp))
+                                    }
+                                    Text("${radius} km")
+                                }
+                            },
+                            onClick = {
+                                selectedRadius = radius
+                                showRadiusMenu = false
+                            }
+                        )
+                    }
+                    if (selectedRadius != null) {
+                        Divider()
+                        DropdownMenuItem(
+                            text = { Text("Réinitialiser", color = MaterialTheme.colorScheme.error) },
+                            onClick = {
+                                selectedRadius = null
+                                showRadiusMenu = false
+                            }
+                        )
+                    }
+                }
+            }
         }
 
         // FAB retiré - Création de spot uniquement par appui long sur la carte
@@ -232,7 +429,7 @@ fun MapScreen() {
                     showAddDialog = false
                     longPressLatLng = null
                 },
-                onAdd = { name, category, spotLat, spotLng ->
+                onAdd = { name: String, category: SpotCategory, spotLat: Double, spotLng: Double ->
                     val newSpot = SpotUi(
                         id = Random.nextLong().toString(),
                         name = name,
@@ -256,8 +453,8 @@ fun MapScreen() {
                 val s = selectedSpot!!
                 Row(Modifier.fillMaxWidth().padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
                     Image(
-                        painter = painterResource(R.drawable.logoavnd),
-                        contentDescription = null,
+                        painter = painterResource(R.drawable.logosnd),
+                        contentDescription = stringResource(R.string.cd_logo),
                         modifier = Modifier.size(56.dp),
                         contentScale = ContentScale.Crop
                     )
@@ -285,7 +482,10 @@ fun MapScreen() {
 }
 
 private fun sampleSpots(): List<SpotUi> = listOf(
-    SpotUi("1", "Buttes Chaumont", 48.8809, 2.3819, SpotCategory.HIKING),
-    SpotUi("2", "Fontainebleau", 48.4047, 2.7016, SpotCategory.CLIMBING),
-    SpotUi("3", "Petite Ceinture", 48.8566, 2.3522, SpotCategory.URBEX)
+    SpotUi("1", "Buttes Chaumont", 48.8809, 2.3819, SpotCategory.HIKING, difficulty = SpotDifficulty.EASY),
+    SpotUi("2", "Fontainebleau", 48.4047, 2.7016, SpotCategory.CLIMBING, difficulty = SpotDifficulty.HARD),
+    SpotUi("3", "Petite Ceinture", 48.8566, 2.3522, SpotCategory.URBEX, difficulty = SpotDifficulty.MEDIUM),
+    SpotUi("4", "Bois de Vincennes", 48.8275, 2.4324, SpotCategory.HIKING, difficulty = SpotDifficulty.EASY),
+    SpotUi("5", "Parc des Buttes", 48.8800, 2.3850, SpotCategory.EXPLORATION, difficulty = SpotDifficulty.MEDIUM),
+    SpotUi("6", "Montmartre", 48.8867, 2.3431, SpotCategory.URBEX, difficulty = SpotDifficulty.HARD)
 )
