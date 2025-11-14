@@ -38,7 +38,29 @@ fun GSNavGraph(
     NavHost(navController = navController, startDestination = BottomDestinations.Home.route, modifier = modifier) {
         composable(BottomDestinations.Home.route) { HomeScreen() }
         composable(BottomDestinations.Map.route) { MapScreen() }
-        composable(BottomDestinations.Rent.route) { RentScreen() }
+        composable(BottomDestinations.Rent.route) {
+            // Passer les callbacks de navigation à l'écran Rent
+            RentScreen(
+                navToDetail = { id -> navController.navigate("rent/detail/$id") },
+                navToCreate = { navController.navigate("rent/create") }
+            )
+        }
+
+        // Routes additionnelles pour le flux Louer
+        composable("rent/create") {
+            CreateRentalScreen(onPublished = { navController.popBackStack() })
+        }
+
+        composable("rent/detail/{itemId}") { backStackEntry ->
+            val itemId = backStackEntry.arguments?.getString("itemId") ?: return@composable
+            RentalDetailScreen(itemId = itemId, onContact = { ownerId -> navController.navigate("rent/contact/$ownerId") })
+        }
+
+        composable("rent/contact/{ownerId}") { backStackEntry ->
+            val ownerId = backStackEntry.arguments?.getString("ownerId") ?: return@composable
+            ContactOwnerScreen(ownerId = ownerId, onSent = { navController.popBackStack() })
+        }
+
         composable(BottomDestinations.Events.route) { EventsScreen() }
         composable(BottomDestinations.Planning.route) { PlanningScreen() }
         composable(BottomDestinations.Social.route) { SocialScreen() }

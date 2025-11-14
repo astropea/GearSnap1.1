@@ -38,8 +38,10 @@ fun MapScreen() {
 
     // Search and Filters
     var searchQuery by remember { mutableStateOf("") }
-    var hikingOnly by remember { mutableStateOf(false) }
     var selectedDifficulties by remember { mutableStateOf<Set<SpotDifficulty>>(emptySet()) }
+    // Multi-sélection des catégories (activités)
+    var selectedCategories by remember { mutableStateOf<Set<SpotCategory>>(emptySet()) }
+    var showCategoryMenu by remember { mutableStateOf(false) }
     var selectedRadius by remember { mutableStateOf<Int?>(null) } // en km
     var showSearchBar by remember { mutableStateOf(false) }
     var showDifficultyMenu by remember { mutableStateOf(false) }
@@ -58,13 +60,8 @@ fun MapScreen() {
     }
 
     // Filtrage combiné
-    val filtered = remember(spots, hikingOnly, searchQuery, selectedDifficulties, selectedRadius, userLocation) {
+    val filtered = remember(spots, searchQuery, selectedDifficulties, selectedCategories, selectedRadius, userLocation) {
         var result = spots
-
-        // Filtre par catégorie (hiking)
-        if (hikingOnly) {
-            result = result.filter { it.category == SpotCategory.HIKING }
-        }
 
         // Filtre par nom (recherche)
         if (searchQuery.isNotBlank()) {
@@ -74,6 +71,11 @@ fun MapScreen() {
         // Filtre par difficulté
         if (selectedDifficulties.isNotEmpty()) {
             result = result.filter { it.difficulty in selectedDifficulties }
+        }
+
+        // Filtre par catégories (activités) si selection non vide
+        if (selectedCategories.isNotEmpty()) {
+            result = result.filter { it.category in selectedCategories }
         }
 
         // Filtre par distance (rayon)
@@ -223,20 +225,12 @@ fun MapScreen() {
                 ),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+
+            // Filtre des catégories (Activités)
             FilterChip(
-                selected = hikingOnly,
-                onClick = { hikingOnly = !hikingOnly },
-                label = {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_map_pin),
-                            contentDescription = null,
-                            modifier = Modifier.size(16.dp)
-                        )
-                        Spacer(Modifier.width(4.dp))
-                        Text("Hiking")
-                    }
-                },
+                selected = selectedCategories.isNotEmpty(),
+                onClick = { showCategoryMenu = !showCategoryMenu },
+                label = { Text(if (selectedCategories.isEmpty()) "Activité" else "Activité (${selectedCategories.size})") },
                 colors = FilterChipDefaults.filterChipColors(
                     selectedContainerColor = MaterialTheme.colorScheme.primary,
                     selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
@@ -244,11 +238,48 @@ fun MapScreen() {
                 ),
                 border = FilterChipDefaults.filterChipBorder(
                     enabled = true,
-                    selected = hikingOnly,
+                    selected = selectedCategories.isNotEmpty(),
                     selectedBorderColor = MaterialTheme.colorScheme.primary,
                     borderColor = MaterialTheme.colorScheme.outline
                 )
             )
+
+            DropdownMenu(
+                expanded = showCategoryMenu,
+                onDismissRequest = { showCategoryMenu = false }
+            ) {
+                SpotCategory.values().forEach { category ->
+                    DropdownMenuItem(
+                        text = {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Checkbox(
+                                    checked = category in selectedCategories,
+                                    onCheckedChange = null
+                                )
+                                Spacer(Modifier.width(8.dp))
+                                Text(category.display)
+                            }
+                        },
+                        onClick = {
+                            selectedCategories = if (category in selectedCategories) {
+                                selectedCategories - category
+                            } else {
+                                selectedCategories + category
+                            }
+                        }
+                    )
+                }
+                if (selectedCategories.isNotEmpty()) {
+                    Divider()
+                    DropdownMenuItem(
+                        text = { Text("Réinitialiser", color = MaterialTheme.colorScheme.error) },
+                        onClick = {
+                            selectedCategories = emptySet()
+                            showCategoryMenu = false
+                        }
+                    )
+                }
+            }
 
             // Filtre de difficulté avec menu déroulant
             Box {
