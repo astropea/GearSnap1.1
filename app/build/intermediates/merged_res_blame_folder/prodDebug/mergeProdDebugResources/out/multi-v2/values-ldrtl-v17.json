@@ -4,7 +4,7 @@
             "outputFile": "com.gearsnap.app-mergeProdDebugResources-78:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\antoi\\.gradle\\caches\\transforms-4\\2008cdf9b40056ae473441c3b8ce9e63\\transformed\\material-1.12.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "source": "C:\\Users\\antoi\\.gradle\\caches\\8.9\\transforms\\9af572ea9ecd2016cccfd2031335f6fc\\transformed\\material-1.12.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

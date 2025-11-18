@@ -4006,6 +4006,7 @@ string language_english
 string language_french
 string language_german
 string loading
+string logout
 string m3_exceed_max_badge_text_suffix
 string m3_ref_typeface_brand_medium
 string m3_ref_typeface_brand_regular
@@ -4197,6 +4198,7 @@ string planning_dialog_title
 string planning_empty_day
 string planning_field_time
 string planning_field_title
+string profile_badge_2025
 string profile_badges
 string profile_beginner
 string profile_champion
@@ -4205,10 +4207,13 @@ string profile_duration
 string profile_email
 string profile_expert
 string profile_member_since
+string profile_member_since_unknown
 string profile_name
 string profile_outings
 string profile_stats
+string profile_stats_unavailable
 string profile_streak
+string profile_username_label
 string project_id
 string public_transport
 string range_end
@@ -4228,6 +4233,7 @@ string rent_title
 string retry
 string roads_nl
 string samples
+string save
 string search_menu_title
 string searchbar_scrolling_view_behavior
 string searchview_clear_text_content_description

@@ -1,522 +1,195 @@
 package com.gearsnap.ui.screens
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import android.Manifest
+import android.annotation.SuppressLint
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import com.gearsnap.R
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.gearsnap.ui.components.AddSpotDialog
-import kotlin.random.Random
-import kotlin.math.*
+import com.gearsnap.ui.components.SpotDetailSheet
+import org.osmdroid.config.Configuration
+import org.osmdroid.events.MapEventsReceiver
+import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.MapEventsOverlay
+import org.osmdroid.views.overlay.Marker
+import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
+import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
+@SuppressLint("MissingPermission")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MapScreen() {
-    // Local simulated state
-    var spots by remember { mutableStateOf(sampleSpots()) }
+fun MapScreen(
+    navController: NavController,
+    spotsViewModel: SpotsViewModel = viewModel()
+) {
+    val addSpotState by spotsViewModel.addSpotState.collectAsState()
+    val spots by spotsViewModel.spots.collectAsState()
+    val detailState by spotsViewModel.detail.collectAsState()
+
     var showAddDialog by remember { mutableStateOf(false) }
-    var selectedSpot by remember { mutableStateOf<SpotUi?>(null) }
-    var centerLatLng by remember { mutableStateOf(48.8566 to 2.3522) }
-    var longPressLatLng by remember { mutableStateOf<Pair<Double, Double>?>(null) }
-    var userLocation by remember { mutableStateOf<Pair<Double, Double>?>(null) }
-
-    // Search and Filters
-    var searchQuery by remember { mutableStateOf("") }
-    var selectedDifficulties by remember { mutableStateOf<Set<SpotDifficulty>>(emptySet()) }
-    // Multi-sélection des catégories (activités)
-    var selectedCategories by remember { mutableStateOf<Set<SpotCategory>>(emptySet()) }
-    var showCategoryMenu by remember { mutableStateOf(false) }
-    var selectedRadius by remember { mutableStateOf<Int?>(null) } // en km
-    var showSearchBar by remember { mutableStateOf(false) }
-    var showDifficultyMenu by remember { mutableStateOf(false) }
-    var showRadiusMenu by remember { mutableStateOf(false) }
-
-    // Fonction de calcul de distance (Haversine)
-    fun calculateDistance(lat1: Double, lng1: Double, lat2: Double, lng2: Double): Double {
-        val earthRadius = 6371.0 // Rayon de la Terre en km
-        val dLat = Math.toRadians(lat2 - lat1)
-        val dLng = Math.toRadians(lng2 - lng1)
-        val a = sin(dLat / 2) * sin(dLat / 2) +
-                cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2)) *
-                sin(dLng / 2) * sin(dLng / 2)
-        val c = 2 * atan2(sqrt(a), sqrt(1 - a))
-        return earthRadius * c
-    }
-
-    // Filtrage combiné
-    val filtered = remember(spots, searchQuery, selectedDifficulties, selectedCategories, selectedRadius, userLocation) {
-        var result = spots
-
-        // Filtre par nom (recherche)
-        if (searchQuery.isNotBlank()) {
-            result = result.filter { it.name.contains(searchQuery, ignoreCase = true) }
-        }
-
-        // Filtre par difficulté
-        if (selectedDifficulties.isNotEmpty()) {
-            result = result.filter { it.difficulty in selectedDifficulties }
-        }
-
-        // Filtre par catégories (activités) si selection non vide
-        if (selectedCategories.isNotEmpty()) {
-            result = result.filter { it.category in selectedCategories }
-        }
-
-        // Filtre par distance (rayon)
-        if (selectedRadius != null) {
-            val centerPoint = userLocation ?: centerLatLng
-            result = result.filter { spot ->
-                val distance = calculateDistance(centerPoint.first, centerPoint.second, spot.lat, spot.lng)
-                distance <= selectedRadius!!
-            }
-        }
-
-        result
-    }
-
-    // Bottom sheet for spot details
     var showSheet by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    var selectedSpot by remember { mutableStateOf<SpotUi?>(null) }
+    var hasLocationPermission by remember { mutableStateOf(false) }
+    var longPressGeoPoint by remember { mutableStateOf<GeoPoint?>(null) }
+    val context = LocalContext.current
 
-    Box(Modifier.fillMaxSize()) {
-        // Map - Affichage en plein écran sans padding
+    val locationLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission(),
+        onResult = { granted ->
+            hasLocationPermission = granted
+            if (!granted) {
+                Toast.makeText(context, "Permission de localisation refusee.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    )
+
+    val photoPicker = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        val spotId = selectedSpot?.id
+        if (uri != null && spotId != null) {
+            spotsViewModel.addPhoto(spotId, uri)
+        }
+    }
+
+    LaunchedEffect(addSpotState) {
+        when (val state = addSpotState) {
+            is AddSpotUIState.Success -> {
+                Toast.makeText(context, "Spot '${state.spot.name}' ajoute avec succes !", Toast.LENGTH_SHORT).show()
+                showAddDialog = false
+                longPressGeoPoint = null
+                spotsViewModel.resetAddSpotState()
+            }
+            is AddSpotUIState.Error -> {
+                Toast.makeText(context, "Erreur: ${state.message}", Toast.LENGTH_LONG).show()
+                spotsViewModel.resetAddSpotState()
+            }
+            else -> Unit
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        locationLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+    }
+
+    Scaffold { paddingValues ->
         Box(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
         ) {
-            MapLibreScreen(
-                spots = filtered,
+            AndroidView(
                 modifier = Modifier.fillMaxSize(),
-                onMarkerClick = { spot: SpotUi ->
-                    selectedSpot = spot
-                    showSheet = true
+                factory = { ctx ->
+                    Configuration.getInstance().load(ctx, ctx.getSharedPreferences("osmdroid", 0))
+                    MapView(ctx).apply {
+                        setMultiTouchControls(true)
+                        controller.setZoom(12.0)
+                        controller.setCenter(GeoPoint(48.8566, 2.3522))
+
+                        if (hasLocationPermission) {
+                            val myLocationOverlay = MyLocationNewOverlay(GpsMyLocationProvider(ctx), this)
+                            myLocationOverlay.enableMyLocation()
+                            overlays.add(myLocationOverlay)
+                        }
+
+                        val mapEventsOverlay = MapEventsOverlay(object : MapEventsReceiver {
+                            override fun singleTapConfirmedHelper(p: GeoPoint?): Boolean = false
+                            override fun longPressHelper(p: GeoPoint?): Boolean {
+                                p?.let {
+                                    longPressGeoPoint = it
+                                    showAddDialog = true
+                                }
+                                return true
+                            }
+                        })
+                        overlays.add(0, mapEventsOverlay)
+                    }
                 },
-                onCenterChanged = { lat: Double, lng: Double -> centerLatLng = Pair(lat, lng) },
-                onLongPress = { lat: Double, lng: Double ->
-                    longPressLatLng = Pair(lat, lng)
-                    showAddDialog = true
-                }
-            )
-        }
-
-        // Top AppBar (green) with logo and search - Style conforme aux maquettes
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
-            color = MaterialTheme.colorScheme.primary,
-            shadowElevation = 0.dp
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                // Logo + Texte GearSnap
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.logosnd),
-                        contentDescription = stringResource(R.string.cd_logo),
-                        modifier = Modifier.size(32.dp),
-                        contentScale = ContentScale.Fit
-                    )
-                    Text(
-                        text = "GearSnap",
-                        style = MaterialTheme.typography.titleLarge,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
-                }
-
-                // Icône de recherche
-                IconButton(onClick = { showSearchBar = !showSearchBar }) {
-                    Icon(
-                        imageVector = if (showSearchBar) Icons.Default.Close else Icons.Default.Search,
-                        contentDescription = stringResource(R.string.map_search_hint),
-                        tint = Color.White,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
-            }
-        }
-
-        // Barre de recherche (affichée sous l'AppBar)
-        AnimatedVisibility(
-            visible = showSearchBar,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 56.dp)
-        ) {
-            Surface(
-                modifier = Modifier.fillMaxWidth(),
-                color = MaterialTheme.colorScheme.surface,
-                shadowElevation = 4.dp
-            ) {
-                OutlinedTextField(
-                    value = searchQuery,
-                    onValueChange = { searchQuery = it },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp),
-                    placeholder = {
-                        Text(
-                            text = stringResource(R.string.map_search_hint),
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Default.Search,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    },
-                    trailingIcon = {
-                        if (searchQuery.isNotEmpty()) {
-                            IconButton(onClick = { searchQuery = "" }) {
-                                Icon(
-                                    imageVector = Icons.Default.Close,
-                                    contentDescription = "Effacer",
-                                    tint = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
+                update = { mapView ->
+                    mapView.overlays.removeAll { it is Marker }
+                    spots.forEach { spot ->
+                        val marker = Marker(mapView).apply {
+                            position = GeoPoint(spot.lat, spot.lng)
+                            title = spot.name
+                            setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                            setOnMarkerClickListener { _, _ ->
+                                selectedSpot = spot
+                                spotsViewModel.selectSpot(spot.id)
+                                showSheet = true
+                                true
                             }
                         }
-                    },
-                    singleLine = true,
-                    colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-                        focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-                        unfocusedBorderColor = MaterialTheme.colorScheme.outline,
-                        focusedBorderColor = MaterialTheme.colorScheme.primary
-                    )
-                )
-            }
-        }
-
-        // Filters row under app bar - Style conforme aux maquettes
-        Row(
-            Modifier
-                .fillMaxWidth()
-                .padding(
-                    top = if (showSearchBar) 120.dp else 56.dp,
-                    start = 12.dp,
-                    end = 12.dp,
-                    bottom = 8.dp
-                ),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-
-            // Filtre des catégories (Activités)
-            FilterChip(
-                selected = selectedCategories.isNotEmpty(),
-                onClick = { showCategoryMenu = !showCategoryMenu },
-                label = { Text(if (selectedCategories.isEmpty()) "Activité" else "Activité (${selectedCategories.size})") },
-                colors = FilterChipDefaults.filterChipColors(
-                    selectedContainerColor = MaterialTheme.colorScheme.primary,
-                    selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
-                    containerColor = MaterialTheme.colorScheme.surface
-                ),
-                border = FilterChipDefaults.filterChipBorder(
-                    enabled = true,
-                    selected = selectedCategories.isNotEmpty(),
-                    selectedBorderColor = MaterialTheme.colorScheme.primary,
-                    borderColor = MaterialTheme.colorScheme.outline
-                )
+                        mapView.overlays.add(marker)
+                    }
+                    mapView.invalidate()
+                }
             )
 
-            DropdownMenu(
-                expanded = showCategoryMenu,
-                onDismissRequest = { showCategoryMenu = false }
-            ) {
-                SpotCategory.values().forEach { category ->
-                    DropdownMenuItem(
-                        text = {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                Checkbox(
-                                    checked = category in selectedCategories,
-                                    onCheckedChange = null
-                                )
-                                Spacer(Modifier.width(8.dp))
-                                Text(category.display)
-                            }
+            if (showAddDialog) {
+                val geoPoint = longPressGeoPoint
+                if (geoPoint != null) {
+                    AddSpotDialog(
+                        initialLat = geoPoint.latitude,
+                        initialLng = geoPoint.longitude,
+                        onDismiss = {
+                            showAddDialog = false
+                            longPressGeoPoint = null
                         },
-                        onClick = {
-                            selectedCategories = if (category in selectedCategories) {
-                                selectedCategories - category
-                            } else {
-                                selectedCategories + category
-                            }
-                        }
-                    )
-                }
-                if (selectedCategories.isNotEmpty()) {
-                    Divider()
-                    DropdownMenuItem(
-                        text = { Text("Réinitialiser", color = MaterialTheme.colorScheme.error) },
-                        onClick = {
-                            selectedCategories = emptySet()
-                            showCategoryMenu = false
+                        isAdding = addSpotState is AddSpotUIState.Loading,
+                        onConfirm = { name, category, difficulty, description ->
+                            spotsViewModel.addSpot(
+                                name = name,
+                                category = category,
+                                difficulty = difficulty,
+                                description = description,
+                                lat = geoPoint.latitude,
+                                lng = geoPoint.longitude
+                            )
                         }
                     )
                 }
             }
 
-            // Filtre de difficulté avec menu déroulant
-            Box {
-                FilterChip(
-                    selected = selectedDifficulties.isNotEmpty(),
-                    onClick = { showDifficultyMenu = !showDifficultyMenu },
-                    label = {
-                        Text(
-                            if (selectedDifficulties.isEmpty()) "Difficulté"
-                            else "Difficulté (${selectedDifficulties.size})"
-                        )
+            if (showSheet) {
+                ModalBottomSheet(
+                    onDismissRequest = {
+                        showSheet = false
+                        selectedSpot = null
                     },
-                    colors = FilterChipDefaults.filterChipColors(
-                        selectedContainerColor = MaterialTheme.colorScheme.primary,
-                        selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
-                        containerColor = MaterialTheme.colorScheme.surface
-                    ),
-                    border = FilterChipDefaults.filterChipBorder(
-                        enabled = true,
-                        selected = selectedDifficulties.isNotEmpty(),
-                        selectedBorderColor = MaterialTheme.colorScheme.primary,
-                        borderColor = MaterialTheme.colorScheme.outline
-                    )
-                )
-
-                DropdownMenu(
-                    expanded = showDifficultyMenu,
-                    onDismissRequest = { showDifficultyMenu = false }
+                    sheetState = sheetState
                 ) {
-                    SpotDifficulty.values().forEach { difficulty ->
-                        DropdownMenuItem(
-                            text = {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Checkbox(
-                                        checked = difficulty in selectedDifficulties,
-                                        onCheckedChange = null
-                                    )
-                                    Spacer(Modifier.width(8.dp))
-                                    Text(difficulty.display)
-                                }
-                            },
-                            onClick = {
-                                selectedDifficulties = if (difficulty in selectedDifficulties) {
-                                    selectedDifficulties - difficulty
-                                } else {
-                                    selectedDifficulties + difficulty
-                                }
-                            }
-                        )
-                    }
-                    if (selectedDifficulties.isNotEmpty()) {
-                        Divider()
-                        DropdownMenuItem(
-                            text = { Text("Réinitialiser", color = MaterialTheme.colorScheme.error) },
-                            onClick = {
-                                selectedDifficulties = emptySet()
-                                showDifficultyMenu = false
-                            }
-                        )
-                    }
-                }
-            }
-
-            // Filtre de distance avec menu déroulant
-            Box {
-                FilterChip(
-                    selected = selectedRadius != null,
-                    onClick = { showRadiusMenu = !showRadiusMenu },
-                    label = {
-                        Text(
-                            if (selectedRadius == null) "Distance"
-                            else "< ${selectedRadius}km"
-                        )
-                    },
-                    colors = FilterChipDefaults.filterChipColors(
-                        selectedContainerColor = MaterialTheme.colorScheme.primary,
-                        selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
-                        containerColor = MaterialTheme.colorScheme.surface
-                    ),
-                    border = FilterChipDefaults.filterChipBorder(
-                        enabled = true,
-                        selected = selectedRadius != null,
-                        selectedBorderColor = MaterialTheme.colorScheme.primary,
-                        borderColor = MaterialTheme.colorScheme.outline
-                    )
-                )
-
-                DropdownMenu(
-                    expanded = showRadiusMenu,
-                    onDismissRequest = { showRadiusMenu = false }
-                ) {
-                    listOf(5, 10, 20, 50, 100).forEach { radius ->
-                        DropdownMenuItem(
-                            text = {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    if (selectedRadius == radius) {
-                                        Icon(
-                                            painter = painterResource(R.drawable.ic_map_pin),
-                                            contentDescription = null,
-                                            modifier = Modifier.size(16.dp),
-                                            tint = MaterialTheme.colorScheme.primary
-                                        )
-                                        Spacer(Modifier.width(8.dp))
-                                    } else {
-                                        Spacer(Modifier.width(24.dp))
-                                    }
-                                    Text("${radius} km")
-                                }
-                            },
-                            onClick = {
-                                selectedRadius = radius
-                                showRadiusMenu = false
-                            }
-                        )
-                    }
-                    if (selectedRadius != null) {
-                        Divider()
-                        DropdownMenuItem(
-                            text = { Text("Réinitialiser", color = MaterialTheme.colorScheme.error) },
-                            onClick = {
-                                selectedRadius = null
-                                showRadiusMenu = false
-                            }
-                        )
-                    }
-                }
-            }
-        }
-
-        // FAB retiré - Création de spot uniquement par appui long sur la carte
-
-        // Floating button "Ajouter aux favoris" - Style conforme aux maquettes
-        AnimatedVisibility(
-            visible = selectedSpot != null && selectedSpot?.isFavorite == false,
-            modifier = Modifier
-                .align(Alignment.BottomStart)
-                .padding(start = 16.dp, bottom = 96.dp)
-        ) {
-            Surface(
-                onClick = {
-                    val s = selectedSpot ?: return@Surface
-                    spots = spots.map { if (it.id == s.id) it.copy(isFavorite = true) else it }
-                    selectedSpot = spots.firstOrNull { it.id == s.id }
-                },
-                color = Color.White,
-                shape = MaterialTheme.shapes.medium,
-                shadowElevation = 4.dp,
-                modifier = Modifier.padding(8.dp)
-            ) {
-                Row(
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_map_pin),
-                        contentDescription = null,
-                        modifier = Modifier.size(20.dp),
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                    Text(
-                        text = "Ajouter aux favoris",
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Medium,
-                        color = MaterialTheme.colorScheme.onSurface
+                    SpotDetailSheet(
+                        spot = detailState.spot,
+                        photos = detailState.photos,
+                        reviews = detailState.reviews,
+                        isLoading = detailState.isLoading,
+                        onAddPhotoClick = { photoPicker.launch("image/*") },
+                        onAddReview = { rating, comment ->
+                            selectedSpot?.id?.let { spotsViewModel.addReview(it, rating, comment) }
+                        }
                     )
                 }
-            }
-        }
-
-        // AddSpotDialog
-        if (showAddDialog) {
-            val (lat, lng) = longPressLatLng ?: centerLatLng
-            AddSpotDialog(
-                initialLat = lat,
-                initialLng = lng,
-                onDismiss = {
-                    showAddDialog = false
-                    longPressLatLng = null
-                },
-                onAdd = { name: String, category: SpotCategory, spotLat: Double, spotLng: Double ->
-                    val newSpot = SpotUi(
-                        id = Random.nextLong().toString(),
-                        name = name,
-                        lat = spotLat,
-                        lng = spotLng,
-                        category = category
-                    )
-                    spots = spots + newSpot
-                    showAddDialog = false
-                    longPressLatLng = null
-                }
-            )
-        }
-
-        // Spot details sheet
-        if (showSheet && selectedSpot != null) {
-            ModalBottomSheet(
-                onDismissRequest = { showSheet = false },
-                sheetState = sheetState
-            ) {
-                val s = selectedSpot!!
-                Row(Modifier.fillMaxWidth().padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Image(
-                        painter = painterResource(R.drawable.logosnd),
-                        contentDescription = stringResource(R.string.cd_logo),
-                        modifier = Modifier.size(56.dp),
-                        contentScale = ContentScale.Crop
-                    )
-                    Spacer(Modifier.width(12.dp))
-                    Column(Modifier.weight(1f)) {
-                        Text(s.name, style = MaterialTheme.typography.titleMedium)
-                        Text(s.category.display, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    }
-                    FilledTonalButton(onClick = { /* TODO route */ }) { Text("Itinéraire") }
-                }
-                Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    OutlinedButton(onClick = { /* TODO avis */ }) { Text("Avis") }
-                    Button(
-                        onClick = {
-                            spots = spots.map { if (it.id == s.id) it.copy(isFavorite = true) else it }
-                            selectedSpot = spots.firstOrNull { it.id == s.id }
-                        },
-                        enabled = !s.isFavorite
-                    ) { Text("❤ Ajouter aux favoris") }
-                }
-                Spacer(Modifier.height(16.dp))
             }
         }
     }
 }
-
-private fun sampleSpots(): List<SpotUi> = listOf(
-    SpotUi("1", "Buttes Chaumont", 48.8809, 2.3819, SpotCategory.HIKING, difficulty = SpotDifficulty.EASY),
-    SpotUi("2", "Fontainebleau", 48.4047, 2.7016, SpotCategory.CLIMBING, difficulty = SpotDifficulty.HARD),
-    SpotUi("3", "Petite Ceinture", 48.8566, 2.3522, SpotCategory.URBEX, difficulty = SpotDifficulty.MEDIUM),
-    SpotUi("4", "Bois de Vincennes", 48.8275, 2.4324, SpotCategory.HIKING, difficulty = SpotDifficulty.EASY),
-    SpotUi("5", "Parc des Buttes", 48.8800, 2.3850, SpotCategory.EXPLORATION, difficulty = SpotDifficulty.MEDIUM),
-    SpotUi("6", "Montmartre", 48.8867, 2.3431, SpotCategory.URBEX, difficulty = SpotDifficulty.HARD)
-)

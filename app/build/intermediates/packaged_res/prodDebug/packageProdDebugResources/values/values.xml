@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:ns1="http://schemas.android.com/tools">
     <color name="black">#000000</color>
     <color name="gs_body_gray">#4A4A4A</color>
     <color name="gs_card_bg">#FFFFFF</color>
@@ -67,6 +67,7 @@
     <string name="language_french">Français</string>
     <string name="language_german">Deutsch</string>
     <string name="loading">Chargement...</string>
+    <string name="logout">Déconnexion</string>
     <string name="map_filter">Filtres</string>
     <string name="map_my_location">Ma position</string>
     <string name="map_search_hint">Rechercher un spot...</string>
@@ -87,6 +88,7 @@
     <string name="planning_empty_day">Aucune activité pour ce jour.</string>
     <string name="planning_field_time">Heure (HH:MM)</string>
     <string name="planning_field_title">Titre</string>
+    <string name="profile_badge_2025">Badge 2025 — Membre de l\'année</string>
     <string name="profile_badges">Badges</string>
     <string name="profile_beginner">Débutant</string>
     <string name="profile_champion">Champion</string>
@@ -95,10 +97,13 @@
     <string name="profile_email">alex.sportif@gearsnap.com</string>
     <string name="profile_expert">Expert</string>
     <string name="profile_member_since">Membre depuis janvier 2024</string>
+    <string name="profile_member_since_unknown">Date d\'inscription inconnue</string>
     <string name="profile_name">Alex Sportif</string>
     <string name="profile_outings">Sorties</string>
     <string name="profile_stats">Statistiques</string>
+    <string name="profile_stats_unavailable">Statistiques non connues</string>
     <string name="profile_streak">Série</string>
+    <string name="profile_username_label">Nom d\'utilisateur</string>
     <string name="project_id" translatable="false">gearsnap-78240</string>
     <string name="recur_daily">Quotidienne</string>
     <string name="recur_label">Récurrence</string>
@@ -113,6 +118,7 @@
     <string name="rent_price_per_day">€/jour</string>
     <string name="rent_title">Louer du matériel</string>
     <string name="retry">Réessayer</string>
+    <string name="save">Enregistrer</string>
     <string name="settings_about">À propos</string>
     <string name="settings_back">Retour</string>
     <string name="settings_general">Général</string>
@@ -147,7 +153,11 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>
     </style>
-    <style name="Theme.GearSnap" parent="Theme.Material3.DayNight">
+    <style name="Theme.GearSnap" parent="Theme.Material3.Light">
+
+        
+        <item name="android:forceDarkAllowed" ns1:targetApi="q">false</item>
+
         
         <item name="colorPrimary">@color/gs_forest_green</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -178,6 +188,9 @@
         <item name="android:statusBarColor">@color/gs_forest_green</item>
         <item name="android:navigationBarColor">@color/gs_forest_green</item>
         <item name="android:windowLightStatusBar">true</item>
+
+        
+        <item name="dynamicColorThemeOverlay">@null</item>
 
         
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.GearSnap.SmallComponent</item>

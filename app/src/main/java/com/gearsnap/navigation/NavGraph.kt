@@ -37,7 +37,7 @@ fun GSNavGraph(
 ) {
     NavHost(navController = navController, startDestination = BottomDestinations.Home.route, modifier = modifier) {
         composable(BottomDestinations.Home.route) { HomeScreen() }
-        composable(BottomDestinations.Map.route) { MapScreen() }
+        composable(BottomDestinations.Map.route) { MapScreen(navController = navController) }
         composable(BottomDestinations.Rent.route) {
             // Passer les callbacks de navigation à l'écran Rent
             RentScreen(

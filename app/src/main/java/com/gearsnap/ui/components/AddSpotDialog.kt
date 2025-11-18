@@ -3,39 +3,60 @@ package com.gearsnap.ui.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.gearsnap.ui.screens.SpotCategory
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun AddSpotDialog(
-    initialName: String = "",
-    initialCategory: SpotCategory = SpotCategory.HIKING,
-    initialLat: Double? = null,
-    initialLng: Double? = null,
+    initialLat: Double?,
+    initialLng: Double?,
     onDismiss: () -> Unit,
-    onAdd: (name: String, category: SpotCategory, lat: Double, lng: Double) -> Unit
+    // La nouvelle fonction `onConfirm` remonte toutes les données saisies vers le ViewModel.
+    onConfirm: (name: String, category: SpotCategory, difficulty: String, description: String) -> Unit,
+    // Indique si un chargement est en cours pour afficher un loader.
+    isAdding: Boolean
 ) {
-    var name by remember { mutableStateOf(TextFieldValue(initialName)) }
-    var category by remember { mutableStateOf(initialCategory) }
-    var description by remember { mutableStateOf(TextFieldValue("")) }
+    var name by remember { mutableStateOf("") }
+    var category by remember { mutableStateOf(SpotCategory.HIKING) }
+    var description by remember { mutableStateOf("") }
     var difficulty by remember { mutableStateOf("Facile") }
 
+    // Le formulaire est valide si le nom n'est pas vide et que les coordonnées existent.
+    val isFormValid = name.isNotBlank() && initialLat != null && initialLng != null
+
     AlertDialog(
-        onDismissRequest = onDismiss,
+        onDismissRequest = { if (!isAdding) onDismiss() }, // Empêche de fermer pendant le chargement
         confirmButton = {
             Button(
                 onClick = {
-                    val lat = initialLat ?: 48.8566
-                    val lng = initialLng ?: 2.3522
-                    onAdd(name.text.trim(), category, lat, lng)
+                    // Appelle la fonction onConfirm avec toutes les données du formulaire.
+                    onConfirm(name.trim(), category, difficulty, description.trim())
                 },
-                enabled = name.text.isNotBlank()
-            ) { Text("Ajouter") }
+                // Le bouton est activé uniquement si le formulaire est valide ET qu'aucun ajout n'est en cours.
+                enabled = isFormValid && !isAdding
+            ) {
+                if (isAdding) {
+                    // Affiche une roue de chargement si `isAdding` est vrai.
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(24.dp),
+                        strokeWidth = 2.dp,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                } else {
+                    Text("Ajouter")
+                }
+            }
         },
-        dismissButton = { TextButton(onClick = onDismiss) { Text("Annuler") } },
+        dismissButton = {
+            TextButton(
+                onClick = onDismiss,
+                enabled = !isAdding // Désactive le bouton "Annuler" pendant l'ajout.
+            ) { Text("Annuler") }
+        },
         title = { Text("Ajouter un spot") },
         text = {
             Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -44,12 +65,13 @@ fun AddSpotDialog(
                     onValueChange = { name = it },
                     label = { Text("Nom du spot") },
                     singleLine = true,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    readOnly = isAdding // Rend les champs non modifiables pendant l'ajout.
                 )
 
-                // Simple category dropdown
-                var expanded by remember { mutableStateOf(false) }
-                ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = it }) {
+                // Dropdown pour la catégorie
+                var categoryExpanded by remember { mutableStateOf(false) }
+                ExposedDropdownMenuBox(expanded = categoryExpanded, onExpandedChange = { if (!isAdding) categoryExpanded = it }) {
                     OutlinedTextField(
                         readOnly = true,
                         value = category.display,
@@ -59,13 +81,13 @@ fun AddSpotDialog(
                             .menuAnchor()
                             .fillMaxWidth()
                     )
-                    ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+                    ExposedDropdownMenu(expanded = categoryExpanded, onDismissRequest = { categoryExpanded = false }) {
                         SpotCategory.values().forEach { c ->
                             DropdownMenuItem(
                                 text = { Text(c.display) },
                                 onClick = {
                                     category = c
-                                    expanded = false
+                                    categoryExpanded = false
                                 }
                             )
                         }
@@ -79,12 +101,13 @@ fun AddSpotDialog(
                     label = { Text("Description") },
                     modifier = Modifier.fillMaxWidth(),
                     minLines = 3,
-                    maxLines = 5
+                    maxLines = 5,
+                    readOnly = isAdding
                 )
 
-                // Difficulty dropdown
+                // Dropdown pour la difficulté
                 var difficultyExpanded by remember { mutableStateOf(false) }
-                ExposedDropdownMenuBox(expanded = difficultyExpanded, onExpandedChange = { difficultyExpanded = it }) {
+                ExposedDropdownMenuBox(expanded = difficultyExpanded, onExpandedChange = { if (!isAdding) difficultyExpanded = it }) {
                     OutlinedTextField(
                         readOnly = true,
                         value = difficulty,

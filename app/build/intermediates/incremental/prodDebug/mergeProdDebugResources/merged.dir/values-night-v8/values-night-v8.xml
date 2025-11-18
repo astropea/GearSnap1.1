@@ -1,29 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="black">#000000</color>
-    <color name="gs_body_gray">#D0D0D0</color>
-    <color name="gs_card_bg">#2A2A2A</color>
-    <color name="gs_forest_green">#0A2A18</color>
-    <color name="gs_forest_green_dark">#051508</color>
-    <color name="gs_forest_green_light">#0F4C2E</color>
-    <color name="gs_gray_light">#2A2A2A</color>
-    <color name="gs_green">#0F4C2E</color>
-    <color name="gs_nav_active">#E08A1D</color>
-    <color name="gs_nav_bg">#0A2A18</color>
-    <color name="gs_nav_inactive">#A0A0A0</color>
-    <color name="gs_orange">#E08A1D</color>
-    <color name="gs_pin_primary">#0F4C2E</color>
-    <color name="gs_pin_secondary">#E08A1D</color>
-    <color name="gs_pin_tertiary">#F0F0F0</color>
-    <color name="gs_search_bg">#2A2A2A</color>
-    <color name="gs_soft_beige">#1A1A1A</color>
-    <color name="gs_soft_beige_dark">#0F0F0F</color>
-    <color name="gs_surface_variant">#333333</color>
-    <color name="gs_title_green">#F0F0F0</color>
-    <color name="gs_warm_orange">#E08A1D</color>
-    <color name="gs_warm_orange_light">#D5953C</color>
-    <color name="transparent">#00000000</color>
-    <color name="white">#FFFFFF</color>
+<resources xmlns:ns1="http://schemas.android.com/tools">
     <style name="ShapeAppearance.GearSnap.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">20dp</item>
@@ -44,36 +20,43 @@
     <style name="Theme.AppCompat.DayNight.DialogWhenLarge" parent="Theme.AppCompat.DialogWhenLarge"/>
     <style name="Theme.AppCompat.DayNight.NoActionBar" parent="Theme.AppCompat.NoActionBar"/>
     <style name="Theme.GearSnap" parent="Theme.Material3.Dark">
-        
-        <item name="colorPrimary">@color/gs_forest_green</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryContainer">@color/gs_forest_green_light</item>
-        <item name="colorOnPrimaryContainer">@color/white</item>
 
         
-        <item name="colorSecondary">@color/gs_warm_orange</item>
-        <item name="colorOnSecondary">@color/white</item>
-        <item name="colorSecondaryContainer">@color/gs_warm_orange_light</item>
-        <item name="colorOnSecondaryContainer">@color/gs_forest_green_dark</item>
+        <item name="android:forceDarkAllowed" ns1:targetApi="q">false</item>
 
         
-        <item name="colorTertiary">@color/gs_warm_orange</item>
-        <item name="colorOnTertiary">@color/white</item>
-        <item name="colorTertiaryContainer">@color/gs_warm_orange_light</item>
-        <item name="colorOnTertiaryContainer">@color/gs_forest_green_dark</item>
+        <item name="colorPrimary">#1A1A1A</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">#2A2A2A</item>
+        <item name="colorOnPrimaryContainer">#FFFFFF</item>
 
         
-        <item name="android:colorBackground">@color/gs_soft_beige</item>
-        <item name="colorOnBackground">@color/gs_title_green</item>
-        <item name="colorSurface">@color/gs_card_bg</item>
-        <item name="colorOnSurface">@color/gs_body_gray</item>
-        <item name="colorSurfaceVariant">@color/gs_surface_variant</item>
-        <item name="colorOnSurfaceVariant">@color/gs_body_gray</item>
+        <item name="colorSecondary">#3A3A3A</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorSecondaryContainer">#2A2A2A</item>
+        <item name="colorOnSecondaryContainer">#FFFFFF</item>
 
         
-        <item name="android:statusBarColor">@color/gs_forest_green_dark</item>
-        <item name="android:navigationBarColor">@color/gs_forest_green_dark</item>
+        <item name="colorTertiary">#444444</item>
+        <item name="colorOnTertiary">#FFFFFF</item>
+        <item name="colorTertiaryContainer">#333333</item>
+        <item name="colorOnTertiaryContainer">#FFFFFF</item>
+
+        
+        <item name="android:colorBackground">#000000</item>
+        <item name="colorOnBackground">#FFFFFF</item>
+        <item name="colorSurface">#1A1A1A</item>
+        <item name="colorOnSurface">#FFFFFF</item>
+        <item name="colorSurfaceVariant">#2A2A2A</item>
+        <item name="colorOnSurfaceVariant">#E0E0E0</item>
+
+        
+        <item name="android:statusBarColor">#000000</item>
+        <item name="android:navigationBarColor">#000000</item>
         <item name="android:windowLightStatusBar">false</item>
+
+        
+        <item name="dynamicColorThemeOverlay">@null</item>
 
         
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.GearSnap.SmallComponent</item>

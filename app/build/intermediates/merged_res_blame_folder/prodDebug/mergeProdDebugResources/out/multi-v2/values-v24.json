@@ -4,7 +4,7 @@
             "outputFile": "com.gearsnap.app-mergeProdDebugResources-78:/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\antoi\\.gradle\\caches\\transforms-4\\2008cdf9b40056ae473441c3b8ce9e63\\transformed\\material-1.12.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\antoi\\.gradle\\caches\\8.9\\transforms\\9af572ea9ecd2016cccfd2031335f6fc\\transformed\\material-1.12.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,9,12,15",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\antoi\\.gradle\\caches\\transforms-4\\ee916fa9b6eb84de5e3d9cab2e44e712\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\antoi\\.gradle\\caches\\8.9\\transforms\\9ed66d094e7d2a9b1fe8f6979e490170\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

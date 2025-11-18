@@ -53,6 +53,7 @@
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:extractNativeLibs="false"
+        android:forceDarkAllowed="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -61,7 +62,8 @@
         android:theme="@style/Theme.GearSnap" >
         <activity
             android:name="com.gearsnap.MainActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:forceDarkAllowed="false" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
