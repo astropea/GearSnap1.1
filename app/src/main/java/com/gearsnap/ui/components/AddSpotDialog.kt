@@ -17,6 +17,8 @@ fun AddSpotDialog(
     onDismiss: () -> Unit,
     // La nouvelle fonction `onConfirm` remonte toutes les données saisies vers le ViewModel.
     onConfirm: (name: String, category: SpotCategory, difficulty: String, description: String) -> Unit,
+    onPickPhoto: () -> Unit,
+    selectedPhotoLabel: String? = null,
     // Indique si un chargement est en cours pour afficher un loader.
     isAdding: Boolean
 ) {
