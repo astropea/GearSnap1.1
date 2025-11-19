@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Mountain shape with two-tone gradient effect -->
+    <path
+        android:fillColor="@color/gs_forest_green"
+        android:pathData="M12,2L2,20h20L12,2z"/>
+
+    <!-- Secondary peak for two-tone effect -->
+    <path
+        android:fillColor="@color/gs_warm_orange"
+        android:pathData="M12,8L7,18h10L12,8z"/>
+
+    <!-- Small snow cap -->
+    <path
+        android:fillColor="@color/white"
+        android:pathData="M12,6L10,10h4L12,6z"/>
+</vector>

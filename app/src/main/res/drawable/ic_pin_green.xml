@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="32dp"
+    android:viewportWidth="24"
+    android:viewportHeight="32">
+    <!-- Goutte extérieure -->
+    <path
+        android:fillColor="#0B7A0B"
+        android:pathData="M12,2C7.58,2 4,5.58 4,10c0,6 8,20 8,20s8,-14 8,-20c0,-4.42 -3.58,-8 -8,-8z" />
+    <!-- Anneau intérieur -->
+    <path
+        android:fillColor="#119011"
+        android:pathData="M12,6a6,6 0 1 1 0,12a6,6 0 1 1 0,-12z" />
+    <!-- Centre blanc -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12,8.8a3.2,3.2 0 1 1 0,6.4a3.2,3.2 0 1 1 0,-6.4z" />
+</vector>
