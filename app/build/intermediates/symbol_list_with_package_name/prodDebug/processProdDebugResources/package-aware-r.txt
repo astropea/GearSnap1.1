@@ -3044,6 +3044,7 @@ drawable ic_notifications
 drawable ic_other_sign_in
 drawable ic_passkey
 drawable ic_password
+drawable ic_pin_green
 drawable ic_privacy
 drawable ic_search_black_24
 drawable ic_settings

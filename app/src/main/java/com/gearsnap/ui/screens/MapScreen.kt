@@ -2,7 +2,13 @@ package com.gearsnap.ui.screens
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.os.Build
 import android.widget.Toast
+import android.content.Context
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import androidx.core.graphics.drawable.toBitmap
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Box
@@ -22,8 +28,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.gearsnap.R
 import com.gearsnap.ui.components.AddSpotDialog
 import com.gearsnap.ui.components.SpotDetailSheet
 import org.osmdroid.config.Configuration
@@ -47,12 +55,15 @@ fun MapScreen(
     val detailState by spotsViewModel.detail.collectAsState()
 
     var showAddDialog by remember { mutableStateOf(false) }
+    var newSpotPhotoUris by remember { mutableStateOf<List<android.net.Uri>>(emptyList()) }
     var showSheet by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     var selectedSpot by remember { mutableStateOf<SpotUi?>(null) }
     var hasLocationPermission by remember { mutableStateOf(false) }
     var longPressGeoPoint by remember { mutableStateOf<GeoPoint?>(null) }
     val context = LocalContext.current
+    val pinBitmap = remember { buildPinBitmap(context) }
+    var pendingPhotoPicker by remember { mutableStateOf<PhotoPickerTarget?>(null) }
 
     val locationLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission(),
@@ -64,10 +75,49 @@ fun MapScreen(
         }
     )
 
-    val photoPicker = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+    val addSpotPhotoPicker = rememberLauncherForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris ->
+        newSpotPhotoUris = uris.filterNotNull()
+    }
+
+    val detailPhotoPicker = rememberLauncherForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris ->
         val spotId = selectedSpot?.id
-        if (uri != null && spotId != null) {
-            spotsViewModel.addPhoto(spotId, uri)
+        val cleaned = uris.filterNotNull()
+        if (spotId != null && cleaned.isNotEmpty()) {
+            spotsViewModel.addPhotos(spotId, cleaned)
+        } else if (spotId == null) {
+            Toast.makeText(context, "Spot introuvable pour la photo.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    val photoPermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        Manifest.permission.READ_MEDIA_IMAGES
+    } else {
+        Manifest.permission.READ_EXTERNAL_STORAGE
+    }
+    val photoPermissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        val target = pendingPhotoPicker
+        if (granted) {
+            when (target) {
+                PhotoPickerTarget.NEW_SPOT -> addSpotPhotoPicker.launch("image/*")
+                PhotoPickerTarget.DETAIL -> detailPhotoPicker.launch("image/*")
+                null -> Unit
+            }
+        } else {
+            Toast.makeText(context, "Permission photo refusee.", Toast.LENGTH_SHORT).show()
+        }
+        pendingPhotoPicker = null
+    }
+
+    val requestPhotoPicker: (PhotoPickerTarget) -> Unit = { target ->
+        val hasPermission = ContextCompat.checkSelfPermission(context, photoPermission) == PackageManager.PERMISSION_GRANTED
+        if (hasPermission) {
+            when (target) {
+                PhotoPickerTarget.NEW_SPOT -> addSpotPhotoPicker.launch("image/*")
+                PhotoPickerTarget.DETAIL -> detailPhotoPicker.launch("image/*")
+            }
+        } else {
+            pendingPhotoPicker = target
+            photoPermissionLauncher.launch(photoPermission)
         }
     }
 
@@ -77,10 +127,12 @@ fun MapScreen(
                 Toast.makeText(context, "Spot '${state.spot.name}' ajoute avec succes !", Toast.LENGTH_SHORT).show()
                 showAddDialog = false
                 longPressGeoPoint = null
+                newSpotPhotoUris = emptyList()
                 spotsViewModel.resetAddSpotState()
             }
             is AddSpotUIState.Error -> {
                 Toast.makeText(context, "Erreur: ${state.message}", Toast.LENGTH_LONG).show()
+                newSpotPhotoUris = emptyList()
                 spotsViewModel.resetAddSpotState()
             }
             else -> Unit
@@ -138,6 +190,7 @@ fun MapScreen(
                                 showSheet = true
                                 true
                             }
+                            icon = BitmapDrawable(context.resources, pinBitmap)
                         }
                         mapView.overlays.add(marker)
                     }
@@ -148,25 +201,29 @@ fun MapScreen(
             if (showAddDialog) {
                 val geoPoint = longPressGeoPoint
                 if (geoPoint != null) {
-                    AddSpotDialog(
-                        initialLat = geoPoint.latitude,
-                        initialLng = geoPoint.longitude,
-                        onDismiss = {
-                            showAddDialog = false
-                            longPressGeoPoint = null
-                        },
-                        isAdding = addSpotState is AddSpotUIState.Loading,
-                        onConfirm = { name, category, difficulty, description ->
-                            spotsViewModel.addSpot(
-                                name = name,
-                                category = category,
-                                difficulty = difficulty,
-                                description = description,
-                                lat = geoPoint.latitude,
-                                lng = geoPoint.longitude
-                            )
-                        }
-                    )
+        AddSpotDialog(
+            initialLat = geoPoint.latitude,
+            initialLng = geoPoint.longitude,
+            onDismiss = {
+                showAddDialog = false
+                longPressGeoPoint = null
+                newSpotPhotoUris = emptyList()
+            },
+            isAdding = addSpotState is AddSpotUIState.Loading,
+                        onPickPhoto = { requestPhotoPicker(PhotoPickerTarget.NEW_SPOT) },
+            selectedPhotoCount = newSpotPhotoUris.size,
+            onConfirm = { name, category, difficulty, description ->
+                spotsViewModel.addSpot(
+                    name = name,
+                    category = category,
+                    difficulty = difficulty,
+                    description = description,
+                    lat = geoPoint.latitude,
+                    lng = geoPoint.longitude,
+                    photoUris = newSpotPhotoUris
+                )
+            }
+        )
                 }
             }
 
@@ -180,10 +237,11 @@ fun MapScreen(
                 ) {
                     SpotDetailSheet(
                         spot = detailState.spot,
+                        fallbackSpot = selectedSpot,
                         photos = detailState.photos,
                         reviews = detailState.reviews,
                         isLoading = detailState.isLoading,
-                        onAddPhotoClick = { photoPicker.launch("image/*") },
+                        onAddPhotoClick = { requestPhotoPicker(PhotoPickerTarget.DETAIL) },
                         onAddReview = { rating, comment ->
                             selectedSpot?.id?.let { spotsViewModel.addReview(it, rating, comment) }
                         }
@@ -192,4 +250,24 @@ fun MapScreen(
             }
         }
     }
+
+    // À chaque sélection de spot, recharge le détail depuis la DB pour avoir avis/desc frais
+    LaunchedEffect(selectedSpot?.id) {
+        selectedSpot?.id?.let { spotsViewModel.selectSpot(it) }
+    }
+}
+
+// Couleur unique pour tous les pins (image fournie)
+private fun buildPinBitmap(context: Context): Bitmap {
+    val drawable = ContextCompat.getDrawable(context, R.drawable.ic_pin_green)
+        ?: return Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)
+    val density = context.resources.displayMetrics.density
+    val width = (24 * density).toInt().coerceAtLeast(1)
+    val height = (32 * density).toInt().coerceAtLeast(1)
+    return drawable.toBitmap(width, height, Bitmap.Config.ARGB_8888)
+}
+
+private enum class PhotoPickerTarget {
+    NEW_SPOT,
+    DETAIL
 }
