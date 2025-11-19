@@ -3043,6 +3043,7 @@ int drawable ic_notifications 0x7f0700bf
 int drawable ic_other_sign_in 0x7f0700c0
 int drawable ic_passkey 0x7f0700c1
 int drawable ic_password 0x7f0700c2
+int drawable ic_pin_green 0x7f070131
 int drawable ic_privacy 0x7f0700c3
 int drawable ic_search_black_24 0x7f0700c4
 int drawable ic_settings 0x7f0700c5

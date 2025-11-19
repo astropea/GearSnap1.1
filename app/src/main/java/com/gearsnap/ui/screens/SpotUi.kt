@@ -8,7 +8,10 @@ data class SpotUi(
     val name: String,
     val lat: Double,
     val lng: Double,
+    val description: String = "",
     val category: SpotCategory,
+    val rating: Double = 0.0,
+    val ratingCount: Int = 0,
     val isFavorite: Boolean = false,
     val difficulty: SpotDifficulty = SpotDifficulty.MEDIUM
 )

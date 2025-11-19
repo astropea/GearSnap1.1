@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:2:1-45:12
-INJECTED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:2:1-45:12
-INJECTED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:2:1-45:12
-INJECTED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:2:1-45:12
+ADDED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:2:1-47:12
+INJECTED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:2:1-47:12
+INJECTED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:2:1-47:12
+INJECTED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:2:1-47:12
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\antoi\.gradle\caches\8.9\transforms\9af572ea9ecd2016cccfd2031335f6fc\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\antoi\.gradle\caches\8.9\transforms\b97ade628bf5554f3e85de7d709c2050\transformed\play-services-location-21.3.0\AndroidManifest.xml:2:1-8:12
 MERGED from [com.google.firebase:firebase-auth-ktx:23.1.0] C:\Users\antoi\.gradle\caches\8.9\transforms\bc15ce2f8f545eb552762c970ace44ae\transformed\firebase-auth-ktx-23.1.0\AndroidManifest.xml:2:1-17:12
@@ -341,12 +341,20 @@ ADDED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\Android
 		ADDED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:42:78-104
 	android:name
 		ADDED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:42:22-77
+uses-permission#android.permission.READ_MEDIA_IMAGES
+ADDED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:43:5-75
+	android:name
+		ADDED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:43:22-73
+uses-permission#android.permission.CAMERA
+ADDED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:44:5-64
+	android:name
+		ADDED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:44:22-62
 uses-permission#android.permission.POST_NOTIFICATIONS
-ADDED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:43:5-77
+ADDED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:45:5-77
 MERGED from [com.google.firebase:firebase-messaging:24.0.3] C:\Users\antoi\.gradle\caches\8.9\transforms\e88783f529095abed9b303e8b8327940\transformed\firebase-messaging-24.0.3\AndroidManifest.xml:23:5-77
 MERGED from [com.google.firebase:firebase-messaging:24.0.3] C:\Users\antoi\.gradle\caches\8.9\transforms\e88783f529095abed9b303e8b8327940\transformed\firebase-messaging-24.0.3\AndroidManifest.xml:23:5-77
 	android:name
-		ADDED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:43:22-74
+		ADDED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml:45:22-74
 uses-sdk
 INJECTED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\antoi\AndroidStudioProjects\GearSnap1.9\app\src\main\AndroidManifest.xml
